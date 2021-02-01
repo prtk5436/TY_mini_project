@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".SignUp.SignUp">
+
+    <EditText
+        android:layout_margin="20dp"
+        android:id="@+id/et_mob"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="mobile no" />
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_below="@id/et_mob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="name" />
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_name"
+        android:layout_margin="20dp"
+        android:hint="password" />
+
+    <EditText
+        android:id="@+id/et_Confirmpwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_pwd"
+        android:layout_margin="20dp"
+        android:hint="Retype password" />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_Confirmpwd"
+        android:layout_margin="20dp"
+        android:text="signUp" />
+</RelativeLayout>

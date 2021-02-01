@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "991938267911",
+    "firebase_url": "https://messapp-78b28-default-rtdb.firebaseio.com",
+    "project_id": "messapp-78b28",
+    "storage_bucket": "messapp-78b28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991938267911:android:1ee41fd16e7bada50e53a2",
+        "android_client_info": {
+          "package_name": "com.example.tyminiproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991938267911-96p7r8v9iihm9hvc0cge0v4hk503aa46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tyminiproject",
+            "certificate_hash": "214d23214a96644746ca7f1b2ce735574bfc6713"
+          }
+        },
+        {
+          "client_id": "991938267911-3r32qo5un0otgh8s66b16gm8bq3au9ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWrzw_6vQeCwiXS0H7z2Jh9xYRAKA_ze8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991938267911-3r32qo5un0otgh8s66b16gm8bq3au9ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
