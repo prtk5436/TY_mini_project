@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.Category;
+import com.example.tyminiproject.Model.Food;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,6 +41,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     DatabaseReference category;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
+    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         toolbar.setTitle("Menu");
-      //  setSupportActionBar(toolbar);
+        //  setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void loadMenu() {
-        FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
+        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
             @Override
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Category model, int i) {
                 menuViewHolder.MenuName.setText(model.getName());
@@ -98,6 +100,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(Home.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
+                        //Get categoryId & sent it to new activity
+                        Intent i = new Intent(Home.this, FoodList.class);
+                        i.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        startActivity(i);
                     }
                 });
 

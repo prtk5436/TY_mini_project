@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TYMiniProject">
-        <activity android:name=".Home"></activity>
+        <activity android:name=".FoodList" />
+        <activity android:name=".Home" />
         <activity android:name=".SignUp.GenerateOTP" />
         <activity android:name=".SignUp.VerifyPhoneNo" />
         <activity android:name=".SignUp.SignUp" />
