@@ -11,4 +11,6 @@
     <color name="overlayBackground">#7f333639</color>
     <color name="overlayActionBar">#0e0d0e</color>
 
+    <color name="Lightblue">#518BFF</color>
+    <color name="Darkblue">#1747A8</color>
 </resources>
