@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.tyminiproject.Home;
@@ -33,8 +34,8 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUp extends AppCompatActivity {
     private static final String TAG = "SignUp";
-    Button btn_signUp;
 
+    ImageButton btn_signUp;
     EditText et_mob, et_pwd, et_name;
     String str_phone;
 

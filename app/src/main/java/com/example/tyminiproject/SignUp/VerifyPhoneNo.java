@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,7 +31,8 @@ import static com.google.android.gms.tasks.TaskExecutors.*;
 public class VerifyPhoneNo extends AppCompatActivity {
     String TAG = "VerifyPhoneNo";
     String verificationId, phoneNo;
-    Button btn_resendOTP, btn_verifyOTP, btn_signUp;
+    Button btn_resendOTP,  btn_signUp;
+    ImageButton btn_verifyOTP;
     EditText et_mob, et_pwd, et_name, et_otp;
     ProgressBar progressBar;
 

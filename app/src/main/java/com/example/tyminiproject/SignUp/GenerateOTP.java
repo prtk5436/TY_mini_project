@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 public class GenerateOTP extends AppCompatActivity {
     String TAG = "GenerateOTP";
-    Button btn_getOtp, btn_verifyOTP, btn_signUp;
+    Button  btn_verifyOTP, btn_signUp;
+    ImageButton btn_getOtp;
     EditText et_mob, et_pwd, et_name, et_otp;
     String mobno;
 
