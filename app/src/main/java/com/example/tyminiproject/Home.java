@@ -63,11 +63,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(Home.this, "FAB   Click", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(Home.this, Cart.class);
+                startActivity(i);
+                //  Toast.makeText(Home.this, "FAB   Click", Toast.LENGTH_LONG).show();
             }
         });
-
 
         navigationView.setCheckedItem(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
@@ -106,12 +106,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         startActivity(i);
                     }
                 });
-
             }
-
-
         };
-
         recycler_menu.setAdapter(adapter);
     }
 
@@ -147,32 +143,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Intent intent = new Intent(Home.this, Home.class);
                 startActivity(intent);
                 break;
+
             case R.id.nav_cart:
-                Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
-
-
-/*
-                Intent i = new Intent(Home.this, Customer.class);
+                // Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(Home.this, Cart.class);
                 startActivity(i);
-*/
+                break;
 
+            case R.id.nav_logOut:
+                Intent i2 = new Intent(Home.this, SignIn.class);
+                i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i2);
                 break;
-          /*  case R.id.nav_login:
-                menu.findItem(R.id.nav_logout).setVisible(true);
-                menu.findItem(R.id.nav_profile).setVisible(true);
-                menu.findItem(R.id.nav_login).setVisible(false);
-                break;
-            case R.id.nav_logout:
-                menu.findItem(R.id.nav_logout).setVisible(false);
-                menu.findItem(R.id.nav_profile).setVisible(false);
-                menu.findItem(R.id.nav_login).setVisible(true);
-                break;
-    */
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

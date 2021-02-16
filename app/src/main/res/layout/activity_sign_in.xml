@@ -104,6 +104,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -117,42 +118,46 @@
             android:id="@+id/tv_forgotpwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
             android:gravity="center"
+            android:text="@string/forgot_password"
 
             />
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/linear_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/dont_have_ac"
-                />
+                android:layout_height="wrap_content"
+                android:text="@string/dont_have_ac" />
 
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/Signup"
-                android:textStyle="bold"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:text="@string/Signup"
                 android:textAlignment="gravity"
-            />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
 
-
-
-
-
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/btn_messOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm Mess Owner"
+        android:onClick="gotoMessModule"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/Darkblue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

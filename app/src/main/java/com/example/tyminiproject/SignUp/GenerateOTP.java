@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tyminiproject.R;
+import com.example.tyminiproject.SignIn;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GenerateOTP extends AppCompatActivity {
     String TAG = "GenerateOTP";
-    Button  btn_verifyOTP, btn_signUp;
+    Button btn_verifyOTP, btn_signUp;
     ImageButton btn_getOtp;
     EditText et_mob, et_pwd, et_name, et_otp;
     String mobno;
@@ -40,54 +41,62 @@ public class GenerateOTP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (et_mob != null) {
-                    mobno = et_mob.getText().toString();
-                    t1.setText(mobno);
-                } else {
+                mobno = et_mob.getText().toString();
+                if (mobno.isEmpty()) {
                     Toast.makeText(GenerateOTP.this, "empty", Toast.LENGTH_LONG).show();
-                    et_mob.setError("empty");
-                }
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+91" + mobno,
-                        60,
-                        TimeUnit.SECONDS,
-                        GenerateOTP.this,
-                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                btn_getOtp.setVisibility(View.GONE);
-                                progressBar.setVisibility(View.VISIBLE);
+                    et_mob.setError("please enter valid mobile no.");
+
+                } else {
+                    t1.setText(mobno);
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                            "+91" + mobno,
+                            60,
+                            TimeUnit.SECONDS,
+                            GenerateOTP.this,
+                            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                @Override
+                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                    btn_getOtp.setVisibility(View.GONE);
+                                    progressBar.setVisibility(View.VISIBLE);
                                /* Log.e(TAG,"inside onVerificationFailed : " + e.getMessage());
                                 Toast.makeText(GenerateOTP.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
 */
+                                }
+
+                                @Override
+                                public void onVerificationFailed(@NonNull FirebaseException e) {
+                                    btn_getOtp.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.GONE);
+                                    Log.e(TAG, "inside onVerificationFailed : " + e.getMessage());
+                                    Toast.makeText(GenerateOTP.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                                }
+
+                                @Override
+                                public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
+                                    intent.putExtra("mobile", mobno);
+                                    intent.putExtra("verificationId", verificationId);
+                                    startActivity(intent);
+                                }
                             }
+                    );
 
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                btn_getOtp.setVisibility(View.VISIBLE);
-                                progressBar.setVisibility(View.GONE);
-                                Log.e(TAG,"inside onVerificationFailed : " + e.getMessage());
-                                Toast.makeText(GenerateOTP.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
 
-                            }
+                    progressBar.setVisibility(View.VISIBLE);
 
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
-                                intent.putExtra("mobile",mobno);
-                                intent.putExtra("verificationId",verificationId);
-                                startActivity(intent);
-                            }
-                        }
-                );
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                Log.e(TAG, "onCreate: " + mobno);
-                Intent intent = new Intent(GenerateOTP.this, VerifyPhoneNo.class);
-                intent.putExtra("mobno", mobno);
-                startActivity(intent);
+                    Log.e(TAG, "onCreate: " + mobno);
+                    Intent intent = new Intent(GenerateOTP.this, VerifyPhoneNo.class);
+                    intent.putExtra("mobno", mobno);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    public void onCancel(View view) {
+        Intent intent = new Intent(GenerateOTP.this, SignIn.class);
+        startActivity(intent);
+        finish();
     }
 }

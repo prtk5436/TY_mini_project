@@ -57,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
+        android:onClick="onCancel"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,8 +112,8 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColorHint="@color/white"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -137,8 +138,8 @@
             android:id="@+id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColorHint="@color/white"
-            android:inputType="textWebPassword"/>
+            android:inputType="textWebPassword"
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

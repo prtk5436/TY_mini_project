@@ -46,7 +46,7 @@ public class FoodList extends AppCompatActivity {
 
         if (getIntent() != null)
             categoryId = getIntent().getStringExtra("CategoryId");
-            Log.e(TAG, "inside onCreate : categoryId---" + categoryId);
+        Log.e(TAG, "inside onCreate : categoryId---" + categoryId);
         if (!categoryId.isEmpty() && categoryId != null) {
             loadFoodList(categoryId);
         }
@@ -67,7 +67,14 @@ public class FoodList extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(FoodList.this, "" + local.getName(), Toast.LENGTH_LONG).show();
-
+                        String foodName = local.getName();
+                        String foodPrice = local.getPrice();
+                        String foodDesc = local.getDescription();
+                        String foodDiscont = local.getDiscount();
+                        Log.e(TAG, "inside loadFoodList : fname : " + foodName);
+                        Log.e(TAG, "inside loadFoodList: fprice : " + foodPrice);
+                        Log.e(TAG, "inside loadFoodList : fdiscount : " + foodDiscont);
+                        Log.e(TAG, "inside loadFoodList : fdesc : " + foodDesc);
                         Intent i = new Intent(FoodList.this, FoodDetail.class);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
                         startActivity(i);

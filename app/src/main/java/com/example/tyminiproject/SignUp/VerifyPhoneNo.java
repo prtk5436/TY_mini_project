@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.tyminiproject.R;
+import com.example.tyminiproject.SignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -31,7 +32,7 @@ import static com.google.android.gms.tasks.TaskExecutors.*;
 public class VerifyPhoneNo extends AppCompatActivity {
     String TAG = "VerifyPhoneNo";
     String verificationId, phoneNo;
-    Button btn_resendOTP,  btn_signUp;
+    Button btn_resendOTP, btn_signUp;
     ImageButton btn_verifyOTP;
     EditText et_mob, et_pwd, et_name, et_otp;
     ProgressBar progressBar;
@@ -56,35 +57,36 @@ public class VerifyPhoneNo extends AppCompatActivity {
         btn_verifyOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (et_otp == null) {
-                    Toast.makeText(getApplicationContext(), "enter OTP", Toast.LENGTH_LONG).show();
-                    return;
-                }
                 String userOTP = et_otp.getText().toString();
-                if (verificationId != null) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    btn_verifyOTP.setVisibility(View.GONE);
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
+                if (userOTP.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "enter OTP", Toast.LENGTH_LONG).show();
+                    et_otp.setError("enter Valid Otp");
+                } else {
+                    if (verificationId != null) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        btn_verifyOTP.setVisibility(View.GONE);
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
 
-                    FirebaseAuth.getInstance().signInWithCredential(credential)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    btn_verifyOTP.setVisibility(View.VISIBLE);
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
+                        FirebaseAuth.getInstance().signInWithCredential(credential)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        btn_verifyOTP.setVisibility(View.VISIBLE);
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
 
-                                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        intent.putExtra("mobno", phoneNo);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "enter Valid OTP", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            intent.putExtra("mobno", phoneNo);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "enter Valid OTP", Toast.LENGTH_LONG).show();
 
+                                        }
                                     }
-                                }
-                            });
+                                });
+                    }
                 }
             }
         });
@@ -112,15 +114,15 @@ public class VerifyPhoneNo extends AppCompatActivity {
                             public void onVerificationFailed(@NonNull FirebaseException e) {
                                 btn_verifyOTP.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.GONE);
-                                Log.e(TAG,"inside onVerificationFailed : " + e.getMessage());
+                                Log.e(TAG, "inside onVerificationFailed : " + e.getMessage());
                                 Toast.makeText(VerifyPhoneNo.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
 
                             }
 
                             @Override
                             public void onCodeSent(@NonNull String NEWverificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                verificationId= NEWverificationId;
-                                Toast.makeText(VerifyPhoneNo.this, "OTP sent  " , Toast.LENGTH_LONG).show();
+                                verificationId = NEWverificationId;
+                                Toast.makeText(VerifyPhoneNo.this, "OTP sent  ", Toast.LENGTH_LONG).show();
 
                             }
                         }
@@ -130,4 +132,9 @@ public class VerifyPhoneNo extends AppCompatActivity {
     }
 
 
+    public void onCancel(View view) {
+        Intent intent = new Intent(VerifyPhoneNo.this, GenerateOTP.class);
+        startActivity(intent);
+        finish();
+    }
 }
