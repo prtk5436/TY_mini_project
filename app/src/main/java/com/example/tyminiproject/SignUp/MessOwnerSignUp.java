@@ -3,6 +3,7 @@ package com.example.tyminiproject.SignUp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.Model.User;
 import com.example.tyminiproject.R;
 import com.example.tyminiproject.SignIn;
@@ -25,8 +26,8 @@ public class MessOwnerSignUp extends AppCompatActivity {
     private static final String TAG = "SignUp";
 
     ImageButton btn_signUp;
-    EditText et_mob, et_pwd, et_Cpwd, et_name;
-    String str_phone, pwd, Cpwd, name;
+    EditText et_mob, et_pwd, et_Cpwd, et_name,et_reg,et_address;
+    String str_phone, pwd, Cpwd, name ,messReg,messAddr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,10 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_pwd = findViewById(R.id.et_pwd);
         et_Cpwd = findViewById(R.id.et_Cpwd);
         et_name = findViewById(R.id.et_name);
+        et_reg = findViewById(R.id.et_reg);
+        et_address = findViewById(R.id.et_address);
+
+
 
 
 
@@ -67,7 +72,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
     private void registerUser() {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference table_user = firebaseDatabase.getReference("user");
+        DatabaseReference table_user = firebaseDatabase.getReference("MessUser");
 
 
         ProgressDialog progressDialog = new ProgressDialog(MessOwnerSignUp .this);
@@ -88,7 +93,9 @@ public class MessOwnerSignUp extends AppCompatActivity {
 
                     Log.e(TAG, "inside onDataChange : name : " + name);
                     Log.e(TAG, "inside onDataChange : pwd : " + pwd);
-                    User newuser = new User(name, pwd);
+                    messReg = et_reg.getText().toString();
+                    messAddr = et_address.getText().toString();
+                    MessUser newuser = new MessUser(name, pwd,messReg,messAddr);
                     table_user.child(str_phone).setValue(newuser);
                     Toast.makeText(MessOwnerSignUp .this, "user registered successfully", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MessOwnerSignUp .this, SignIn.class);
