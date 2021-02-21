@@ -37,7 +37,7 @@ public class MessOwnerSignIn extends AppCompatActivity {
         et_pwd = findViewById(R.id.et_pwd);
         linear_signUp = findViewById(R.id.linear_signUp);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference table_user = firebaseDatabase.getReference("user");
+        DatabaseReference table_user = firebaseDatabase.getReference("MessUser");
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

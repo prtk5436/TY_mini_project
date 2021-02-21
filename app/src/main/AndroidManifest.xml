@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TYMiniProject"
         tools:replace="android:theme">
-        <activity android:name=".SignUp.MessOwnerSignUp"></activity>
+        <activity android:name=".MessUserSignUp"></activity>
+        <activity android:name=".SignUp.MessOwnerSignUp" />
         <activity android:name=".MessOwnerSignIn" />
         <activity android:name=".Cart" />
         <activity android:name=".FoodDetail" />
