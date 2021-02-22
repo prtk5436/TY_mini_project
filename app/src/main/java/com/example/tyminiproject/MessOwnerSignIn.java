@@ -93,10 +93,10 @@ public class MessOwnerSignIn extends AppCompatActivity {
             }
         });
     }
-
+/*
     public void gotoMessModule(View view) {
         Intent i = new Intent(MessOwnerSignIn.this, MessOwnerSignUp.class);
         startActivity(i);
         finish();
-    }
+    }*/
 }
