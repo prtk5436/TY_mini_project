@@ -76,7 +76,7 @@ public class VerifyPhoneNo extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
 
-                                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                            Intent intent = new Intent(getApplicationContext(), MessOwnerSignUp.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             intent.putExtra("mobno", phoneNo);
                                             startActivity(intent);
