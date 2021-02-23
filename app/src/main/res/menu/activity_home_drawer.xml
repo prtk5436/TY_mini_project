@@ -24,6 +24,17 @@
             android:title="Log Out" />
 
     </group>
+    <group android:checkableBehavior="single"
+        android:menuCategory="secondary"
+        >
+
+        <item
+            android:id="@+id/nav_messReg"
+            android:icon="@drawable/ic_lunchbox"
+            android:iconTint="@color/white"
+            android:title="Register as Mess Owner" />
+
+    </group>
 
 
 </menu>

@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignIn extends AppCompatActivity {
+
     Button login;
     EditText et_mob, et_pwd;
     LinearLayout linear_signUp;
@@ -37,6 +38,7 @@ public class SignIn extends AppCompatActivity {
         et_mob = findViewById(R.id.et_mob);
         et_pwd = findViewById(R.id.et_pwd);
         linear_signUp = findViewById(R.id.linear_signUp);
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference table_user = firebaseDatabase.getReference("user");
 

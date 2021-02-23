@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.Category;
 import com.example.tyminiproject.Model.Food;
+import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,16 +34,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "Home";
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    TextView textView, userName;
+    TextView textView, userName, tvMob;
     FirebaseDatabase database;
     DatabaseReference category;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
+    String strMob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         View headerView = navigationView.getHeaderView(0);
         userName = headerView.findViewById(R.id.userName);
         userName.setText(Common.currentUser.getName());
+
+        tvMob = headerView.findViewById(R.id.tv_mob);
+        tvMob.setText(Common.currentUser.getPhone());
+
+        strMob = tvMob.getText().toString();
+        Log.d(TAG, "onCreate: nav nar MOB NO : "+strMob);
 
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
@@ -155,6 +165,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i2);
                 break;
+
+            case R.id.nav_messReg:
+                Intent i3 = new Intent(Home.this, MessOwnerSignUp.class);
+                i3.putExtra("mobileNo",strMob);
+                startActivity(i3);
 
         }
 

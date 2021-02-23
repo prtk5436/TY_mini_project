@@ -43,7 +43,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_reg = findViewById(R.id.et_messReg);
         et_address = findViewById(R.id.et_messAddr);
 
-        str_phone = getIntent().getStringExtra("mobno");
+        str_phone = getIntent().getStringExtra("mobileNo");
         et_mob.setText(str_phone);
         et_mob.setEnabled(false);
         Log.e(TAG, "onCreate: " + str_phone);
