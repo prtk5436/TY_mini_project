@@ -8,22 +8,22 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Home"
-    tools:showIn="@layout/app_bar_home">
+    tools:context=".MessOwnerHome"
+    tools:showIn="@layout/app_bar_mess_owner_home">
 
 
     <TextView
         android:id="@+id/et_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Content messCustomer"
-        android:textSize="40sp"
+        android:text="Content messOwner home"
+        android:textSize="50sp"
         tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_menu"
         android:scrollbars="vertical" />
 
 

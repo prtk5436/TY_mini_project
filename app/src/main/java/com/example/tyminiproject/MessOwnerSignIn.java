@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tyminiproject.Common.Common;
+import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.Model.User;
 import com.example.tyminiproject.SignUp.GenerateOTP;
 import com.example.tyminiproject.SignUp.MessOwnerSignUp;
@@ -24,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MessOwnerSignIn extends AppCompatActivity {
+    private static final String TAG = "MessOwnerSignIn";
     ImageButton login;
     EditText et_mob, et_pwd;
     LinearLayout linear_signUp;
@@ -53,18 +56,20 @@ public class MessOwnerSignIn extends AppCompatActivity {
                     progressDialog.show();
 
                     table_user.addValueEventListener(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //check if user is present or not
                             if (snapshot.child(et_mob.getText().toString()).exists()) {
                                 //get user info
                                 progressDialog.dismiss();
-                                User user = snapshot.child(et_mob.getText().toString()).getValue(User.class);
+                                MessUser user = snapshot.child(et_mob.getText().toString()).getValue(MessUser.class);
                                 user.setPhone(et_mob.getText().toString());
                                 if (user.getPassword().equals(et_pwd.getText().toString())) {
                                     Toast.makeText(MessOwnerSignIn.this, "Login Success", Toast.LENGTH_LONG).show();
-                                    Intent i = new Intent(MessOwnerSignIn.this, Home.class);
-                                    Common.currentUser = user;
+
+                                    Intent i = new Intent(MessOwnerSignIn.this, MessOwnerHome.class);
+                                    Common.currentMessUser = user;
                                     startActivity(i);
                                     finish();
                                 } else {

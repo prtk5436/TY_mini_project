@@ -43,9 +43,9 @@
                         android:id="@+id/profile_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/pimg2"
+                        android:src="@drawable/ic_baseline_account_circle_24"
                         app:civ_border_color="#FF000000"
-                        app:civ_border_width="2dp" />
+                        app:civ_border_width="1dp" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -85,21 +85,21 @@
                     android:layout_height="60dp"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
 
                     <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="20dp"
                         android:src="@drawable/ic_clock" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="3"
                         android:orientation="vertical">
 
@@ -130,7 +130,8 @@
                         android:background="@drawable/shadow"
                         android:text="View"
                         android:textAllCaps="false"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:layout_marginRight="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

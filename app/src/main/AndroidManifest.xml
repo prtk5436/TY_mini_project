@@ -4,6 +4,7 @@
     package="com.example.tyminiproject">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TYMiniProject.NoActionBar"
         tools:replace="android:theme">
+        <activity android:name=".MessOwnerHome"></activity>
         <activity android:name=".SignUp.MessOwnerSignUp" />
         <activity android:name=".MessOwnerSignIn" />
         <activity android:name=".Cart" />

@@ -84,7 +84,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         tvMob.setText(Common.currentUser.getPhone());
 
         strMob = tvMob.getText().toString();
-        Log.d(TAG, "onCreate: nav nar MOB NO : "+strMob);
+        Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
 
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
@@ -118,6 +118,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 });
             }
         };
+        adapter.notifyDataSetChanged();
         recycler_menu.setAdapter(adapter);
     }
 
@@ -168,7 +169,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             case R.id.nav_messReg:
                 Intent i3 = new Intent(Home.this, MessOwnerSignUp.class);
-                i3.putExtra("mobileNo",strMob);
+                i3.putExtra("mobileNo", strMob);
                 startActivity(i3);
 
         }
