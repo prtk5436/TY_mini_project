@@ -11,9 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TYMiniProject"
+        android:theme="@style/Theme.TYMiniProject.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".MessUserSignUp"></activity>
         <activity android:name=".SignUp.MessOwnerSignUp" />
         <activity android:name=".MessOwnerSignIn" />
         <activity android:name=".Cart" />

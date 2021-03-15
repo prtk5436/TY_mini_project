@@ -9,13 +9,15 @@ public class MessUser {
 
     public MessUser() {
     }
-    public MessUser(String address,String name, String password ,String regno ) {
+
+    public MessUser(String address, String name, String password, String regno) {
         Address = address;
         Name = name;
         Password = password;
         RegNo = regno;
     }
-    public MessUser(String address,String name, String password,String regNo, String phone) {
+
+    public MessUser(String address, String name, String password, String regNo, String phone) {
         Address = address;
         Name = name;
         Password = password;

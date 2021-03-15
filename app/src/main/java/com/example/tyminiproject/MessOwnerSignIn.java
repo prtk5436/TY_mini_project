@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MessOwnerSignIn extends AppCompatActivity {
-    Button login;
+    ImageButton login;
     EditText et_mob, et_pwd;
     LinearLayout linear_signUp;
     String mobno, pwd;
@@ -32,9 +33,9 @@ public class MessOwnerSignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_owner_sign_in);
-        login = findViewById(R.id.btn_login);
-        et_mob = findViewById(R.id.et_mob);
-        et_pwd = findViewById(R.id.et_pwd);
+        login = findViewById(R.id.btn_MessLogin);
+        et_mob = findViewById(R.id.et_MessMob);
+        et_pwd = findViewById(R.id.et_Messpwd);
         linear_signUp = findViewById(R.id.linear_signUp);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference table_user = firebaseDatabase.getReference("MessUser");
@@ -84,6 +85,7 @@ public class MessOwnerSignIn extends AppCompatActivity {
             }
         });
 
+/*
         linear_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,11 +94,11 @@ public class MessOwnerSignIn extends AppCompatActivity {
                 finish();
             }
         });
+*/
     }
-/*
-    public void gotoMessModule(View view) {
-        Intent i = new Intent(MessOwnerSignIn.this, MessOwnerSignUp.class);
-        startActivity(i);
+    public void onCancel(View view) {
+        Intent intent = new Intent(MessOwnerSignIn.this, SignIn.class);
+        startActivity(intent);
         finish();
-    }*/
+    }
 }

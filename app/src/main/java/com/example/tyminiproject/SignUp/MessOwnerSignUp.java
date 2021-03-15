@@ -3,6 +3,7 @@ package com.example.tyminiproject.SignUp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tyminiproject.Home;
 import com.example.tyminiproject.MessOwnerSignIn;
 import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.Model.User;
@@ -35,11 +36,11 @@ public class MessOwnerSignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_owner_sign_up);
 
-        btn_signUp = findViewById(R.id.btn_signUp);
+        btn_signUp = findViewById(R.id.btn_MessSignUp);
         et_mob = findViewById(R.id.et_mob);
-        et_pwd = findViewById(R.id.et_pwd);
-        et_Cpwd = findViewById(R.id.et_Cpwd);
-        et_name = findViewById(R.id.et_name);
+        et_pwd = findViewById(R.id.et_Messpwd);
+        et_Cpwd = findViewById(R.id.et_MessCpwd);
+        et_name = findViewById(R.id.et_messname);
         et_reg = findViewById(R.id.et_messReg);
         et_address = findViewById(R.id.et_messAddr);
 
@@ -97,11 +98,11 @@ public class MessOwnerSignUp extends AppCompatActivity {
                     Log.e(TAG, "inside onDataChange : pwd : " + pwd);
                     Log.e(TAG, "inside onDataChange : messReg : " + messReg);
                     Log.e(TAG, "inside onDataChange : messAddr : " + messAddr);
-                    MessUser newuser = new MessUser(name, pwd, messReg, messAddr);
+                    MessUser newuser = new MessUser(messAddr, name, pwd, messReg);
 
                     table_user.child(str_phone).setValue(newuser);
 
-                    Toast.makeText(MessOwnerSignUp.this, "user registered successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MessOwnerSignUp.this, "Mess Registered Successfully!!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MessOwnerSignUp.this, MessOwnerSignIn.class);
                     startActivity(i);
                     finish();
@@ -117,7 +118,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
     }
 
     public void onCancel(View view) {
-        Intent intent = new Intent(MessOwnerSignUp.this, GenerateOTP.class);
+        Intent intent = new Intent(MessOwnerSignUp.this, Home.class);
         startActivity(intent);
         finish();
     }

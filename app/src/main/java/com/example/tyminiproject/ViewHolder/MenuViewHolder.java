@@ -1,6 +1,7 @@
 package com.example.tyminiproject.ViewHolder;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView MenuName;
     public ImageView MenuImage;
     public ItemClickListner itemClickListner;
+    public Button btn_ViewMess;
 
     public void setItemClickListner(ItemClickListner itemClickListner) {
         this.itemClickListner = itemClickListner;
@@ -26,8 +28,8 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         MenuName = itemView.findViewById(R.id.menuName);
         MenuImage = itemView.findViewById(R.id.menu_img);
-
-        itemView.setOnClickListener(this);
+        btn_ViewMess = itemView.findViewById(R.id.btn_ViewMess);
+        btn_ViewMess.setOnClickListener(this);
 
     }
 
