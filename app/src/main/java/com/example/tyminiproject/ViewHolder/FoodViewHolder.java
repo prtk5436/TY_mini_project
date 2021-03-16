@@ -1,5 +1,6 @@
 package com.example.tyminiproject.ViewHolder;
 
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.R;
 
-public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
 
     public TextView FoodName;
     public ImageView FoodImage;
@@ -24,7 +24,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         FoodImage = itemView.findViewById(R.id.food_img);
 
         itemView.setOnClickListener(this);
-
+        //itemView.OnCreateContextMenuListener(this);
     }
 
     public void setItemClickListner(ItemClickListner itemClickListner) {
@@ -33,7 +33,11 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View view) {
-
         itemClickListner.onClick(view, getAdapterPosition(), false);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
     }
 }

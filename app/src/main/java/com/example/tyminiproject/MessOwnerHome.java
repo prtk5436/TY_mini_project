@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +30,6 @@ import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.Category;
 import com.example.tyminiproject.Model.MessUser;
-import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -54,7 +52,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    TextView   tvRegNo, tvMessName;
+    TextView tvRegNo, tvMessName;
     FirebaseDatabase database;
     DatabaseReference category;
 
@@ -113,10 +111,10 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         tvMessName.setText(Common.currentMessUser.getName());
         tvRegNo = headerView.findViewById(R.id.tv_RegNO);
         tvRegNo.setText(Common.currentMessUser.getRegNo());
-        /*
-        strMob = tvMob.getText().toString();
-        Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
-*/
+
+        if (getIntent() != null)
+            strMob = getIntent().getStringExtra("mobno");
+        Log.e(TAG, "inside onCreate : messId---" + strMob);
 
         database = FirebaseDatabase.getInstance();
         category = database.getReference("MessUser");
@@ -178,8 +176,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         });
 
         alertDialog.show();
-
-
     }
 
     private void uploadImage() {
@@ -245,8 +241,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(i, "Select Image"), PICK_IMG_REQ);
-
-
     }
 
     private void loadMenu() {
@@ -265,14 +259,14 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(MessOwnerHome.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
                         //Get categoryId & sent it to new activity
+                        strMob = adapter.getRef(position).getKey();
                         Intent i = new Intent(MessOwnerHome.this, FoodList.class);
-                        i.putExtra("MessId", adapter.getRef(position).getKey());
+                        i.putExtra("MessId", strMob);
                         startActivity(i);
                     }
                 });
             }
         };
-
 
         adapter.notifyDataSetChanged();
         recycler_menu.setAdapter(adapter);
@@ -305,16 +299,22 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_menu:
-                Toast.makeText(MessOwnerHome.this, "home   Click", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MessOwnerHome.this, Home.class);
+            case R.id.nav_home:
+                Intent i = new Intent(MessOwnerHome.this, MessOwnerHome.class);
+                startActivity(i);
+                break;
+            case R.id.nav_addMenu:
+                Toast.makeText(MessOwnerHome.this, "View Menu", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MessOwnerHome.this, FoodList.class);
+                intent.putExtra("MessId", strMob);
                 startActivity(intent);
                 break;
 
-            case R.id.nav_cart:
-                // Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(MessOwnerHome.this, Cart.class);
+            case R.id.nav_orders:
+                Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
+               /* Intent i = new Intent(MessOwnerHome.this, Cart.class);
                 startActivity(i);
+              */
                 break;
 
             case R.id.nav_logOut:
@@ -322,11 +322,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i2);
                 break;
-
-            case R.id.nav_messReg:
-                Intent i3 = new Intent(MessOwnerHome.this, MessOwnerSignUp.class);
-                i3.putExtra("mobileNo", strMob);
-                startActivity(i3);
 
         }
 

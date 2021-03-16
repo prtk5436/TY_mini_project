@@ -70,6 +70,7 @@ public class MessOwnerSignIn extends AppCompatActivity {
 
                                     Intent i = new Intent(MessOwnerSignIn.this, MessOwnerHome.class);
                                     Common.currentMessUser = user;
+                                    i.putExtra("mobno", et_mob.getText().toString());
                                     startActivity(i);
                                     finish();
                                 } else {
