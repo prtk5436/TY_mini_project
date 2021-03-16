@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +64,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     //view
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
+    FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
     String strMob;
     Button btn_ViewMess;
 
@@ -118,7 +119,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 */
 
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
+        category = database.getReference("MessUser");
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -249,21 +250,23 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     }
 
     private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.mess_item, MenuViewHolder.class, category) {
+        adapter = new FirebaseRecyclerAdapter<MessUser, MenuViewHolder>(MessUser.class, R.layout.mess_item, MenuViewHolder.class, category) {
             @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category model, int i) {
-                menuViewHolder.MenuName.setText(model.getName());
+            protected void populateViewHolder(MenuViewHolder menuViewHolder, MessUser model, int i) {
+                menuViewHolder.MessName.setText(model.getName());
+                menuViewHolder.tvOwmner.setText(model.getOwner());
+                menuViewHolder.tvTime.setText(model.getTime());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(menuViewHolder.MenuImage);
 
-                Category clickItem = model;
+                MessUser clickItem = model;
                 menuViewHolder.setItemClickListner(new ItemClickListner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(MessOwnerHome.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
                         //Get categoryId & sent it to new activity
                         Intent i = new Intent(MessOwnerHome.this, FoodList.class);
-                        i.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        i.putExtra("MessId", adapter.getRef(position).getKey());
                         startActivity(i);
                     }
                 });

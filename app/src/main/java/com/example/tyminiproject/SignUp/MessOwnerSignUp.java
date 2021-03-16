@@ -1,20 +1,5 @@
 package com.example.tyminiproject.SignUp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.tyminiproject.Home;
-import com.example.tyminiproject.MessOwnerSignIn;
-import com.example.tyminiproject.Model.MessUser;
-import com.example.tyminiproject.Model.User;
-import com.example.tyminiproject.R;
-import com.example.tyminiproject.SignIn;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,12 +9,25 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tyminiproject.Home;
+import com.example.tyminiproject.MessOwnerSignIn;
+import com.example.tyminiproject.Model.MessUser;
+import com.example.tyminiproject.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class MessOwnerSignUp extends AppCompatActivity {
     private static final String TAG = "MessOwnerSignUp";
 
     ImageButton btn_signUp;
-    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address;
-    String str_phone, pwd, Cpwd, name, messReg, messAddr;
+    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address, et_owner, etAM, etPM;
+    String str_phone, pwd, Cpwd, name, messReg, messAddr, str_ownerName, img, strTime, AM, PM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +41,18 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_name = findViewById(R.id.et_messname);
         et_reg = findViewById(R.id.et_messReg);
         et_address = findViewById(R.id.et_messAddr);
+        et_owner = findViewById(R.id.et_owner);
+        etAM = findViewById(R.id.et_AM);
+        etPM = findViewById(R.id.et_PM);
 
         str_phone = getIntent().getStringExtra("mobileNo");
         et_mob.setText(str_phone);
         et_mob.setEnabled(false);
-        Log.e(TAG, "onCreate: " + str_phone);
+        Log.e(TAG, "onCreate: str_phone :" + str_phone);
+        str_ownerName = getIntent().getStringExtra("custName");
+        et_owner.setText(str_ownerName);
+        et_mob.setEnabled(false);
+        Log.e(TAG, "onCreate: str_ownerName :" + str_ownerName);
 
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +62,9 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 Cpwd = et_Cpwd.getText().toString();
                 messReg = et_reg.getText().toString();
                 messAddr = et_address.getText().toString();
-                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty()) {
+                AM = etAM.getText().toString();
+                PM = etPM.getText().toString();
+                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty()) {
                     Toast.makeText(MessOwnerSignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
                 } else if (!pwd.equals(Cpwd)) {
@@ -94,11 +101,16 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 } else {
                     progressDialog.dismiss();
 
+                    strTime = AM + " AM  -  " + PM + " PM";
                     Log.e(TAG, "inside onDataChange : name : " + name);
                     Log.e(TAG, "inside onDataChange : pwd : " + pwd);
                     Log.e(TAG, "inside onDataChange : messReg : " + messReg);
                     Log.e(TAG, "inside onDataChange : messAddr : " + messAddr);
-                    MessUser newuser = new MessUser(messAddr, name, pwd, messReg);
+                    Log.e(TAG, "inside onDataChange : str_ownerName : " + str_ownerName);
+                    Log.e(TAG, "inside onDataChange : strTime : " + strTime);
+                    img = "https://data.tibettravel.org/assets/images/Tibet-bhutan-tour/indian-food-in-Lhasa.webp";
+
+                    MessUser newuser = new MessUser(img, str_ownerName, strTime, messAddr, name, pwd, messReg);
 
                     table_user.child(str_phone).setValue(newuser);
 

@@ -1,14 +1,5 @@
 package com.example.tyminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +10,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
-import com.example.tyminiproject.Model.Category;
+import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -42,7 +42,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     DatabaseReference category;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
+    FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
     String strMob;
     Button btn_ViewMess;
 
@@ -87,7 +87,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
 
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
+        category = database.getReference("MessUser");
 
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
@@ -98,21 +98,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.mess_item, MenuViewHolder.class, category) {
+        adapter = new FirebaseRecyclerAdapter<MessUser, MenuViewHolder>(MessUser.class, R.layout.mess_item, MenuViewHolder.class, category) {
             @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category model, int i) {
-                menuViewHolder.MenuName.setText(model.getName());
+            protected void populateViewHolder(MenuViewHolder menuViewHolder, MessUser model, int i) {
+                menuViewHolder.MessName.setText(model.getName());
+                menuViewHolder.tvOwmner.setText(model.getOwner());
+                menuViewHolder.tvTime.setText(model.getTime());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(menuViewHolder.MenuImage);
 
-                Category clickItem = model;
+                MessUser clickItem = model;
                 menuViewHolder.setItemClickListner(new ItemClickListner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(Home.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
                         //Get categoryId & sent it to new activity
                         Intent i = new Intent(Home.this, FoodList.class);
-                        i.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        i.putExtra("MessId", adapter.getRef(position).getKey());
                         startActivity(i);
                     }
                 });
@@ -168,8 +170,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
 
             case R.id.nav_messReg:
+                String custName = userName.getText().toString();
                 Intent i3 = new Intent(Home.this, MessOwnerSignUp.class);
                 i3.putExtra("mobileNo", strMob);
+                i3.putExtra("custName", custName);
                 startActivity(i3);
 
         }

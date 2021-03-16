@@ -27,7 +27,7 @@ public class FoodList extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseDatabase database;
     DatabaseReference foodList;
-    String categoryId = "";
+    String messId = "";
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
 
@@ -45,10 +45,10 @@ public class FoodList extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         if (getIntent() != null)
-            categoryId = getIntent().getStringExtra("CategoryId");
-        Log.e(TAG, "inside onCreate : categoryId---" + categoryId);
-        if (!categoryId.isEmpty() && categoryId != null) {
-            loadFoodList(categoryId);
+            messId = getIntent().getStringExtra("MessId");
+        Log.e(TAG, "inside onCreate : messId---" + messId);
+        if (!messId.isEmpty() && messId != null) {
+            loadFoodList(messId);
         }
 
     }

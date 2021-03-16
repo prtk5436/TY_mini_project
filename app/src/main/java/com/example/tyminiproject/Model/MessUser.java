@@ -1,14 +1,63 @@
-package com.example.tyminiproject.Model;
+ package com.example.tyminiproject.Model;
 
 public class MessUser {
+    private String Image;
+    private String Owner;
+    private String Time;
     private String Address;
     private String Name;
     private String Password;
     private String RegNo;
+
+    public MessUser(String image, String owner, String time, String address, String name, String password, String regNo, String phone) {
+        Image = image;
+        Owner = owner;
+        Time = time;
+        Address = address;
+        Name = name;
+        Password = password;
+        RegNo = regNo;
+        Phone = phone;
+    }
+
     private String Phone;
 
     public MessUser() {
     }
+
+    public MessUser(String image, String owner, String time, String address, String name, String password, String regNo) {
+        Image = image;
+        Owner = owner;
+        Time = time;
+        Address = address;
+        Name = name;
+        Password = password;
+        RegNo = regNo;
+    }
+    public String getImage() {
+        return Image;
+    }
+
+    public String getOwner() {
+        return Owner;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public void setOwner(String owner) {
+        Owner = owner;
+    }
+
+    public void setTime(String time) {
+        Time = time;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
 
     public MessUser(String address, String name, String password, String regno) {
         Address = address;
@@ -17,16 +66,8 @@ public class MessUser {
         RegNo = regno;
     }
 
-    public MessUser(String address, String name, String password, String regNo, String phone) {
-        Address = address;
-        Name = name;
-        Password = password;
-        Phone = phone;
-    }
-
     public String getAddress() {
         return Address;
-
     }
 
     public String getRegNo() {

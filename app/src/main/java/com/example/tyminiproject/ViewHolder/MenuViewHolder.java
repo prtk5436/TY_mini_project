@@ -1,5 +1,6 @@
 package com.example.tyminiproject.ViewHolder;
 
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,9 +13,9 @@ import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.R;
 
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
 
-    public TextView MenuName;
+    public TextView MessName, tvTime, tvOwmner;
     public ImageView MenuImage;
     public ItemClickListner itemClickListner;
     public Button btn_ViewMess;
@@ -26,8 +27,10 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public MenuViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        MenuName = itemView.findViewById(R.id.menuName);
+        MessName = itemView.findViewById(R.id.menuName);
         MenuImage = itemView.findViewById(R.id.menu_img);
+        tvOwmner = itemView.findViewById(R.id.messOwnerName);
+        tvTime = itemView.findViewById(R.id.tvTime);
         btn_ViewMess = itemView.findViewById(R.id.btn_ViewMess);
         btn_ViewMess.setOnClickListener(this);
 
@@ -38,5 +41,10 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         itemClickListner.onClick(view, getAdapterPosition(), false);
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Select the action");
     }
 }
