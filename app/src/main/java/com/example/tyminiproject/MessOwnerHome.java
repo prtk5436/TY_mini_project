@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
-import com.example.tyminiproject.Model.Category;
+import com.example.tyminiproject.Model.Food;
 import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -36,8 +36,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -55,7 +58,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     TextView tvRegNo, tvMessName;
     FirebaseDatabase database;
     DatabaseReference category;
-
     FirebaseStorage storage;
     StorageReference storageReference;
 
@@ -66,15 +68,22 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     String strMob;
     Button btn_ViewMess;
 
-    //add new menu layout
-    EditText et_name;
-    Button btn_upload, btn_select;
-
-    Category newCategory;
+    String messId = "", str_Foodname;
+    Food newFood;
     Uri saveUri;
     private final int PICK_IMG_REQ = 71;
+    //add new menu layout
+    EditText et_name;
+    EditText etMenuName, etDesc, etPrice;
+    Button btn_upload, btn_select;
+    FirebaseDatabase database1;
+    DatabaseReference foodList;
+    FirebaseStorage storage1;
+    StorageReference storageReference1;
 
     public static MessUser currentMessUser;
+
+    FloatingActionButton fabAddNewFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +101,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 
         toolbar.setTitle("Mess Market");
 
-        //  setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fabMess);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MessOwnerHome.this, "FAB MESS  Click", Toast.LENGTH_LONG).show();
-                showDialog();
-            }
-        });
-
+        fabAddNewFood = findViewById(R.id.fabAddNewFood);
 
         navigationView.setCheckedItem(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
@@ -122,125 +122,24 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+
+        database1 = FirebaseDatabase.getInstance();
+        foodList = database1.getReference("Food");
+        storage1 = FirebaseStorage.getInstance();
+        storageReference1 = storage1.getReference();
+
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
         loadMenu();
-
-    }
-
-    private void showDialog() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MessOwnerHome.this);
-        alertDialog.setTitle("Add new category");
-        LayoutInflater inflater = this.getLayoutInflater();
-        View add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null);
-
-        et_name = add_menu_layout.findViewById(R.id.et_name);
-        btn_select = add_menu_layout.findViewById(R.id.btn_select);
-        btn_upload = add_menu_layout.findViewById(R.id.btn_upload);
-
-        btn_upload.setOnClickListener(new View.OnClickListener() {
+        fabAddNewFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getImgFromGallery();
+                showAddFoodDialog();
             }
         });
 
-        btn_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(MessOwnerHome.this, "UPLOADING!!!", Toast.LENGTH_LONG).show();
-                uploadImage();
-            }
-        });
-        alertDialog.setView(add_menu_layout);
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-                //here , just created new category
-                if (newCategory != null) {
-                    category.push().setValue(newCategory);
-                    Toast.makeText(MessOwnerHome.this, "Published : " + newCategory.getName(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        alertDialog.show();
-    }
-
-    private void uploadImage() {
-
-        if (saveUri != null) {
-            ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("uploading");
-            progressDialog.show();
-
-            String imgName = UUID.randomUUID().toString();
-            Log.d(TAG, "uploadImage: imgName : " + imgName);
-            StorageReference imgFolder = storageReference.child("images/" + imgName);
-            Log.d(TAG, "uploadImage: imgFolder : " + imgFolder);
-            imgFolder.putFile(saveUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressDialog.dismiss();
-                    Toast.makeText(MessOwnerHome.this, "UPLOADED!!!", Toast.LENGTH_LONG).show();
-                    imgFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            //set value for new category if image upload and we can get downloadd link
-                            String str_name = et_name.getText().toString();
-                            String str_uri = uri.toString();
-                            Log.d(TAG, "onSuccess:  str_name : " + str_name);
-                            Log.d(TAG, "onSuccess: str_uri : " + str_uri);
-                            newCategory = new Category(str_name, str_uri);
-                        }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressDialog.dismiss();
-                    Toast.makeText(MessOwnerHome.this, "Faild!!!" + e.getMessage(), Toast.LENGTH_LONG).show();
-
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                    double prgrss = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded" + prgrss + "%");
-
-                }
-            });
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMG_REQ && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            saveUri = data.getData();
-            btn_select.setText("Img Selected!!");
-
-        }
-    }
-
-    private void getImgFromGallery() {
-
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i, "Select Image"), PICK_IMG_REQ);
     }
 
     private void loadMenu() {
@@ -308,13 +207,15 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 Intent intent = new Intent(MessOwnerHome.this, FoodList.class);
                 intent.putExtra("MessId", strMob);
                 startActivity(intent);
+
+                //  showAddFoodDialog();
                 break;
 
             case R.id.nav_orders:
                 Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
-               /* Intent i = new Intent(MessOwnerHome.this, Cart.class);
-                startActivity(i);
-              */
+                Intent i3 = new Intent(MessOwnerHome.this, DeleteFood.class);
+                startActivity(i3);
+
                 break;
 
             case R.id.nav_logOut:
@@ -328,4 +229,155 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         drawerLayout1.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void showAddFoodDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MessOwnerHome.this);
+        alertDialog.setTitle("Add New Food");
+        LayoutInflater inflater = this.getLayoutInflater();
+        View add_food_layout = inflater.inflate(R.layout.add_new_food_layout, null);
+
+        etMenuName = add_food_layout.findViewById(R.id.et_MenuName);
+        etDesc = add_food_layout.findViewById(R.id.et_MenuDesc);
+        etPrice = add_food_layout.findViewById(R.id.et_price);
+        btn_select = add_food_layout.findViewById(R.id.btn_select);
+        btn_upload = add_food_layout.findViewById(R.id.btn_upload);
+
+        btn_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImgFromGallery();
+            }
+        });
+
+        btn_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(MessOwnerHome.this, " UPLOADING!!! ", Toast.LENGTH_LONG).show();
+                uploadImage();
+            }
+        });
+        alertDialog.setView(add_food_layout);
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                //here , just created new category
+                if (newFood != null) {
+                    //foodList-----------table name
+                    //   foodList.push().setValue(newFood);
+                    addNewFood();
+                }
+            }
+        });
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+
+    }
+
+    private void addNewFood() {
+        //foodList-----------table name
+        foodList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(str_Foodname).exists()) {
+                    //get user info
+                    Toast.makeText(MessOwnerHome.this, "Food is already exists!!", Toast.LENGTH_LONG).show();
+                } else {
+                    foodList.child(str_Foodname).setValue(newFood);
+                    Toast.makeText(MessOwnerHome.this, "New Food Added : " + newFood.getName(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void getImgFromGallery() {
+
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Image of Food"), PICK_IMG_REQ);
+    }
+
+    private void uploadImage() {
+
+        if (saveUri != null) {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("uploading");
+            progressDialog.show();
+
+            String imgName = UUID.randomUUID().toString();
+            Log.d(TAG, "uploadImage: imgName : " + imgName);
+            if (imgName.isEmpty()) {
+                Toast.makeText(MessOwnerHome.this, "imgName empty", Toast.LENGTH_LONG).show();
+            }
+            StorageReference imgFolder1 = storageReference1.child("food_images/" + imgName);
+            Log.d(TAG, "uploadImage: imgFolder : " + imgFolder1);
+            imgFolder1.putFile(saveUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialog.dismiss();
+                    Toast.makeText(MessOwnerHome.this, "UPLOADED!!!", Toast.LENGTH_LONG).show();
+                    imgFolder1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            //set value for new category if image upload and we can get downloadd link
+                            str_Foodname = etMenuName.getText().toString();
+                            String strDesc = etDesc.getText().toString();
+                            String strPrice = etPrice.getText().toString();
+                            String str_uri = uri.toString();
+                            String discount = " ";
+                            Log.d(TAG, "onSuccess:  str_name : " + str_Foodname);
+                            Log.d(TAG, "onSuccess:  strDesc : " + strDesc);
+                            Log.d(TAG, "onSuccess:  strPrice : " + strPrice);
+                            Log.d(TAG, "onSuccess: str_uri : " + str_uri);
+                            Log.d(TAG, "onSuccess: strMob/messid : " + strMob);
+                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMob);
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(MessOwnerHome.this, "Faild!!!" + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    double prgrss = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                    progressDialog.setMessage("Uploaded" + prgrss + "%");
+
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMG_REQ && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            saveUri = data.getData();
+            btn_select.setText("Food Img Selected!!");
+
+        }
+    }
+
 }

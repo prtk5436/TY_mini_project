@@ -1,10 +1,5 @@
 package com.example.tyminiproject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Database.Database;
 import com.example.tyminiproject.Model.Order;
@@ -24,10 +24,8 @@ import com.example.tyminiproject.ViewHolder.CartAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Cart extends AppCompatActivity {
 
@@ -50,7 +48,7 @@ public class Cart extends AppCompatActivity {
         recyclerView = findViewById(R.id.listCart);
 
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
-        tvTotal = findViewById(R.id.tv_total);
+        tvTotal = findViewById(R.id.tvtotal);
 
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
@@ -130,10 +128,11 @@ public class Cart extends AppCompatActivity {
             Log.e(TAG, "inside loadFoodList : total : " + total);
 
         }
-        Locale locale = new Locale("en", "US");
+        // Locale locale = new Locale("en", "US");
 
-
-        NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-        tvTotal.setText(fmt.format(total));
+        String strTtotal = String.valueOf(total);
+        // NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+        //tvTotal.setText(fmt.format(total));
+        tvTotal.setText(strTtotal);
     }
 }

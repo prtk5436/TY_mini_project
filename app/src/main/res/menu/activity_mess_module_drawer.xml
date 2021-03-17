@@ -11,12 +11,12 @@
             android:id="@+id/nav_addMenu"
             android:icon="@drawable/ic_baseline_restaurant_24"
             android:iconTint="@color/white"
-            android:title="View Menu" />
+            android:title="Add Menu" />
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_baseline_orders_24"
             android:iconTint="@color/white"
-            android:title="Orders" />
+            android:title="delete menu" />
         <item
             android:id="@+id/nav_logOut"
             android:icon="@drawable/ic_baseline_exit_to_app_24"

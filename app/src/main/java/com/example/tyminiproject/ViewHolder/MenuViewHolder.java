@@ -13,7 +13,7 @@ import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.R;
 
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
+public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView MessName, tvTime, tvOwmner;
     public ImageView MenuImage;
@@ -43,8 +43,4 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("Select the action");
-    }
 }

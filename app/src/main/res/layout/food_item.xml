@@ -19,13 +19,21 @@
 
         <TextView
             android:id="@+id/foodName"
-            android:textColor="@color/white"
-            android:background="@color/overlayBackground"
-            android:textSize="20sp"
-            android:text="Pav-Bhaji"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/overlayBackground"
+            android:gravity="center"
+            android:text="Pav-Bhaji"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnDeleteFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:text="DElete" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
