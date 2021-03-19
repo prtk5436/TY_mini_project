@@ -25,8 +25,8 @@ public class SignUp extends AppCompatActivity {
     private static final String TAG = "SignUp";
 
     ImageButton btn_signUp;
-    EditText et_mob, et_pwd, et_Cpwd, et_name;
-    String str_phone, pwd, Cpwd, name;
+    EditText et_mob, et_pwd, et_Cpwd, et_name,edtsecureCode;
+    String str_phone, pwd, Cpwd, name,secureCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class SignUp extends AppCompatActivity {
         et_pwd = findViewById(R.id.et_pwd);
         et_Cpwd = findViewById(R.id.et_Cpwd);
         et_name = findViewById(R.id.et_name);
-
+        edtsecureCode = findViewById(R.id.edtsecureCode);
         str_phone = getIntent().getStringExtra("mobno");
         et_mob.setText(str_phone);
         et_mob.setEnabled(false);
@@ -50,6 +50,7 @@ public class SignUp extends AppCompatActivity {
                 name = et_name.getText().toString();
                 pwd = et_pwd.getText().toString();
                 Cpwd = et_Cpwd.getText().toString();
+                secureCode=edtsecureCode.getText().toString();
                 if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty()) {
                     Toast.makeText(SignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
@@ -90,7 +91,7 @@ public class SignUp extends AppCompatActivity {
 
                     Log.e(TAG, "inside onDataChange : name : " + name);
                     Log.e(TAG, "inside onDataChange : pwd : " + pwd);
-                    User newuser = new User(name, pwd);
+                    User newuser = new User(name, pwd,secureCode);
                     table_user.child(str_phone).setValue(newuser);
                     Toast.makeText(SignUp.this, "user registered successfully", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(SignUp.this, SignIn.class);

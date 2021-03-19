@@ -4,17 +4,29 @@ public class User {
     private String Name;
     private String Password;
     private String Phone;
+    private String SecureCode;
 
     public User() {
     }
-    public User(String name, String password ) {
+
+    public String getSecureCode() {
+        return SecureCode;
+    }
+
+    public void setSecureCode(String secureCode) {
+        this.SecureCode = secureCode;
+    }
+
+    public User(String name, String password , String secureCode) {
         Name = name;
         Password = password;
+        SecureCode=secureCode;
     }
-    public User(String name, String password, String phone) {
+    public User(String name, String password, String phone,String secureCode) {
         Name = name;
         Password = password;
         Phone = phone;
+        SecureCode=secureCode;
     }
 
     public String getName() {

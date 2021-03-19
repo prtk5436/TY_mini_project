@@ -26,8 +26,8 @@ public class MessOwnerSignUp extends AppCompatActivity {
     private static final String TAG = "MessOwnerSignUp";
 
     ImageButton btn_signUp;
-    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address, et_owner, etAM, etPM;
-    String str_phone, pwd, Cpwd, name, messReg, messAddr, str_ownerName, img, strTime, AM, PM;
+    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address, et_owner, etAM, etPM,edtsecureCode;
+    String str_phone, pwd, Cpwd, name, messReg, messAddr, str_ownerName, img, strTime, AM, PM,secureCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_owner = findViewById(R.id.et_owner);
         etAM = findViewById(R.id.et_AM);
         etPM = findViewById(R.id.et_PM);
+        edtsecureCode = findViewById(R.id.edtsecureCode);
 
         str_phone = getIntent().getStringExtra("mobileNo");
         et_mob.setText(str_phone);
@@ -64,6 +65,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 messAddr = et_address.getText().toString();
                 AM = etAM.getText().toString();
                 PM = etPM.getText().toString();
+                secureCode=edtsecureCode.getText().toString();
                 if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty()) {
                     Toast.makeText(MessOwnerSignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
