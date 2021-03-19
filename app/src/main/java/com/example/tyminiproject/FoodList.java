@@ -49,12 +49,13 @@ public class FoodList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
+        btndelete = findViewById(R.id.btnDeleteFood);
+
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        btndelete = findViewById(R.id.btnDeleteFood);
         recyclerView = findViewById(R.id.recycler_food);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -94,10 +95,14 @@ public class FoodList extends AppCompatActivity {
                         Intent i = new Intent(FoodList.this, FoodDetail.class);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
                         startActivity(i);
+
                     }
                 });
+
             }
+
         };
+
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }

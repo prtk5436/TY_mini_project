@@ -1,9 +1,5 @@
 package com.example.tyminiproject.SignUp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +10,12 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.tyminiproject.R;
-import com.example.tyminiproject.SignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,8 +24,6 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.google.android.gms.tasks.TaskExecutors.*;
-
 public class VerifyPhoneNo extends AppCompatActivity {
     String TAG = "VerifyPhoneNo";
     String verificationId, phoneNo;
@@ -36,6 +31,7 @@ public class VerifyPhoneNo extends AppCompatActivity {
     ImageButton btn_verifyOTP;
     EditText et_mob, et_pwd, et_name, et_otp;
     ProgressBar progressBar;
+    String checkUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +44,17 @@ public class VerifyPhoneNo extends AppCompatActivity {
         btn_verifyOTP = findViewById(R.id.btn_verifyOTP);
         et_otp = findViewById(R.id.et_otp);
 
-        phoneNo = getIntent().getStringExtra("mobile");
-        Log.e(TAG, "onCreate: " + phoneNo);
 
-        verificationId = getIntent().getStringExtra("verificationId");
-        Log.e(TAG, "onCreate: " + verificationId);
+        if (getIntent() != null) {
+
+            phoneNo = getIntent().getStringExtra("mobile");
+            verificationId = getIntent().getStringExtra("verificationId");
+            checkUserType = getIntent().getStringExtra("customer");
+        }
+
+        Log.d(TAG, "inside onCreate: phoneNo : " + phoneNo);
+        Log.d(TAG, "inside onCreate: verificationId : " + verificationId);
+        Log.d(TAG, "inside onCreate : checkUserType---" + checkUserType);
 
         btn_verifyOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,12 +76,20 @@ public class VerifyPhoneNo extends AppCompatActivity {
                                         progressBar.setVisibility(View.GONE);
                                         btn_verifyOTP.setVisibility(View.VISIBLE);
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
+                                            if (checkUserType.equals("customer")) {
+                                                Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                intent.putExtra("mobno", phoneNo);
+                                                startActivity(intent);
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Verification completed", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), MessOwnerSignUp.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                intent.putExtra("mobno", phoneNo);
+                                                startActivity(intent);
+                                            }
 
-                                            Intent intent = new Intent(getApplicationContext(), MessOwnerSignUp.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                            intent.putExtra("mobno", phoneNo);
-                                            startActivity(intent);
                                         } else {
                                             Toast.makeText(getApplicationContext(), "enter Valid OTP", Toast.LENGTH_LONG).show();
 

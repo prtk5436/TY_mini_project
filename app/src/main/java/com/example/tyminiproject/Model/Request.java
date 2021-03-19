@@ -6,9 +6,29 @@ public class Request {
 
     private  String phone;
     private  String name;
+
     private  String address;
     private  String total;
+    private  String messname;
     private List<Order> foods;
+
+    public Request(String phone, String name, String address, String total, String messname, List<Order> foods) {
+        this.phone = phone;
+        this.name = name;
+        this.address = address;
+        this.total = total;
+        this.messname = messname;
+        this.foods = foods;
+    }
+
+
+    public String getMessname() {
+        return messname;
+    }
+
+    public void setMessname(String messname) {
+        this.messname = messname;
+    }
 
     public Request() {
     }

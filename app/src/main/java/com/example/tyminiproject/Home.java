@@ -162,6 +162,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Intent i = new Intent(Home.this, Cart.class);
                 startActivity(i);
                 break;
+            case R.id.nav_Myorders:
+                // Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
+                Intent i4 = new Intent(Home.this, OrderStatus.class);
+                startActivity(i4);
+                break;
 
             case R.id.nav_logOut:
                 Intent i2 = new Intent(Home.this, SignIn.class);

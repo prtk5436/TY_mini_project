@@ -1,14 +1,14 @@
 package com.example.tyminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.tyminiproject.Database.Database;
@@ -77,7 +77,7 @@ public class FoodDetail extends AppCompatActivity {
                 Picasso.with(getBaseContext()).load(currentFood.getImage()).into(foodImg);
           /*      String foodName=currentFood.getName();
                 ;*/
-                collapsingToolbarLayout.setTitle(currentFood.getName());
+                collapsingToolbarLayout.setTitle(currentFood.getMessName());
                 foodPrice.setText(currentFood.getPrice());
                 foodDesc.setText(currentFood.getDescription());
                 foodName.setText(currentFood.getName());
@@ -85,6 +85,7 @@ public class FoodDetail extends AppCompatActivity {
                 Log.e(TAG, "inside   getFoodDetails :fprice :  " + currentFood.getPrice());
                 Log.e(TAG, "inside   getFoodDetails :fdiscount : " + currentFood.getDiscount());
                 Log.e(TAG, "inside   getFoodDetails : fdesc : " + currentFood.getDescription());
+                Log.e(TAG, "inside   getFoodDetails : fMessNamee : " + currentFood.getMessName());
                 String foodPrice = currentFood.getPrice();
                 String foodDesc = currentFood.getDescription();
                 String foodDiscont = currentFood.getDiscount();
@@ -96,12 +97,14 @@ public class FoodDetail extends AppCompatActivity {
                         Log.e(TAG, "inside onCreate : " + currentFood.getPrice());
                         Log.e(TAG, "inside onCreate : " + currentFood.getDiscount());
                         Log.e(TAG, "inside onCreate : " + numberButton.getNumber());
+                        Log.e(TAG, "inside onCreate : " + currentFood.getMessName());
                         new Database(getBaseContext()).addToCart(new Order(
                                 foodId,
                                 currentFood.getName(),
                                 numberButton.getNumber(), ///Qunatity
                                 currentFood.getPrice(),
-                                currentFood.getDiscount()
+                                currentFood.getDiscount(),
+                                currentFood.getMessName()
                         ));
 
                         Toast.makeText(FoodDetail.this, "Added to Cart : " + currentFood.getName(), Toast.LENGTH_LONG).

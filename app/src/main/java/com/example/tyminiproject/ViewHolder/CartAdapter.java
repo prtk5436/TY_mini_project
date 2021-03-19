@@ -24,7 +24,7 @@ import java.util.Locale;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView tvCartName, tvCartPrice;
+    public TextView tvCartName, tvCartPrice, tvCartMessName;
     public ImageView imgCartItemCount;
 
     private ItemClickListner itemClickListner;
@@ -50,6 +50,7 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
         tvCartName = itemView.findViewById(R.id.cartItemName);
         tvCartPrice = itemView.findViewById(R.id.cartItemPrice);
+        tvCartMessName = itemView.findViewById(R.id.tvCartMessName);
         imgCartItemCount = itemView.findViewById(R.id.cartItemCount);
 
     }
@@ -89,6 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         Log.e(TAG, "inside onBindViewHolder : intPrice : " + intPrice);
         holder.tvCartPrice.setText(format.format(intTotalPrice));
         holder.tvCartName.setText(listData.get(position).getProductName());
+        holder.tvCartMessName.setText(listData.get(position).getMessName());
     }
 
     public CartAdapter(List<Order> listData, Context context) {

@@ -1,7 +1,25 @@
 package com.example.tyminiproject.Model;
 
 public class Food {
-    String Name, Image, Price, Description, Discount, MenuId;
+    String Name, Image, Price, Description, Discount, MenuId, MessName;
+
+    public Food(String name, String image, String price, String description, String discount, String menuId, String messName) {
+        Name = name;
+        Image = image;
+        Price = price;
+        Description = description;
+        Discount = discount;
+        MenuId = menuId;
+        MessName = messName;
+    }
+
+    public String getMessName() {
+        return MessName;
+    }
+
+    public void setMessName(String messName) {
+        MessName = messName;
+    }
 
     public Food() {
     }

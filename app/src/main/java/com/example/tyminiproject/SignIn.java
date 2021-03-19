@@ -29,6 +29,7 @@ public class SignIn extends AppCompatActivity {
     LinearLayout linear_signUp;
     String mobno, pwd;
 
+    String endUser="CUSTOMER";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +92,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SignIn.this, GenerateOTP.class);
+                i.putExtra("customer","customer");
                 startActivity(i);
                 finish();
             }

@@ -27,7 +27,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"ProductID", "ProductName", "Quantity", "Price", "Discount"};
+        String[] sqlSelect = {"ProductID", "ProductName", "Quantity", "Price", "Discount", "MessName"};
         String TABLE_NAME = "OrderDetail";
 
         qb.setTables(TABLE_NAME);
@@ -42,13 +42,15 @@ public class Database extends SQLiteAssetHelper {
                         cursor.getString(cursor.getColumnIndex("ProductName")),
                         cursor.getString(cursor.getColumnIndex("Quantity")),
                         cursor.getString(cursor.getColumnIndex("Price")),
-                        cursor.getString(cursor.getColumnIndex("Discount"))));
+                        cursor.getString(cursor.getColumnIndex("Discount")),
+                        cursor.getString(cursor.getColumnIndex("MessName"))));
 
 
                 Log.e(TAG, "inside getCarts : ProductName: " + cursor.getColumnIndex("ProductName") + cursor.getString(1));
                 Log.e(TAG, "inside getCarts : Quantity: " + cursor.getColumnIndex("Quantity") + cursor.getString(2));
                 Log.e(TAG, "inside getCarts : Price :" + cursor.getColumnIndex("Price") + cursor.getString(3));
                 Log.e(TAG, "inside getCarts : Discount:" + cursor.getColumnIndex("Discount") + cursor.getString(4));
+                Log.e(TAG, "inside getCarts : MessName:" + cursor.getColumnIndex("MessName") + cursor.getString(5));
             } while (cursor.moveToNext());
         }
         return result;
@@ -57,18 +59,20 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductName,Quantity,Price,Discount) VALUES ('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductName,Quantity,Price,Discount,MessName) VALUES ('%s','%s','%s','%s','%s','%s');",
                 order.getProductId(),
                 order.getProductName(),
                 order.getQuantity(),
                 order.getPrice(),
-                order.getDiscount()
+                order.getDiscount(),
+                order.getMessName()
         );
 
         Log.e(TAG, "inside addToCart : INSERTING");
         Log.e(TAG, "inside addToCart : INSERTING");
         db.execSQL(query);
 
+        Log.e(TAG, "inside addToCart : INSERTED SUCCESSFULLY ");
         Log.e(TAG, "inside addToCart : INSERTED SUCCESSFULLY ");
         Log.e(TAG, "inside addToCart : INSERTED SUCCESSFULLY ");
         Log.e(TAG, "inside addToCart : INSERTED SUCCESSFULLY ");

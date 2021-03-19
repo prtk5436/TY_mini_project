@@ -6,6 +6,25 @@ public class Order {
     private String Quantity;
     private String Price;
     private String Discount;
+    private String MessName;
+
+    public Order(String productId, String productName, String quantity, String price, String discount, String messName) {
+        ProductId = productId;
+        ProductName = productName;
+        Quantity = quantity;
+        Price = price;
+        Discount = discount;
+        MessName = messName;
+    }
+
+    public String getMessName() {
+        return MessName;
+    }
+
+    public void setMessName(String messName) {
+        MessName = messName;
+    }
+
 
     public Order() {
     }

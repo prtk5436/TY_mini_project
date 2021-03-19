@@ -1,6 +1,7 @@
 package com.example.tyminiproject;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.tyminiproject.Database.Database;
 import com.example.tyminiproject.Model.Order;
 import com.example.tyminiproject.Model.Request;
 import com.example.tyminiproject.ViewHolder.CartAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,6 +43,8 @@ public class Cart extends AppCompatActivity {
     CartAdapter adapter;
     int total = 0;
 
+    FloatingActionButton fabDelete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,7 @@ public class Cart extends AppCompatActivity {
 
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
         tvTotal = findViewById(R.id.tvtotal);
-
+        fabDelete = findViewById(R.id.fabDelete);
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
         recyclerView.setHasFixedSize(true);
@@ -57,6 +61,18 @@ public class Cart extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         loadFoodList();
+
+        fabDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Database(getBaseContext()).cleanCart();
+                loadFoodList();
+                tvTotal.setText("0");
+                //Intent i = new Intent(Cart.this, Cart.class);
+              //  startActivity(i);
+                Toast.makeText(Cart.this, "Cart is Cleaned", Toast.LENGTH_LONG).show();
+            }
+        });
 
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override

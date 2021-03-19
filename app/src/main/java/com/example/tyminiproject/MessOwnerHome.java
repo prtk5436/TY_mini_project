@@ -202,7 +202,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 Intent i = new Intent(MessOwnerHome.this, MessOwnerHome.class);
                 startActivity(i);
                 break;
-            case R.id.nav_addMenu:
+            case R.id.nav_ViewMenu:
                 Toast.makeText(MessOwnerHome.this, "View Menu", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MessOwnerHome.this, FoodList.class);
                 intent.putExtra("MessId", strMob);
@@ -342,12 +342,14 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                             String strPrice = etPrice.getText().toString();
                             String str_uri = uri.toString();
                             String discount = " ";
+                            String strMessName = tvMessName.getText().toString();
                             Log.d(TAG, "onSuccess:  str_name : " + str_Foodname);
                             Log.d(TAG, "onSuccess:  strDesc : " + strDesc);
                             Log.d(TAG, "onSuccess:  strPrice : " + strPrice);
                             Log.d(TAG, "onSuccess: str_uri : " + str_uri);
-                            Log.d(TAG, "onSuccess: strMob/messid : " + strMob);
-                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMob);
+                            Log.d(TAG, "onSuccess: strMob/messid : " + strMob);//menu id
+                            Log.d(TAG, "onSuccess: strMob/messid : " + strMessName);//mess name
+                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMob, strMessName);
                         }
                     });
                 }

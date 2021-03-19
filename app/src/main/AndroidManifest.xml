@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TYMiniProject.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".DeleteFood"></activity>
+        <activity android:name=".OrderStatus"></activity>
+        <activity android:name=".DeleteFood" />
         <activity android:name=".MessOwnerHome" />
         <activity android:name=".SignUp.MessOwnerSignUp" />
         <activity android:name=".MessOwnerSignIn" />

@@ -35,9 +35,21 @@
         android:layout_below="@+id/r1"
         android:layout_marginBottom="20dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/c1"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_delete_outline_24"
+        android:layout_alignParentRight="true" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:id="@+id/c1"
         android:layout_alignParentBottom="true"
         android:background="#eeee">
 

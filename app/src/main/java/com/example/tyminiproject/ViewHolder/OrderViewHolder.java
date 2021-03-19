@@ -1,8 +1,6 @@
 package com.example.tyminiproject.ViewHolder;
 
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,24 +8,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.R;
 
-public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView FoodName;
-    public ImageView FoodImage;
-    Button btnDeleteFood;
+    public TextView OrderItemName, OrderItemPrice, OrderMobNo, OrderId;
     public ItemClickListner itemClickListner;
 
 
-    public FoodViewHolder(View itemView) {
+    public OrderViewHolder(View itemView) {
         super(itemView);
 
-        btnDeleteFood = itemView.findViewById(R.id.btnDeleteFood);
-        FoodName = itemView.findViewById(R.id.foodName);
-        FoodImage = itemView.findViewById(R.id.food_img);
+        OrderItemName = itemView.findViewById(R.id.OrderMessName);
+        OrderItemPrice = itemView.findViewById(R.id.OrderItemPrice);
+        OrderMobNo = itemView.findViewById(R.id.orderMobNo);
+        OrderId = itemView.findViewById(R.id.orderId);
 
         itemView.setOnClickListener(this);
 
     }
+
 
     public void setItemClickListner(ItemClickListner itemClickListner) {
         this.itemClickListner = itemClickListner;

@@ -27,7 +27,7 @@ public class GenerateOTP extends AppCompatActivity {
     Button btn_verifyOTP, btn_signUp;
     ImageButton btn_getOtp;
     EditText et_mob, et_pwd, et_name, et_otp;
-    String mobno;
+    String mobno, checkUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,12 @@ public class GenerateOTP extends AppCompatActivity {
         btn_getOtp = findViewById(R.id.btn_getOTP);
         TextView t1 = findViewById(R.id.t1);
         ProgressBar progressBar = findViewById(R.id.progressbar);
+
+
+        if (getIntent() != null)
+            checkUserType = getIntent().getStringExtra("customer");
+        Log.d(TAG, "inside onCreate : checkUserType---" + checkUserType);
+
         btn_getOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +83,7 @@ public class GenerateOTP extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
                                     intent.putExtra("mobile", mobno);
                                     intent.putExtra("verificationId", verificationId);
+                                    intent.putExtra("customer","customer");
                                     startActivity(intent);
                                 }
                             }
@@ -88,6 +95,7 @@ public class GenerateOTP extends AppCompatActivity {
                     Log.e(TAG, "onCreate: " + mobno);
                     Intent intent = new Intent(GenerateOTP.this, VerifyPhoneNo.class);
                     intent.putExtra("mobno", mobno);
+                    intent.putExtra("customer","customer");
                     startActivity(intent);
                 }
             }

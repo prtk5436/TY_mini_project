@@ -13,7 +13,7 @@
             android:iconTint="@color/white"
             android:title="Cart" />
         <item
-            android:id="@+id/nav_orders"
+            android:id="@+id/nav_Myorders"
             android:icon="@drawable/ic_baseline_orders_24"
             android:iconTint="@color/white"
             android:title="My Orders" />
