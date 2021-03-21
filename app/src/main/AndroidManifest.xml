@@ -19,7 +19,7 @@
         <activity android:name=".MessOwnerHome" />
         <activity android:name=".SignUp.MessOwnerSignUp" />
         <activity android:name=".MessOwnerSignIn" />
-        <activity android:name=".Cart" />
+        <activity android:name=".ViewCart" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".FoodList" />
         <activity android:name=".Home" />

@@ -25,7 +25,7 @@
                     android:id="@+id/OrderMessName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="this is item number one"
+                    android:text="Mess name"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
 
@@ -73,6 +73,32 @@
                     android:layout_marginLeft="5dp"
                     android:src="#eeee"
                     android:text="9899898801"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:text="item name : "
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/OrderItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:src="#eeee"
+                    android:text="pav bhaji"
                     android:textSize="20dp" />
 
             </LinearLayout>

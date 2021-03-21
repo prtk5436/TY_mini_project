@@ -1,11 +1,9 @@
 package com.example.tyminiproject.Model;
 
-public class Request {
+public class Cart {
 
-
-    String messName, Menu, TotalPrice, Quantity, CustName, phone;
-
-    public Request() {
+    String messName,Menu,TotalPrice,Quantity,CustName,phone;
+    public Cart() {
     }
 
 
@@ -57,7 +55,7 @@ public class Request {
         this.phone = phone;
     }
 
-    public Request(String messName, String menu, String totalPrice, String quantity, String custName, String phone) {
+    public Cart(String messName, String menu, String totalPrice, String quantity, String custName, String phone) {
         this.messName = messName;
         Menu = menu;
         TotalPrice = totalPrice;
