@@ -65,7 +65,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
-    String strMob;
+    String strMob,strMessMob;
     Button btn_ViewMess;
 
     String messName = "", str_Foodname;
@@ -89,7 +89,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_owner_home);
-
+        strMessMob = Common.currentMessUser.getPhone();
         drawerLayout1 = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -207,16 +207,18 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
             case R.id.nav_ViewMenu:
                 Toast.makeText(MessOwnerHome.this, "View Menu", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MessOwnerHome.this, FoodList.class);
-                intent.putExtra("MessId", strMob);
+                intent.putExtra("strMessMob", strMessMob);
                 startActivity(intent);
 
                 //  showAddFoodDialog();
                 break;
 
             case R.id.nav_deleteFood:
-                Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
+                Toast.makeText(MessOwnerHome.this, "delete Click", Toast.LENGTH_LONG).show();
                 Intent i3 = new Intent(MessOwnerHome.this, DeleteFood.class);
+                i3.putExtra("strMessMob", strMessMob);
                 startActivity(i3);
+                break;
 
             case R.id.nav_orders:
                 Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
@@ -355,9 +357,9 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                             Log.d(TAG, "onSuccess:  strDesc : " + strDesc);
                             Log.d(TAG, "onSuccess:  strPrice : " + strPrice);
                             Log.d(TAG, "onSuccess: str_uri : " + str_uri);
-                            Log.d(TAG, "onSuccess: strMob/messid : " + strMob);//menu id
+                            Log.d(TAG, "onSuccess: strMob/messid : " + strMessMob);//menu id
                             Log.d(TAG, "onSuccess: strMob/messid : " + strMessName);//mess name
-                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMob, strMessName);
+                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMessMob, strMessName);
                         }
                     });
                 }

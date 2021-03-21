@@ -38,8 +38,8 @@ public class FoodList extends AppCompatActivity {
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
     EditText etMenuName, etDesc, etPrice;
-    Button btn_select, btn_upload, btndelete;
-
+    Button btn_select, btn_upload;
+    String foodId = "";
     Food newFood;
     Uri saveUri;
     private final int PICK_IMG_REQ = 71;
@@ -48,8 +48,6 @@ public class FoodList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
-
-        btndelete = findViewById(R.id.btnDeleteFood);
 
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
@@ -61,11 +59,16 @@ public class FoodList extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        if (getIntent() != null)
+        if (getIntent() != null) {
             messId = getIntent().getStringExtra("MessId");
-        Log.e(TAG, "inside onCreate : messId---" + messId);
-        if (!messId.isEmpty() && messId != null) {
             loadFoodList(messId);
+            Log.e(TAG, "inside onCreate : messId---" + messId);
+            if ( messId == null) {
+
+                String strMessMob = getIntent().getStringExtra("strMessMob");
+                Log.e(TAG, "inside onCreate : strMessMob---" + strMessMob);
+                loadFoodList(strMessMob);
+            }
         }
 
     }
@@ -95,14 +98,10 @@ public class FoodList extends AppCompatActivity {
                         Intent i = new Intent(FoodList.this, FoodDetail.class);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
                         startActivity(i);
-
                     }
                 });
-
             }
-
         };
-
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
