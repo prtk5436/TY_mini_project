@@ -64,28 +64,29 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar.setTitle("Menu");
         //  setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Home.this, Cart.class);
-                startActivity(i);
-                //  Toast.makeText(Home.this, "FAB   Click", Toast.LENGTH_LONG).show();
-            }
-        });
 
         navigationView.setCheckedItem(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
         userName = headerView.findViewById(R.id.userName);
-        userName.setText(Common.currentUser.getName());
+        String custName = Common.currentUser.getName();
+        userName.setText(custName);
 
         tvMob = headerView.findViewById(R.id.tv_mob);
         tvMob.setText(Common.currentUser.getPhone());
 
         strMob = tvMob.getText().toString();
         Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Home.this, ViewCart.class);
+                i.putExtra("customerMob", strMob);
+                startActivity(i);
+                //  Toast.makeText(Home.this, "FAB   Click", Toast.LENGTH_LONG).show();
+            }
+        });
         database = FirebaseDatabase.getInstance();
         category = database.getReference("MessUser");
 
@@ -159,12 +160,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             case R.id.nav_cart:
                 // Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(Home.this, Cart.class);
+                Intent i = new Intent(Home.this, ViewCart.class);
+                i.putExtra("customerMob", strMob);
                 startActivity(i);
                 break;
             case R.id.nav_Myorders:
                 // Toast.makeText(Home.this, "bus Favorite Click", Toast.LENGTH_LONG).show();
                 Intent i4 = new Intent(Home.this, OrderStatus.class);
+                i4.putExtra("customerMobNo", strMob);
                 startActivity(i4);
                 break;
 

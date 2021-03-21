@@ -27,7 +27,7 @@ public class OrderStatus extends AppCompatActivity {
     StorageReference storageReference;
 
     FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
-    String custMobNo;
+    String custMobNo, messName, checkUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,55 @@ public class OrderStatus extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        custMobNo = Common.currentUser.getPhone();
-        loadOrders(custMobNo);
+
+        if (getIntent() != null) {
+            messName = getIntent().getStringExtra("messName");
+            loadMessOrders(messName);
+            Log.d(TAG, "onCreate: messName--- " + messName);
+            if (messName == null) {
+                custMobNo = Common.currentUser.getPhone();
+                Log.d(TAG, "onCreate: custMobNo--- " + custMobNo);
+                loadOrders(custMobNo);
+            }
+        }
+    }
+
+    private void loadMessOrders(String messName) {
+        Log.d(TAG, "inside loadMessOrders : messName---" + messName);
+        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Request.class, R.layout.order_item,
+                OrderViewHolder.class, request_table.orderByChild("messName").equalTo(messName)     // (select * from foods where menuId=categoryId)
+        ) {
+            @Override
+            protected void populateViewHolder(OrderViewHolder orderViewHolder, Request model, int i) {
+                final Request local = model;
+                String strOrderId = adapter.getRef(i).getKey();
+                String strOrderItemPrice = local.getTotalPrice();
+                String strOrderMobNo = local.getPhone();
+                String strOrderItemName = local.getMenu();
+                String strOrderMessName = local.getMessName();
+                String strCustName = local.getCustName();
+                Log.e(TAG, "inside loadFoodList : strOrderId : " + strOrderId);
+                Log.e(TAG, "inside loadFoodList: strOrderItemPrice : " + strOrderItemPrice);
+                Log.e(TAG, "inside loadFoodList : strOrderMobNo : " + strOrderMobNo);
+                Log.e(TAG, "inside loadFoodList : strOrderItemName : " + strOrderItemName);
+                Log.e(TAG, "inside loadFoodList : strOrderMessName : " + strOrderMessName);
+                Log.e(TAG, "inside loadFoodList : strCustName : " + strCustName);
+                orderViewHolder.OrderId.setText(strOrderId);
+                orderViewHolder.OrderItemName.setText(strOrderItemName);
+                orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
+                orderViewHolder.OrderMobNo.setText(strOrderMobNo);
+                orderViewHolder.OrderMessName.setText(strCustName);
+
+            }
+        };
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
+
+
     }
 
     private void loadOrders(String custMobNo) {
+        Log.d(TAG, "inside loadOrders : MobNo---" + custMobNo);
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Request.class, R.layout.order_item,
                 OrderViewHolder.class, request_table.orderByChild("phone").equalTo(custMobNo)     // (select * from foods where menuId=categoryId)
         ) {
@@ -55,17 +99,22 @@ public class OrderStatus extends AppCompatActivity {
             protected void populateViewHolder(OrderViewHolder orderViewHolder, Request model, int i) {
                 final Request local = model;
                 String strOrderId = adapter.getRef(i).getKey();
-                String strOrderItemPrice = local.getTotal();
+                String strOrderItemPrice = local.getTotalPrice();
                 String strOrderMobNo = local.getPhone();
-                String strOrderItemName = local.getName();
+                String strOrderItemName = local.getMenu();
+                String strOrderMessName = local.getMessName();
+                String strCustName = local.getCustName();
                 Log.e(TAG, "inside loadFoodList : strOrderId : " + strOrderId);
                 Log.e(TAG, "inside loadFoodList: strOrderItemPrice : " + strOrderItemPrice);
                 Log.e(TAG, "inside loadFoodList : strOrderMobNo : " + strOrderMobNo);
                 Log.e(TAG, "inside loadFoodList : strOrderItemName : " + strOrderItemName);
+                Log.e(TAG, "inside loadFoodList : strOrderMessName : " + strOrderMessName);
+                Log.e(TAG, "inside loadFoodList : strCustName : " + strCustName);
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);
                 orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
                 orderViewHolder.OrderMobNo.setText(strOrderMobNo);
+                orderViewHolder.OrderMessName.setText(strOrderMessName);
 
             }
         };

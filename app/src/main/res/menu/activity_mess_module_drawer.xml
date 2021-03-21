@@ -13,10 +13,15 @@
             android:iconTint="@color/white"
             android:title="View Menu" />
         <item
+            android:id="@+id/nav_deleteFood"
+            android:icon="@drawable/ic_baseline_delete_outline_24"
+            android:iconTint="@color/white"
+            android:title="delete menu" />
+        <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_baseline_orders_24"
             android:iconTint="@color/white"
-            android:title="delete menu" />
+            android:title="View Orders" />
         <item
             android:id="@+id/nav_logOut"
             android:icon="@drawable/ic_baseline_exit_to_app_24"

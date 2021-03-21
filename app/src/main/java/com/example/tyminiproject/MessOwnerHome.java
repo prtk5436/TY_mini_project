@@ -68,7 +68,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     String strMob;
     Button btn_ViewMess;
 
-    String messId = "", str_Foodname;
+    String messName = "", str_Foodname;
     Food newFood;
     Uri saveUri;
     private final int PICK_IMG_REQ = 71;
@@ -140,6 +140,8 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        messName = Common.currentMessUser.getName();
+        Log.d(TAG, "onCreate: messName--- " + messName);
     }
 
     private void loadMenu() {
@@ -211,10 +213,16 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 //  showAddFoodDialog();
                 break;
 
-            case R.id.nav_orders:
+            case R.id.nav_deleteFood:
                 Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
                 Intent i3 = new Intent(MessOwnerHome.this, DeleteFood.class);
                 startActivity(i3);
+
+            case R.id.nav_orders:
+                Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
+                Intent i4 = new Intent(MessOwnerHome.this, OrderStatus.class);
+                i4.putExtra("messName", messName);
+                startActivity(i4);
 
                 break;
 
