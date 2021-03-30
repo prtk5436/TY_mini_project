@@ -2,8 +2,13 @@ package com.example.tyminiproject.Model;
 
 public class Request {
 
-
-    String messName, Menu, TotalPrice, Quantity, CustName, phone;
+    String messName;
+    String Menu;
+    String TotalPrice;
+    String Quantity;
+    String CustName;
+    String phone;
+    String Image;
 
     public Request() {
     }
@@ -65,4 +70,23 @@ public class Request {
         CustName = custName;
         this.phone = phone;
     }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public Request(String messName, String menu, String totalPrice, String quantity, String custName, String phone, String image) {
+        this.messName = messName;
+        Menu = menu;
+        TotalPrice = totalPrice;
+        Quantity = quantity;
+        CustName = custName;
+        this.phone = phone;
+        Image = image;
+    }
+
 }

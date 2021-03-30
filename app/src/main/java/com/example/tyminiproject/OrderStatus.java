@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class OrderStatus extends AppCompatActivity {
 
@@ -70,18 +71,23 @@ public class OrderStatus extends AppCompatActivity {
                 String strOrderItemName = local.getMenu();
                 String strOrderMessName = local.getMessName();
                 String strCustName = local.getCustName();
+                String strFoodImg = local.getCustName();
+
                 Log.e(TAG, "inside loadFoodList : strOrderId : " + strOrderId);
                 Log.e(TAG, "inside loadFoodList: strOrderItemPrice : " + strOrderItemPrice);
                 Log.e(TAG, "inside loadFoodList : strOrderMobNo : " + strOrderMobNo);
                 Log.e(TAG, "inside loadFoodList : strOrderItemName : " + strOrderItemName);
                 Log.e(TAG, "inside loadFoodList : strOrderMessName : " + strOrderMessName);
                 Log.e(TAG, "inside loadFoodList : strCustName : " + strCustName);
+                Log.e(TAG, "inside loadFoodList : strFoodImg : " + strFoodImg);
+
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);
                 orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
                 orderViewHolder.OrderMobNo.setText(strOrderMobNo);
                 orderViewHolder.OrderMessName.setText(strCustName);
-
+                Picasso.with(getBaseContext()).load(model.getImage())
+                        .into(orderViewHolder.orderFood_img);
             }
         };
         adapter.notifyDataSetChanged();

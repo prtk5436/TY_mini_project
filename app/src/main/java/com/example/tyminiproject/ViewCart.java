@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class ViewCart extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class ViewCart extends AppCompatActivity {
     String custMob = "";
     int total = 0;
     FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter;
-    String foodName, foodTotalPrice, cartId, MessName, foodQuantity;
+    String foodName, foodTotalPrice, cartId, MessName, foodQuantity, foodImg;
     FloatingActionButton fabDelete;
 
     String foodId = "", custName = "", phone = "";
@@ -127,14 +128,21 @@ public class ViewCart extends AppCompatActivity {
                 foodTotalPrice = local.getTotalPrice();
                 MessName = local.getMessName();
                 foodQuantity = local.getQuantity();
+                foodImg = local.getImage();
+
                 Log.d(TAG, "populateViewHolder: foodName: " + foodName);
                 Log.d(TAG, "populateViewHolder: foodPrice: " + foodTotalPrice);
                 Log.d(TAG, "populateViewHolder: MessName: " + MessName);
                 Log.d(TAG, "populateViewHolder: foodQuantity: " + foodQuantity);
+                Log.d(TAG, "populateViewHolder: foodImg: " + foodImg);
+
                 cartViewHolder.cartItemName.setText(foodName);
                 cartViewHolder.cartItemPrice.setText(foodTotalPrice);
                 cartViewHolder.cartItemCount.setText(foodQuantity);
                 cartViewHolder.tvCartMessName.setText(MessName);
+                Picasso.with(getBaseContext()).load(model.getImage())
+                        .into(cartViewHolder.cartItemImg);
+
                 cartViewHolder.setItemClickListner(new ItemClickListner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

@@ -2,6 +2,7 @@ package com.example.tyminiproject.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +12,8 @@ import com.example.tyminiproject.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView cartItemName,cartItemPrice ,cartItemCount, tvCartMessName;
+    public TextView cartItemName, cartItemPrice, cartItemCount, tvCartMessName;
+    public ImageView cartItemImg;
     public Button btnPlaceOrder;
     public ItemClickListner itemClickListner;
 
@@ -22,6 +24,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         cartItemName = itemView.findViewById(R.id.cartItemName);
         cartItemPrice = itemView.findViewById(R.id.cartItemPrice);
         cartItemCount = itemView.findViewById(R.id.cartItemCount);//quantity
+        cartItemImg = itemView.findViewById(R.id.cartFood_img);
         tvCartMessName = itemView.findViewById(R.id.tvCartMessName);
         btnPlaceOrder = itemView.findViewById(R.id.btnPlaceOrder);
 
