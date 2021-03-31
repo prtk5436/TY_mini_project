@@ -44,7 +44,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_owner = findViewById(R.id.et_owner);
         etAM = findViewById(R.id.et_AM);
         etPM = findViewById(R.id.et_PM);
-        edtsecureCode = findViewById(R.id.edtsecureCode);
+//        edtsecureCode = findViewById(R.id.edtsecureCode);
 
         str_phone = getIntent().getStringExtra("mobileNo");
         et_mob.setText(str_phone);
@@ -65,7 +65,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 messAddr = et_address.getText().toString();
                 AM = etAM.getText().toString();
                 PM = etPM.getText().toString();
-                secureCode=edtsecureCode.getText().toString();
+//                secureCode=edtsecureCode.getText().toString();
                 if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty()) {
                     Toast.makeText(MessOwnerSignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
@@ -115,6 +115,20 @@ public class MessOwnerSignUp extends AppCompatActivity {
                     MessUser newuser = new MessUser(img, str_ownerName, strTime, messAddr, name, pwd, messReg);
 
                     table_user.child(str_phone).setValue(newuser);
+
+                    FirebaseDatabase firebaseDatabase1 = FirebaseDatabase.getInstance();
+                    DatabaseReference table_user1 = firebaseDatabase1.getReference("user");
+                    table_user1.getRef().equalTo(str_phone).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            table_user1.child(str_phone).child("messOwner").setValue("YES");
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                     Toast.makeText(MessOwnerSignUp.this, "Mess Registered Successfully!!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MessOwnerSignUp.this, MessOwnerSignIn.class);

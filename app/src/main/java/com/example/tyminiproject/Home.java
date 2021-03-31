@@ -43,8 +43,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
-    String strMob;
+    String strMob, isMessOwner;
     Button btn_ViewMess;
+    int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         tvMob = headerView.findViewById(R.id.tv_mob);
         tvMob.setText(Common.currentUser.getPhone());
 
+        isMessOwner = Common.currentUser.getMessOwner();
+        Log.d(TAG, "onCreate: isMessOwner : " + isMessOwner);
+
+        Menu menu = navigationView.getMenu();
+        for (int menuItemIndex = 0; menuItemIndex < menu.size(); menuItemIndex++) {
+            MenuItem menuItem = menu.getItem(menuItemIndex);
+            if (menuItem.getItemId() == R.id.nav_messReg) {
+                if (isMessOwner.equals("YES")) {
+                    Log.d(TAG, "onCreate IF: isMessOwner : " + isMessOwner);
+                    menuItem.setVisible(false);
+                } else {
+                    Log.d(TAG, "onCreate ELSE: isMessOwner : " + isMessOwner);
+                    menuItem.setVisible(true);
+                }
+            }
+        }
+
         strMob = tvMob.getText().toString();
         Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +107,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
         database = FirebaseDatabase.getInstance();
         category = database.getReference("MessUser");
+
 
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
@@ -139,7 +158,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.activity_home_drawer, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
