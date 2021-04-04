@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class ViewCart extends AppCompatActivity {
     int total = 0;
     FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter;
     String foodName, foodTotalPrice, cartId, MessName, foodQuantity, foodImg;
-    FloatingActionButton fabDelete;
+    ImageView fabDelete;
 
     String foodId = "", custName = "", phone = "";
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SignUp extends AppCompatActivity {
     private static final String TAG = "SignUp";
 
-    ImageButton btn_signUp;
+    Button btn_signUp;
     EditText et_mob, et_pwd, et_Cpwd, et_name,edtsecureCode;
     String str_phone, pwd, Cpwd, name,secureCode;
 

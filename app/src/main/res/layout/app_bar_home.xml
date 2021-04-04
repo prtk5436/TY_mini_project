@@ -15,6 +15,11 @@
         android:textColor="@color/white"
         android:textSize="25sp" />
 
+
+
+
+    <!--appbar-->
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,12 +29,25 @@
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/Theme.TYMiniProject.PopupOverlay" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
+
+    <!--appbarend-->
+
+
+    <!--home screen cards-->
+
     <include
+        android:layout_marginTop="65dp"
         layout="@layout/content_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
+
+    <!--home screen cards end-->
+
+    <!--Add to cart-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -39,5 +57,7 @@
         android:src="@drawable/ic_baseline_shopping_cart_24"
         android:layout_margin="16dp"
         android:id="@+id/fab" />
+
+    <!--Add to cart end-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

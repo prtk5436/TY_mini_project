@@ -13,4 +13,14 @@
 
     <color name="Lightblue">#518BFF</color>
     <color name="Darkblue">#1747A8</color>
+    <color name="red">#FF0000</color>
+
+
+
+    <color name="green">#40C148</color>
+    <color name="dot_grey">#707070</color>
+    <color name="subtxt_grey">#A4A4A4</color>
+    <color name="yellow">#FFC400</color>
+
+
 </resources>

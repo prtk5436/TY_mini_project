@@ -7,116 +7,172 @@
         android:id="@+id/c1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:elevation="4dp">
+        android:layout_marginBottom="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/cartFood_img"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_baseline_restaurant_24" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_width="80dp"
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/cartItemName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="this is item number one"
-                    android:textColor="@color/black"
-                    android:textSize="22sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:alpha="0.5"/>
 
-                <TextView
-                    android:id="@+id/cartItemPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_toLeftOf="@id/rs"
-                    android:text="20"
-                    android:textColor="@color/black"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/rs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="₹"
-                    android:textColor="@color/black"
-                    android:textSize="22dp" />
-
+                <ImageView
+                    android:id="@+id/cartFood_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
             </RelativeLayout>
 
             <LinearLayout
+                android:background="#f7f7f7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mess Name : "
-                    android:textSize="18dp" />
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/tvCartMessName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mess Demo"
-                    android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/cartItemName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Pav Bhaji"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Mess Name : "
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvCartMessName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Pratik Mess"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Qty "
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/cartItemCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="01"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:paddingHorizontal="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="₹"
+                                android:textColor="@color/black"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/cartItemPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="60"
+                                android:textColor="@color/black"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Total Price"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnPlaceOrder"
+                        android:background="@drawable/green_button"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="112dp"
+                        android:layout_height="40dp"
+                        android:text="Checkout"
+                        android:textAllCaps="false"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/white"/>
+
+
+
+                </RelativeLayout>
+
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Qty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_horizontal"
-                    android:text="Qty : "
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/cartItemCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_toRightOf="@+id/Qty"
-                    android:src="#eeee"
-                    android:text="01"
-                    android:textSize="18dp" />
-
-                <Button
-                    android:id="@+id/btnPlaceOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:gravity=""
-                    android:text="BOOK NOW" />
-
-            </RelativeLayout>
-
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
     <!--
@@ -127,5 +183,114 @@
             android:layout_margin="5dp" />-->
 </RelativeLayout>
 
+<!--
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="10dp"
+android:orientation="vertical">
+
+<ImageView
+    android:id="@+id/cartFood_img"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginBottom="8dp"
+    android:scaleType="centerCrop"
+    android:src="@drawable/ic_baseline_restaurant_24" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/cartItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is item number one"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/cartItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/rs"
+        android:text="20"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/rs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="₹"
+        android:textColor="@color/black"
+        android:textSize="22dp" />
 
 
+</RelativeLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="8dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mess Name : "
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvCartMessName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mess Demo"
+        android:textSize="18dp" />
+</LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/Qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Qty : "
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/cartItemCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/Qty"
+        android:src="#eeee"
+        android:text="01"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/btnPlaceOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity=""
+        android:text="BOOK NOW" />
+
+</RelativeLayout>
+
+</LinearLayout>
+
+
+-->

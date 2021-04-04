@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="250dp"
     android:background="@color/overlayBackground"
     android:gravity="center"
     android:orientation="vertical"
@@ -10,8 +10,8 @@
 
     <ImageView
         android:layout_width="160dp"
-        android:layout_height="130dp"
-        android:background="@drawable/ic_launcher_foreground" />
+        android:layout_height="100dp"
+        android:background="@drawable/splashscreenimg" />
 
     <TextView
         android:id="@+id/userName"
@@ -19,14 +19,14 @@
         android:layout_height="wrap_content"
         android:text="Pratik"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"  />
 
     <TextView
         android:id="@+id/tv_mob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="www.taimoorsikander.com"
+        android:text="8291534304"
         android:textColor="#ffff"
         android:textSize="16sp"
         app:fontFamily="sans-serif-condensed" />

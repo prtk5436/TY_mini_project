@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
-    tools:context=".OrderStatus">
+    tools:context=".OrderStatus"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_myorders"/>
 
     <RelativeLayout
-        android:id="@+id/r1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Back" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/listOrders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Your Orders"
-            android:textSize="18sp" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listOrders"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/r1"
-        android:layout_marginBottom="20dp" />
+
     <!--
 
         <androidx.cardview.widget.CardView
@@ -96,4 +84,4 @@
 </androidx.cardview.widget.CardView>
 
 -->
-</RelativeLayout>
+</LinearLayout>

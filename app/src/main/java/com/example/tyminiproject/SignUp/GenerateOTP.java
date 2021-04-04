@@ -24,8 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 public class GenerateOTP extends AppCompatActivity {
     String TAG = "GenerateOTP";
-    Button btn_verifyOTP, btn_signUp;
-    ImageButton btn_getOtp;
+    Button btn_verifyOTP, btn_signUp, btn_getOtp;
+
     EditText et_mob, et_pwd, et_name, et_otp;
     String mobno, checkUserType;
 
