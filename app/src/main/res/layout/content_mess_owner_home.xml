@@ -12,13 +12,6 @@
     tools:showIn="@layout/app_bar_mess_owner_home">
 
 
-    <TextView
-        android:id="@+id/et_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Content messOwner home"
-        android:textSize="50sp"
-        tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_menu"

@@ -22,4 +22,60 @@
     <string name="Signup">Sign Up</string>
     <string name="Login">Login</string>
     <string name="cancel">Cancel</string>
+
+
+
+    /*Splash Screen*/
+    <string name="app_tagline">Have your food your way.</string>
+
+    /*signin screen*/
+    <string name="Welcome">Welcome !</string>
+    <string name="please_enter_credentials_to_login">Please enter credentials to login</string>
+    <string name="Enter_your_phone_number">Enter your phone number</string>
+    <string name="Password">Password</string>
+    <string name="Forgot_Password">Forgot Password?</string>
+    <string name="Dont_Have_Account_Sign_Up">Dont Have Account ? Sign Up</string>
+    <string name="Login_or_Sign_up_as_mess_owner">Login or Sign up as mess owner</string>
+
+    /*Signup screen mess*/
+
+    <string name="Please_fill_the_form_to">Please fill the form to</string>
+    <string name="register_your_mess_on_platform">register your mess on platform</string>
+    <string name="Enter_your_mess_fssai_no">Enter your mess Fssai no.</string>
+    <string name="Enter_mess_address">Enter mess address</string>
+    <string name="Enter_mess_name">Enter mess name</string>
+    <string name="Open_from">Open From</string>
+    <string name="Open_to">Open to</string>
+    <string name="Closed_on">Closed on ?</string>
+    <string name="Previous_step">Previous step</string>
+
+    /*Signup screen*/
+    <string name="Register_Mess">Register Mess</string>
+    <string name="Sign_Up">Sign Up</string>
+    <string name="Please_enter_your">Please enter your</string>
+    <string name="mobile_number_to_continue.">mobile number to continue.</string>
+    <string name="Next">Next</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Please_enter_OTP">Please enter OTP</string>
+    <string name="sent_on_your_mobile_number.">sent on your mobile number.</string>
+    <string name="Enter_OTP">Enter OTP</string>
+    <string name="Resend_OTP">Resend OTP</string>
+    <string name="Please_name_and">Please name and</string>
+    <string name="password_for_authentication.">password for authentication.</string>
+    <string name="Enter_your_full_name">Enter your full name</string>
+    <string name="Enter_Password">Enter Password</string>
+    <string name="Confirm_Password">Confirm Password</string>
+
+    /*onboarding*/
+    <string name="Looking_for_mess">Looking for mess ?</string>
+    <string name="On_lunchbox_you_will_be_able_to_see_and">On lunchbox you will be able to see and</string>
+    <string name="search_mess_in_your_location">search mess in your location</string>
+    <string name="Dont_know_menu">Dont know menu?</string>
+    <string name="Dont_worry_on_lunchbox_mess_menu">Dont worry ! on lunchbox mess menu</string>
+    <string name="is_updated_every_day">is updated every day</string>
+    <string name="An_application_made_for_you">An application made for you</string>
+    <string name="so_that_you_can_have_your_food_your_way">so that you can have your food your way</string>
+    <string name="Search_for_favorite_mess">Search for favorite mess</string>
+    <string name="Select_food_from_daily_menu">Select food from daily menu</string>
+    <string name="Confirm_your_meal_online">Confirm your meal online </string>
 </resources>

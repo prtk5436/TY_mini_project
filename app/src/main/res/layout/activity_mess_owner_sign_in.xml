@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Mess Owner Login"
-            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -25,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Please enter "
-            android:textColor="@color/white"
             android:textSize="25sp" />
 
         <TextView
@@ -33,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Your credentials to login"
-            android:textColor="@color/white"
             android:textSize="25sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Forget Password ?"
-            android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -92,8 +88,7 @@
         android:layout_marginLeft="20dp"
         android:onClick="onCancel"
         android:layout_marginBottom="30dp"
-        android:text="cancel"
-        android:textColor="@color/white" />
+        android:text="cancel" />
 
     <ImageButton
         android:id="@+id/btn_MessLogin"

@@ -14,10 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/overlayBackground"
         app:headerLayout="@layout/nav_header"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
+        app:itemIconTint="@color/green"
         app:menu="@menu/activity_home_drawer" />
 
     <include
@@ -33,10 +31,5 @@
             android:layout_height="wrap_content" />
 
     -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:text=" activity salesman" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
