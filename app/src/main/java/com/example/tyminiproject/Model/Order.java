@@ -7,6 +7,27 @@ public class Order {
     private String Price;
     private String Discount;
     private String MessName;
+    private String Image;
+    private String CustName;
+
+    public Order(String productId, String productName, String quantity, String price, String discount, String messName, String image, String custName) {
+        ProductId = productId;
+        ProductName = productName;
+        Quantity = quantity;
+        Price = price;
+        Discount = discount;
+        MessName = messName;
+        Image = image;
+        CustName = custName;
+    }
+
+    public String getCustName() {
+        return CustName;
+    }
+
+    public void setCustName(String custName) {
+        CustName = custName;
+    }
 
     public Order(String productId, String productName, String quantity, String price, String discount, String messName) {
         ProductId = productId;
@@ -25,6 +46,13 @@ public class Order {
         MessName = messName;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
 
     public Order() {
     }

@@ -71,15 +71,16 @@ public class OrderStatus extends AppCompatActivity {
                 String strOrderItemName = local.getMenu();
                 String strOrderMessName = local.getMessName();
                 String strCustName = local.getCustName();
-                String strFoodImg = local.getCustName();
+                String strFoodImg = local.getImage();
+                String strMessPhone = local.getPhone();
 
-                Log.e(TAG, "inside loadFoodList : strOrderId : " + strOrderId);
-                Log.e(TAG, "inside loadFoodList: strOrderItemPrice : " + strOrderItemPrice);
-                Log.e(TAG, "inside loadFoodList : strOrderMobNo : " + strOrderMobNo);
-                Log.e(TAG, "inside loadFoodList : strOrderItemName : " + strOrderItemName);
-                Log.e(TAG, "inside loadFoodList : strOrderMessName : " + strOrderMessName);
-                Log.e(TAG, "inside loadFoodList : strCustName : " + strCustName);
-                Log.e(TAG, "inside loadFoodList : strFoodImg : " + strFoodImg);
+                Log.d(TAG, "inside loadOrders : strOrderId : " + strOrderId);
+                Log.d(TAG, "inside loadOrders: strOrderItemPrice : " + strOrderItemPrice);
+                Log.d(TAG, "inside loadOrders : strOrderMobNo : " + strOrderMobNo);
+                Log.d(TAG, "inside loadOrders : strOrderItemName : " + strOrderItemName);
+                Log.d(TAG, "inside loadOrders : strOrderMessName : " + strOrderMessName);
+                Log.d(TAG, "inside loadOrders : strCustName : " + strCustName);
+                Log.d(TAG, "inside loadOrders : strFoodImg : " + strFoodImg);
 
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);
@@ -87,7 +88,7 @@ public class OrderStatus extends AppCompatActivity {
                 orderViewHolder.OrderMobNo.setText(strOrderMobNo);
                 orderViewHolder.OrderMessName.setText(strCustName);
                 Picasso.with(getBaseContext()).load(model.getImage())
-                        .into(orderViewHolder.orderFood_img);
+                        .into(orderViewHolder.orderItemImg);
             }
         };
         adapter.notifyDataSetChanged();
@@ -110,17 +111,19 @@ public class OrderStatus extends AppCompatActivity {
                 String strOrderItemName = local.getMenu();
                 String strOrderMessName = local.getMessName();
                 String strCustName = local.getCustName();
-                Log.e(TAG, "inside loadFoodList : strOrderId : " + strOrderId);
-                Log.e(TAG, "inside loadFoodList: strOrderItemPrice : " + strOrderItemPrice);
-                Log.e(TAG, "inside loadFoodList : strOrderMobNo : " + strOrderMobNo);
-                Log.e(TAG, "inside loadFoodList : strOrderItemName : " + strOrderItemName);
-                Log.e(TAG, "inside loadFoodList : strOrderMessName : " + strOrderMessName);
-                Log.e(TAG, "inside loadFoodList : strCustName : " + strCustName);
+                Log.d(TAG, "inside loadOrders : strOrderId : " + strOrderId);
+                Log.d(TAG, "inside loadOrders: strOrderItemPrice : " + strOrderItemPrice);
+                Log.d(TAG, "inside loadOrders : strOrderMobNo : " + strOrderMobNo);
+                Log.d(TAG, "inside loadOrders : strOrderItemName : " + strOrderItemName);
+                Log.d(TAG, "inside loadOrders : strOrderMessName : " + strOrderMessName);
+                Log.d(TAG, "inside loadOrders : strCustName : " + strCustName);
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);
                 orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
                 orderViewHolder.OrderMobNo.setText(strOrderMobNo);
                 orderViewHolder.OrderMessName.setText(strOrderMessName);
+                Picasso.with(getBaseContext()).load(model.getImage())
+                        .into(orderViewHolder.orderItemImg);
 
             }
         };

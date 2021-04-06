@@ -18,7 +18,6 @@ import com.example.tyminiproject.Model.Cart;
 import com.example.tyminiproject.Model.Request;
 import com.example.tyminiproject.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +43,7 @@ public class ViewCart extends AppCompatActivity {
     String foodName, foodTotalPrice, cartId, MessName, foodQuantity, foodImg;
     ImageView fabDelete;
 
-    String foodId = "", custName = "", phone = "";
+    String foodId = "", custName = "", MessPhone = "", phone = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +162,7 @@ public class ViewCart extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference requests_table = firebaseDatabase.getReference("Requests");
-        Request newOrder = new Request(MessName, foodName, foodTotalPrice, foodQuantity, custName, phone);
+        Request newOrder = new Request(MessName, foodName, foodTotalPrice, foodQuantity, custName, phone, foodImg, MessPhone);
 
         requests_table.child(String.valueOf(System.currentTimeMillis())).setValue(newOrder);
 

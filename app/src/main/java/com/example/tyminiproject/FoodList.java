@@ -63,7 +63,7 @@ public class FoodList extends AppCompatActivity {
             messId = getIntent().getStringExtra("MessId");
             loadFoodList(messId);
             Log.e(TAG, "inside onCreate : messId---" + messId);
-            if ( messId == null) {
+            if (messId == null) {
 
                 String strMessMob = getIntent().getStringExtra("strMessMob");
                 Log.e(TAG, "inside onCreate : strMessMob---" + strMessMob);
@@ -91,12 +91,14 @@ public class FoodList extends AppCompatActivity {
                         String foodPrice = local.getPrice();
                         String foodDesc = local.getDescription();
                         String foodDiscont = local.getDiscount();
+                        String MessPhone = local.getMenuId();
                         Log.e(TAG, "inside loadFoodList : fname : " + foodName);
                         Log.e(TAG, "inside loadFoodList: fprice : " + foodPrice);
                         Log.e(TAG, "inside loadFoodList : fdiscount : " + foodDiscont);
                         Log.e(TAG, "inside loadFoodList : fdesc : " + foodDesc);
                         Intent i = new Intent(FoodList.this, FoodDetail.class);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
+                        i.putExtra("MessPhone", MessPhone);
                         startActivity(i);
                     }
                 });

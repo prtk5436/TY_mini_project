@@ -9,6 +9,26 @@ public class Request {
     String CustName;
     String phone;
     String Image;
+    String MessPhone;
+
+    public Request(String messName, String menu, String totalPrice, String quantity, String custName, String phone, String image, String messPhone) {
+        this.messName = messName;
+        Menu = menu;
+        TotalPrice = totalPrice;
+        Quantity = quantity;
+        CustName = custName;
+        this.phone = phone;
+        Image = image;
+        MessPhone = messPhone;
+    }
+
+    public String getMessPhone() {
+        return MessPhone;
+    }
+
+    public void setMessPhone(String messPhone) {
+        MessPhone = messPhone;
+    }
 
     public Request() {
     }

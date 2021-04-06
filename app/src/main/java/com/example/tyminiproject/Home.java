@@ -61,8 +61,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        toolbar.setTitle("Menu");
+        /*getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_shopping_cart_solid);
+        */toolbar.setTitle("Menu");
         //  setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
 

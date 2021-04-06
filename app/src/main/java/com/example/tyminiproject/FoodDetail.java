@@ -1,6 +1,5 @@
 package com.example.tyminiproject;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.Cart;
 import com.example.tyminiproject.Model.Food;
-import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +32,7 @@ public class FoodDetail extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
 
-    String foodId = "", custName = "", phone = "";
+    String foodId = "", custName = "", phone = "", MessPhone = "";
     FirebaseDatabase database;
     DatabaseReference food;
 
@@ -62,9 +60,12 @@ public class FoodDetail extends AppCompatActivity {
         food = database.getReference("Food");
 
 
-        if (getIntent() != null)
+        if (getIntent() != null) {
             foodId = getIntent().getStringExtra("FoodId");
+            MessPhone = getIntent().getStringExtra("MessPhone");
+        }
         Log.e(TAG, "inside onCreate : foodId---" + foodId);
+        Log.e(TAG, "inside onCreate : MessPhone---" + MessPhone);
         if (!foodId.isEmpty() && foodId != null) {
             getFoodDetails(foodId);
         }
@@ -101,18 +102,24 @@ public class FoodDetail extends AppCompatActivity {
                 btnCart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.e(TAG, "inside onCreate : " + currentFood.getName());
-                        Log.e(TAG, "inside onCreate : " + currentFood.getPrice());
-                        Log.e(TAG, "inside onCreate : " + numberButton.getNumber());
-                        Log.e(TAG, "inside onCreate : " + currentFood.getMessName());
+
+
                         String foodMessName = currentFood.getMessName();
                         String foodName = currentFood.getName();
                         String foodQuantity = numberButton.getNumber();
                         String foodPrice = currentFood.getPrice();
-                        int totPrice = Integer.parseInt(foodPrice)*Integer.parseInt(foodQuantity);;
-                        String strTotPrice=String.valueOf(totPrice);
+                        String foodImg = currentFood.getImage();
+                        int totPrice = Integer.parseInt(foodPrice) * Integer.parseInt(foodQuantity);
+                        String strTotPrice = String.valueOf(totPrice);
+
+                        Log.e(TAG, "inside onCreate :foodMessName " + currentFood.getMessName());
+                        Log.e(TAG, "inside onCreate :foodName " + currentFood.getName());
+                        Log.e(TAG, "inside onCreate :foodQuantity " + numberButton.getNumber());
+                        Log.e(TAG, "inside onCreate :foodPrice " + currentFood.getPrice());
+                        Log.e(TAG, "inside onCreate :foodImg " + foodImg);
+                        Log.e(TAG, "inside onCreate :MessPhone " + MessPhone);
                         Log.e(TAG, "inside onCreate : strTotPrice : " + strTotPrice);
-                        Cart newCartItem = new Cart( foodMessName, foodName,strTotPrice, foodQuantity, custName, phone);
+                        Cart newCartItem = new Cart(foodMessName, foodName, strTotPrice, foodQuantity, custName, phone, foodImg, MessPhone);
 
                         table_user.child(String.valueOf(System.currentTimeMillis())).setValue(newCartItem);
                         Toast.makeText(FoodDetail.this, "Added to Cart : " + currentFood.getName(), Toast.LENGTH_LONG).
