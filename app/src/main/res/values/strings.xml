@@ -78,4 +78,14 @@
     <string name="Search_for_favorite_mess">Search for favorite mess</string>
     <string name="Select_food_from_daily_menu">Select food from daily menu</string>
     <string name="Confirm_your_meal_online">Confirm your meal online </string>
+
+    <!--forgot password-->
+
+    <string name="Reset_password">Reset Password</string>
+    <string name="Please_create_your">Please create your </string>
+    <string name="new_password_for">new password for authentication</string>
+
+
+
+
 </resources>
