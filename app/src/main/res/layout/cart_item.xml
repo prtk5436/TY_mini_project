@@ -19,18 +19,19 @@
                 android:layout_width="80dp"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/black"
-                    android:alpha="0.5"/>
 
                 <ImageView
                     android:id="@+id/cartFood_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pimg2"
                     />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:alpha="0.6"/>
 
             </RelativeLayout>
 
