@@ -6,55 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-
-<!--    <TextView-->
-<!--        android:id="@+id/user_name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="salesman app bar  admin"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="25sp" />-->
-
-
-
-
-
-
-
     <!--home screen cards-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <!--appbar-->
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/Theme.TYMiniProject.PopupOverlay" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <include layout="@layout/toolbar_home"/>
-
-
+        <include layout="@layout/toolbar_home" />
         <!--appbarend-->
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="15dp">
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,59 +31,52 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_weight="1"
-                    android:layout_marginRight="5dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/ic_baseline_search_24"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     app:endIconMode="clear_text"
-                    >
+                    app:startIconDrawable="@drawable/ic_baseline_search_24">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_margin="0dp"
-                        android:padding="0dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
                         android:hint="Search"
-                        />
+                        android:padding="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <RelativeLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="55dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/green_button">
 
                     <RelativeLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:layout_width="55dp"
                         android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/green_button">
 
                         <ImageView
-                            android:layout_centerInParent="true"
-                            android:layout_centerVertical="true"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:background="@drawable/green_button"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginTop="10dp"
-                            android:src="@drawable/sort_search"/>
+                            android:background="@drawable/green_button"
+                            android:src="@drawable/sort_search" />
 
                     </RelativeLayout>
 
 
                 </RelativeLayout>
-
-
-
-
-
 
 
             </LinearLayout>
@@ -128,46 +90,41 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mess near your location"
-                    />
+                    android:text="Mess near your location" />
 
                 <TextView
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Results"
-                    />
+                    android:layout_alignParentRight="true"
+                    android:text="Results" />
 
             </RelativeLayout>
 
         </LinearLayout>
 
 
-
         <include
             layout="@layout/content_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
-
 
 
     <!--home screen cards end-->
 
     <!--Add to cart-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_baseline_shopping_cart_24"
-        android:layout_margin="16dp"
-        android:id="@+id/fab" />
-
+    <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+         android:id="@+id/fab"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="bottom|end"
+         android:layout_margin="16dp"
+         android:backgroundTint="@color/white"
+         android:src="@drawable/ic_baseline_shopping_cart_24" />
+ -->
     <!--Add to cart end-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

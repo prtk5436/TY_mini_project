@@ -1,5 +1,6 @@
 package com.example.tyminiproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,8 +53,9 @@ public class ViewCart extends AppCompatActivity {
         recyclerView = findViewById(R.id.listCart);
 
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
-
-        fabDelete = findViewById(R.id.fabDelete);
+        ImageView imgDeleteAllCart = findViewById(R.id.imgDeleteAllCart);
+        ImageView imgBackCart = findViewById(R.id.imgBackCart);
+        //fabDelete = findViewById(R.id.fabDelete);
 
         database = FirebaseDatabase.getInstance();
         cart = database.getReference("Cart");
@@ -72,6 +74,24 @@ public class ViewCart extends AppCompatActivity {
             loadCartList(custMob);
         }
 
+        imgBackCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ViewCart.this, Home.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        imgDeleteAllCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cleanMyCart();
+                Toast.makeText(ViewCart.this, "Cart is Cleaned", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        /*
         fabDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +102,7 @@ public class ViewCart extends AppCompatActivity {
                 Toast.makeText(ViewCart.this, "Cart is Cleaned", Toast.LENGTH_LONG).show();
                 // loadCartList(custMob);
             }
-        });
+        });*/
 
 
     }

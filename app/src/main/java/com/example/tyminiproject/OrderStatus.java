@@ -1,7 +1,11 @@
 package com.example.tyminiproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,10 +34,16 @@ public class OrderStatus extends AppCompatActivity {
     FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
     String custMobNo, messName, checkUserType;
 
+    int flag = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
+
+        TextView tv_userType = findViewById(R.id.tv_userType);
+        ImageView imgBackMyOrders = findViewById(R.id.imgBackMyOrders);
+
         database = FirebaseDatabase.getInstance();
         request_table = database.getReference("Requests");
         storage = FirebaseStorage.getInstance();
@@ -47,14 +57,40 @@ public class OrderStatus extends AppCompatActivity {
 
         if (getIntent() != null) {
             messName = getIntent().getStringExtra("messName");
-            loadMessOrders(messName);
+            loadMessOrders(messName);  //load orders at mess owner side
+            flag = 1;
             Log.d(TAG, "onCreate: messName--- " + messName);
             if (messName == null) {
                 custMobNo = Common.currentUser.getPhone();
                 Log.d(TAG, "onCreate: custMobNo--- " + custMobNo);
                 loadOrders(custMobNo);
+                flag = 0;
             }
         }
+        imgBackMyOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Log.d(TAG, "onCreate: FLAG --- " + flag);
+
+                if (flag == 0) {
+
+                    Intent i = new Intent(OrderStatus.this, Home.class);
+                    startActivity(i);
+                    finish();
+                }
+
+                if (flag == 1) {
+
+                    Intent i = new Intent(OrderStatus.this, MessOwnerHome.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+        });
+
+
     }
 
     private void loadMessOrders(String messName) {
@@ -81,6 +117,9 @@ public class OrderStatus extends AppCompatActivity {
                 Log.d(TAG, "inside loadOrders : strOrderMessName : " + strOrderMessName);
                 Log.d(TAG, "inside loadOrders : strCustName : " + strCustName);
                 Log.d(TAG, "inside loadOrders : strFoodImg : " + strFoodImg);
+
+
+                orderViewHolder.tv_userType.setText("Customer : ");
 
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);

@@ -7,11 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -25,7 +25,6 @@ import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,18 +54,31 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         textView = findViewById(R.id.textView);
-        toolbar = findViewById(R.id.toolbar);
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new
-                ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        /*getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_shopping_cart_solid);
-        */toolbar.setTitle("Menu");
-        //  setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+        ImageView img_ViewDrawer = findViewById(R.id.img_ViewDrawer);
+        img_ViewDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+        ImageView img_ViewCart = findViewById(R.id.img_ViewCart);
+        img_ViewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Home.this, ViewCart.class);
+                i.putExtra("customerMob", strMob);
+                startActivity(i);
+            }
+        });
+
+        //FloatingActionButton fab = findViewById(R.id.fab);
 
         navigationView.setCheckedItem(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
@@ -98,7 +110,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         strMob = tvMob.getText().toString();
         Log.d(TAG, "onCreate: nav nar MOB NO : " + strMob);
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Home.this, ViewCart.class);
@@ -106,7 +118,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(i);
                 //  Toast.makeText(Home.this, "FAB   Click", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
         database = FirebaseDatabase.getInstance();
         category = database.getReference("MessUser");
 

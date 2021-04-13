@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="@color/white"
-        android:elevation="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:padding="18dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="18dp">
 
             <ImageView
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
+                android:id="@+id/img_ViewDrawer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_icon"
-                />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_menu_icon" />
 
             <TextView
-                android:textColor="@color/black"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LUNCHBOX"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/roboto_medium"
                 android:letterSpacing="0.1"
-                android:fontFamily="@font/roboto_medium"/>
+                android:text="LUNCHBOX"
+                android:textColor="@color/black" />
 
             <ImageView
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:id="@+id/img_ViewCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_shopping_cart_solid"/>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_shopping_cart_solid" />
 
 
         </RelativeLayout>
