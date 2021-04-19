@@ -24,28 +24,28 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class ForgotPasswordGenerateOTP extends AppCompatActivity {
-    String TAG = "ForgotPasswordGenerateOTP";
+public class ForgotPasswordGenerateOTPmessOwner extends AppCompatActivity {
+    String TAG = "ForgotPasswordGenerateOTPmessOwner";
     Button btn_getOtp;
     int i = 1, j = 1;
-    EditText et_mob;
-    String mobno, checkUserType = null;
+    EditText et_mob, et_pwd, et_name, et_otp;
+    String mobno, checkUserType;
     TextView t1;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password_generate_o_t_p);
-
+        setContentView(R.layout.activity_forgot_password_generate_o_t_pmess_owner);
 
         et_mob = findViewById(R.id.et_mob1);
         btn_getOtp = findViewById(R.id.btn_getOTP);
         t1 = findViewById(R.id.t1);
         progressBar = findViewById(R.id.progressbar);
 
+
         if (getIntent() != null)
-            checkUserType = getIntent().getStringExtra("customer");
+            checkUserType = getIntent().getStringExtra("messOwner");
         Log.d(TAG, "inside onCreate : checkUserType---" + checkUserType);
 
         btn_getOtp.setOnClickListener(new View.OnClickListener() {
@@ -56,20 +56,20 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
                 mobno = et_mob.getText().toString();
 
                 if (mobno.isEmpty() || mobno.length() < 10) {
-                    Toast.makeText(ForgotPasswordGenerateOTP.this, "empty", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordGenerateOTPmessOwner.this, "empty", Toast.LENGTH_LONG).show();
                     et_mob.setError("please enter valid mobile no.");
                     et_mob.setEnabled(true);
                 } else {
                     FirebaseDatabase firebaseDatabase1 = FirebaseDatabase.getInstance();
-                    DatabaseReference table_user = firebaseDatabase1.getReference("user");
+                    DatabaseReference table_Messuser = firebaseDatabase1.getReference("MessUser");
 
-                    table_user.addValueEventListener(new ValueEventListener() {
+                    table_Messuser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             if (snapshot.child(et_mob.getText().toString()).exists()) {
 
-                                Log.e(TAG, "MOB NO REG IN : user TABLE ");
+                                Log.e(TAG, "MOB NO REG IN : MessUser TABLE ");
                                 j++;//2,3,4,.....
                                 Log.e(TAG, "inside onDataChange : j : " + j);
                                 et_mob.setEnabled(false);
@@ -83,7 +83,7 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
                                 }
 
                             } else {
-                                Toast.makeText(ForgotPasswordGenerateOTP.this, "phone not registered", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ForgotPasswordGenerateOTPmessOwner.this, "phone not registered as Mess Owner", Toast.LENGTH_LONG).show();
                                 et_mob.setEnabled(true);
                             }
                         }
@@ -112,7 +112,7 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
                 "+91" + mobno,
                 60,
                 TimeUnit.SECONDS,
-                ForgotPasswordGenerateOTP.this,
+                ForgotPasswordGenerateOTPmessOwner.this,
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -128,7 +128,7 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
                         btn_getOtp.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         Log.e(TAG, "inside onVerificationFailed : " + e.getMessage());
-                        Toast.makeText(ForgotPasswordGenerateOTP.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ForgotPasswordGenerateOTPmessOwner.this, "inside onVerificationFailed : " + e.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
 
@@ -137,7 +137,7 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ForgotPasswordVerifyOTP.class);
                         intent.putExtra("mobile", mobno);
                         intent.putExtra("verificationId", verificationId);
-                        intent.putExtra("checkUserType", "customer");
+                        intent.putExtra("checkUserType", "messOwner");
                         startActivity(intent);
                     }
                 }
@@ -147,15 +147,15 @@ public class ForgotPasswordGenerateOTP extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         Log.e(TAG, "onCreate: " + mobno);
-        Intent intent = new Intent(ForgotPasswordGenerateOTP.this, ForgotPasswordVerifyOTP.class);
+        Intent intent = new Intent(ForgotPasswordGenerateOTPmessOwner.this, ForgotPasswordVerifyOTP.class);
         intent.putExtra("mobno", mobno);
-        intent.putExtra("checkUserType", "customer");
+        intent.putExtra("checkUserType", "messOwner");
         startActivity(intent);
     }
 
 
     public void onCancel(View view) {
-        Intent intent = new Intent(ForgotPasswordGenerateOTP.this, SignIn.class);
+        Intent intent = new Intent(ForgotPasswordGenerateOTPmessOwner.this, MessOwnerSignIn.class);
         startActivity(intent);
         finish();
     }

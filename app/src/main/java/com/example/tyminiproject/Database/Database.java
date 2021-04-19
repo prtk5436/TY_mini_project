@@ -1,3 +1,4 @@
+/*
 package com.example.tyminiproject.Database;
 
 import android.content.Context;
@@ -88,3 +89,4 @@ public class Database extends SQLiteAssetHelper {
 
     }
 }
+*/

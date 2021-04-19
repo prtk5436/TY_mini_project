@@ -1,8 +1,5 @@
 package com.example.tyminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +9,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.User;
-import com.example.tyminiproject.Common.*;
 import com.example.tyminiproject.SignUp.GenerateOTP;
-import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +28,8 @@ public class SignIn extends AppCompatActivity {
     LinearLayout linear_signUp;
     String mobno, pwd;
 
-    String endUser="CUSTOMER";
+    String endUser = "CUSTOMER";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +92,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SignIn.this, GenerateOTP.class);
-                i.putExtra("customer","customer");
+                i.putExtra("customer", "customer");
                 startActivity(i);
                 finish();
             }
@@ -101,6 +101,13 @@ public class SignIn extends AppCompatActivity {
 
     public void gotoMessModule(View view) {
         Intent i = new Intent(SignIn.this, MessOwnerSignIn.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void onForgotPassword(View view) {
+        Intent i = new Intent(SignIn.this, ForgotPasswordGenerateOTP.class);
+        i.putExtra("customer", "customer");
         startActivity(i);
         finish();
     }

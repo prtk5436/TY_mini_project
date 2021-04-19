@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class VerifyPhoneNo extends AppCompatActivity {
     String TAG = "VerifyPhoneNo";
     String verificationId, phoneNo;
-    Button  btn_signUp , btn_verifyOTP;
+    Button btn_signUp, btn_verifyOTP;
     EditText et_mob, et_pwd, et_name, et_otp;
     ProgressBar progressBar;
     String checkUserType;

@@ -10,15 +10,15 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/toprightimgcrp"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:src="@drawable/toprightimgcrp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:paddingHorizontal="20dp">
 
         <TextView
@@ -32,11 +32,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"
+            android:fontFamily="@font/roboto_light"
             android:text="@string/please_enter_credentials_to_login"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -44,9 +44,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:hint="@string/Enter_your_phone_number"
-            app:startIconDrawable="@drawable/ic_baseline_phone_24"
-            app:prefixText="+91 "
             app:endIconMode="clear_text"
+            app:prefixText="+91 "
+            app:startIconDrawable="@drawable/ic_baseline_phone_24"
 
             >
 
@@ -54,8 +54,7 @@
                 android:id="@+id/et_mob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
-                />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,101 +63,97 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/Password"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textWebPassword"
-                />
+                android:inputType="textWebPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/Next"
-            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
             android:background="@drawable/green_button"
-            android:fontFamily="@font/roboto_medium"/>
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/Next"
+            android:textAllCaps="false" />
 
         <TextView
-            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_forgetPwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:textSize="12sp"
+            android:onClick="onForgotPassword"
+            android:fontFamily="@font/roboto_bold"
             android:text="@string/Forgot_Password"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:id="@+id/linear_signUp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto"
-                android:textSize="12sp"
                 android:text="@string/Dont_Have_Account_Sign_Up"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
 
         </LinearLayout>
 
 
-
         <RelativeLayout
-            android:onClick="gotoMessModule"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
-            android:background="@drawable/stroke_button">
+            android:background="@drawable/stroke_button"
+            android:onClick="gotoMessModule">
 
             <LinearLayout
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="38dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_cooking"
-                    android:layout_marginRight="18dp"/>
+                    android:layout_marginRight="18dp"
+                    android:src="@drawable/ic_cooking" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Login_or_Sign_up_as_mess_owner"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textSize="14sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/black"/>
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/Login_or_Sign_up_as_mess_owner"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
-
-
 
 
         </RelativeLayout>
 
 
-
-
     </LinearLayout>
 
 
-
-</RelativeLayout>
-<!--
+</RelativeLayout><!--
 
 
 <LinearLayout

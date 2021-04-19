@@ -1,24 +1,19 @@
 package com.example.tyminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.MessUser;
-import com.example.tyminiproject.Model.User;
-import com.example.tyminiproject.SignUp.GenerateOTP;
-import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,9 +97,17 @@ public class MessOwnerSignIn extends AppCompatActivity {
         });
 */
     }
+
     public void onCancel(View view) {
         Intent intent = new Intent(MessOwnerSignIn.this, SignIn.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void onForgotPassword(View view) {
+        Intent i = new Intent(MessOwnerSignIn.this, ForgotPasswordGenerateOTPmessOwner.class);
+        i.putExtra("messOwner", "messOwner");
+        startActivity(i);
         finish();
     }
 }

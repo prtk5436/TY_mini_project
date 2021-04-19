@@ -1,18 +1,17 @@
 package com.example.tyminiproject.SignUp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tyminiproject.R;
 import com.example.tyminiproject.SignIn;
@@ -47,12 +46,16 @@ public class GenerateOTP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                et_mob.setEnabled(false);
                 mobno = et_mob.getText().toString();
-                if (mobno.isEmpty()) {
+
+                if (mobno.isEmpty() || mobno.length() < 10) {
                     Toast.makeText(GenerateOTP.this, "empty", Toast.LENGTH_LONG).show();
                     et_mob.setError("please enter valid mobile no.");
-
+                    et_mob.setEnabled(true);
                 } else {
+
+                    et_mob.setEnabled(false);
                     t1.setText(mobno);
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
                             "+91" + mobno,
@@ -83,7 +86,7 @@ public class GenerateOTP extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
                                     intent.putExtra("mobile", mobno);
                                     intent.putExtra("verificationId", verificationId);
-                                    intent.putExtra("customer","customer");
+                                    intent.putExtra("customer", "customer");
                                     startActivity(intent);
                                 }
                             }
@@ -95,7 +98,7 @@ public class GenerateOTP extends AppCompatActivity {
                     Log.e(TAG, "onCreate: " + mobno);
                     Intent intent = new Intent(GenerateOTP.this, VerifyPhoneNo.class);
                     intent.putExtra("mobno", mobno);
-                    intent.putExtra("customer","customer");
+                    intent.putExtra("customer", "customer");
                     startActivity(intent);
                 }
             }

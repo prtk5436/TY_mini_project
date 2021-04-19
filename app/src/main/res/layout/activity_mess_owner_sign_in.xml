@@ -75,6 +75,7 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onForgotPassword"
             android:layout_marginLeft="20dp"
             android:text="Forget Password ?"
             android:textSize="16sp" />

@@ -38,7 +38,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:hint="Enter name of Mess"
+            android:hint="Enter name of mess"
             app:boxStrokeColor="@color/white"
             app:endIconMode="clear_text"
             app:hintTextColor="@color/white">
@@ -78,7 +78,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:hint="Confirm Password"
+            android:hint="Confirm password"
             app:boxStrokeColor="@color/white"
             app:hintTextColor="@color/white"
             app:passwordToggleEnabled="true">
@@ -190,7 +190,7 @@
             android:layout_marginBottom="15dp"
             android:hint="mob no"
             android:textColor="@color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/et_owner"
@@ -201,7 +201,7 @@
             android:layout_marginBottom="15dp"
             android:hint="owner name"
             android:textColor="@color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <TextView

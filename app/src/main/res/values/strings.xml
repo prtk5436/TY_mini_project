@@ -24,7 +24,6 @@
     <string name="cancel">Cancel</string>
 
 
-
     /*Splash Screen*/
     <string name="app_tagline">Have your food your way.</string>
 
@@ -84,8 +83,6 @@
     <string name="Reset_password">Reset Password</string>
     <string name="Please_create_your">Please create your </string>
     <string name="new_password_for">new password for authentication</string>
-
-
 
 
 </resources>
