@@ -4,182 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Lightblue"
+    android:background="@color/white"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SignUp.MessOwnerSignUp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="35dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Mess Setup"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/Register_Mess"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Please enter details"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/Please_fill_the_form_to"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/register_your_mess_on_platform"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Enter name of mess"
-            app:boxStrokeColor="@color/white"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/white">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Enter_mess_name"
+            app:startIconDrawable="@drawable/ic_baseline_restaurant_24"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_messname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="wrap_content"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Enter your password"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_Messpwd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textWebPassword"
-                android:textColorHint="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Confirm password"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_MessCpwd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textWebPassword"
-                android:textColorHint="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Enter address"
-            app:boxStrokeColor="@color/white"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/white">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Enter_mess_address"
+            app:startIconDrawable="@drawable/ic_baseline_my_location_24"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_messAddr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPostalAddress" />
-
+                android:layout_height="wrap_content"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Enter Fssai number for authentication"
-            app:boxStrokeColor="@color/white"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/white">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Enter_your_mess_fssai_no"
+            app:startIconDrawable="@drawable/fssai_ic"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_messReg"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number" />
+                android:layout_height="wrap_content"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="OpenTime 00:00"
+                app:prefixText="AM"
                 android:layout_weight="1"
-                android:hint="AM"
-                app:boxStrokeColor="@color/white"
-                app:endIconMode="clear_text"
-                app:hintTextColor="@color/white">
+                android:layout_marginRight="5dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_AM"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="CloseTime 00:00"
+                app:prefixText="PM"
                 android:layout_weight="1"
-                android:hint="PM"
-                app:boxStrokeColor="@color/white"
-                app:endIconMode="clear_text"
-                app:hintTextColor="@color/white">
+                android:layout_marginLeft="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_PM"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
         </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Enter Password"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="textWebPassword"
+                android:id="@+id/et_Messpwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/Confirm_Password"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_MessCpwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textWebPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Mess closed on which days"
+            app:startIconDrawable="@drawable/ic_baseline_today_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/et_mob"
@@ -202,26 +207,262 @@
             android:hint="owner name"
             android:textColor="@color/white"
             android:visibility="gone" />
+
+
+
+
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_previous"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="onCancel"
-        android:text="Cancel"
-        android:textColor="@color/white" />
+        android:layout_marginBottom="25dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+        <TextView
+            android:onClick="onCancel"
+            android:id="@+id/tv_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/Cancel"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_medium"/>
 
-    <ImageButton
-        android:id="@+id/btn_MessSignUp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/circle_button_next"
-        android:src="@drawable/ic_chevron_right" />
+        <Button
+            android:id="@+id/btn_MessSignUp"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:layout_gravity=""
+            android:text="@string/Next"
+            android:layout_centerVertical="true"
+            android:background="@drawable/green_button"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/roboto_medium"
+            android:textAllCaps="false"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+
+
 </RelativeLayout>
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:orientation="vertical">-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="20dp"-->
+<!--    android:text="Mess Setup"-->
+<!--    android:textColor="@color/white"-->
+<!--    android:textSize="30sp"-->
+<!--    android:textStyle="bold" />-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:text="Please enter details"-->
+<!--    android:textColor="@color/white"-->
+<!--    android:textSize="25sp" />-->
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="60dp"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="Enter name of mess"-->
+<!--    app:boxStrokeColor="@color/white"-->
+<!--    app:endIconMode="clear_text"-->
+<!--    app:hintTextColor="@color/white">-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_messname"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    android:id="@+id/textInputLayout4"-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="60dp"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="Enter your password"-->
+<!--    app:boxStrokeColor="@color/white"-->
+<!--    app:hintTextColor="@color/white"-->
+<!--    app:passwordToggleEnabled="true">-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_Messpwd"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:inputType="textWebPassword"-->
+<!--        android:textColorHint="@color/white" />-->
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="60dp"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="Confirm password"-->
+<!--    app:boxStrokeColor="@color/white"-->
+<!--    app:hintTextColor="@color/white"-->
+<!--    app:passwordToggleEnabled="true">-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_MessCpwd"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:inputType="textWebPassword"-->
+<!--        android:textColorHint="@color/white" />-->
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="60dp"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="Enter address"-->
+<!--    app:boxStrokeColor="@color/white"-->
+<!--    app:endIconMode="clear_text"-->
+<!--    app:hintTextColor="@color/white">-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_messAddr"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:inputType="textPostalAddress" />-->
+
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="60dp"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="Enter Fssai number for authentication"-->
+<!--    app:boxStrokeColor="@color/white"-->
+<!--    app:endIconMode="clear_text"-->
+<!--    app:hintTextColor="@color/white">-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_messReg"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:inputType="number" />-->
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:weightSum="2">-->
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:hint="AM"-->
+<!--        app:boxStrokeColor="@color/white"-->
+<!--        app:endIconMode="clear_text"-->
+<!--        app:hintTextColor="@color/white">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/et_AM"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:inputType="number"-->
+<!--            android:maxLength="2" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:hint="PM"-->
+<!--        app:boxStrokeColor="@color/white"-->
+<!--        app:endIconMode="clear_text"-->
+<!--        app:hintTextColor="@color/white">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/et_PM"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:inputType="number"-->
+<!--            android:maxLength="2" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--</LinearLayout>-->
+
+<!--<EditText-->
+<!--    android:id="@+id/et_mob"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="mob no"-->
+<!--    android:textColor="@color/white"-->
+<!--    android:visibility="gone" />-->
+
+<!--<EditText-->
+<!--    android:id="@+id/et_owner"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="20dp"-->
+<!--    android:layout_marginRight="20dp"-->
+<!--    android:layout_marginBottom="15dp"-->
+<!--    android:hint="owner name"-->
+<!--    android:textColor="@color/white"-->
+<!--    android:visibility="gone" />-->
+<!--</LinearLayout>-->
+
+<!--<TextView-->
+<!--android:id="@+id/tv_previous"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_alignParentBottom="true"-->
+<!--android:layout_marginLeft="30dp"-->
+<!--android:layout_marginBottom="30dp"-->
+<!--android:onClick="onCancel"-->
+<!--android:text="Cancel"-->
+<!--android:textColor="@color/white" />-->
+
+<!--<ImageButton-->
+<!--android:id="@+id/btn_MessSignUp"-->
+<!--android:layout_width="50dp"-->
+<!--android:layout_height="50dp"-->
+<!--android:layout_alignParentRight="true"-->
+<!--android:layout_alignParentBottom="true"-->
+<!--android:layout_margin="20dp"-->
+<!--android:background="@drawable/circle_button_next"-->
+<!--android:src="@drawable/ic_chevron_right" />-->

@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorAccent"
+            app:contentScrim="@color/green"
             app:expandedTitleTextAppearance="@color/overlayBackground"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -44,19 +44,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:elevation="6dp"
-        android:src="@drawable/ic_baseline_shopping_cart_24"
-        app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|end"
-        app:pressedTranslationZ="12dp"
-        app:useCompatPadding="true">
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -64,92 +52,218 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:id="@+id/foodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pav-Bhaji"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_medium"/>
+
+
+                <TextView
+                    android:layout_marginHorizontal="15dp"
+                    android:id="@+id/foodDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="foodDescription Pav-Bhaji foodDescription foodDescription foodDescription"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="16sp" />
+
+
+
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_marginTop="50dp"
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/card_border">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/foodName"
+                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:padding="12dp"
-                        android:text="Pav-Bhaji"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/layout_price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_baseline_attach_money_24" />
-
-                        <TextView
-                            android:id="@+id/foodPrice"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:padding="12dp"
-                            android:text="180"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                        android:text="QTY"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/roboto_medium"/>
 
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                         android:id="@+id/numberBtn"
                         android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginBottom="8dp"
-                        app:backGroundColor="@color/colorAccent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="16dp"
+                        app:backGroundColor="@color/green"
                         app:finalNumber="20"
                         app:initialNumber="1"
                         app:textSize="10sp">
 
                     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
-
-                <TextView
-                    android:id="@+id/foodDescription"
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:id="@+id/layout_price"
+                    android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:lineSpacingMultiplier="1.5"
-                    android:padding="12dp"
-                    android:text="foodDescription Pav-Bhaji foodDescription foodDescription foodDescription"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
-            </androidx.cardview.widget.CardView>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
+                    <TextView
+                        android:id="@+id/foodPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="180"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
+
+                </LinearLayout>
+
+
+
+                <Button
+                    android:id="@+id/btn_cart"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/green_button"
+                    android:text="Add to cart"
+                    android:textAllCaps="false"/>
+
+
+
+
+
+            </RelativeLayout>
+
+
         </LinearLayout>
+
+
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="vertical">-->
+
+<!--<androidx.cardview.widget.CardView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    app:cardElevation="5dp"-->
+<!--    app:cardUseCompatPadding="true">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/foodName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:padding="12dp"-->
+<!--            android:text="Pav-Bhaji"-->
+<!--            android:textColor="@color/colorPrimary"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/layout_price"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_weight="1"-->
+<!--                android:src="@drawable/ic_baseline_attach_money_24" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/foodPrice"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="9"-->
+<!--                android:padding="12dp"-->
+<!--                android:text="180"-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold" />-->
+<!--        </LinearLayout>-->
+
+<!--        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
+<!--            android:id="@+id/numberBtn"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginLeft="8dp"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            app:backGroundColor="@color/colorAccent"-->
+<!--            app:finalNumber="20"-->
+<!--            app:initialNumber="1"-->
+<!--            app:textSize="10sp">-->
+
+<!--        </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>z-->
+<!--    </LinearLayout>-->
+<!--</androidx.cardview.widget.CardView>-->
+
+<!--<androidx.cardview.widget.CardView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    app:cardElevation="5dp"-->
+<!--    app:cardUseCompatPadding="true">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/foodDescription"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:lineSpacingMultiplier="1.5"-->
+<!--        android:padding="12dp"-->
+<!--        android:text="foodDescription Pav-Bhaji foodDescription foodDescription foodDescription"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:textSize="16sp" />-->
+<!--</androidx.cardview.widget.CardView>-->
+<!--</LinearLayout>-->
