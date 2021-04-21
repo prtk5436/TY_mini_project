@@ -17,44 +17,61 @@
             android:layout_margin="20dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et_MenuName"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="enter menu name"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginBottom="5dp">
 
-            <EditText
-                android:id="@+id/et_MenuDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="top|left"
-                android:hint="Enter Menu Description"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                android:maxLines="5"
-                android:minLines="2"
-                android:scrollbars="vertical"
-                android:textColor="@color/white" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_MenuName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Food name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/et_price"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="enter price"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginBottom="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_MenuDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Food Description" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginBottom="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Food Price" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:layout_marginTop="15dp">
 
                 <Button
-                    android:id="@+id/btn_select"
+                    android:background="@drawable/green_button"
+                    android:id="@+id/btn_upload"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -62,7 +79,8 @@
                     android:text="select" />
 
                 <Button
-                    android:id="@+id/btn_upload"
+                    android:background="@drawable/green_button"
+                    android:id="@+id/btn_select"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -74,3 +92,4 @@
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
+

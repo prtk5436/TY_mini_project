@@ -13,10 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/overlayBackground"
         app:headerLayout="@layout/nav_header_mess"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/green"
         app:menu="@menu/activity_mess_module_drawer" />
 
     <include

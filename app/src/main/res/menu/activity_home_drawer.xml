@@ -4,9 +4,9 @@
 
         <item
             android:id="@+id/nav_menu"
-            android:icon="@drawable/ic_baseline_restaurant_24"
+            android:icon="@drawable/ic_baseline_home_24"
             android:iconTint="@color/white"
-            android:title="Menu" />
+            android:title="Home" />
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_baseline_shopping_cart_24"
@@ -16,23 +16,29 @@
             android:id="@+id/nav_Myorders"
             android:icon="@drawable/ic_baseline_orders_24"
             android:iconTint="@color/white"
-            android:title="My Orders" />
+            android:title="My orders" />
+
         <item
-            android:id="@+id/nav_logOut"
-            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:id="@+id/nav_messReg"
+            android:icon="@drawable/ic_baseline_restaurant_24"
             android:iconTint="@color/white"
-            android:title="Log Out" />
+            android:title="Register your mess" />
+
+
 
     </group>
+
     <group android:checkableBehavior="single"
         android:menuCategory="secondary"
         >
 
         <item
-            android:id="@+id/nav_messReg"
-            android:icon="@drawable/ic_lunchbox"
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
             android:iconTint="@color/white"
-            android:title="Register as Mess Owner" />
+            android:title="Logout" />
+
+
 
     </group>
 

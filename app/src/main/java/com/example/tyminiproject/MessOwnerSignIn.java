@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.MessUser;
+import com.example.tyminiproject.SignUp.MessOwnerSignUp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MessOwnerSignIn extends AppCompatActivity {
     private static final String TAG = "MessOwnerSignIn";
-    ImageButton login;
+    Button login;
     EditText et_mob, et_pwd;
     LinearLayout linear_signUp;
     String mobno, pwd;
@@ -86,16 +88,16 @@ public class MessOwnerSignIn extends AppCompatActivity {
             }
         });
 
-/*
-        linear_signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MessOwnerSignIn.this, GenerateOTP.class);
-                startActivity(i);
-                finish();
-            }
-        });
-*/
+
+//        linear_signUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(MessOwnerSignIn.this, MessOwnerSignUp.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
+
     }
 
     public void onCancel(View view) {

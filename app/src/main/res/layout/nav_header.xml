@@ -1,33 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:background="@color/green">
+<LinearLayout
+
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:background="@color/overlayBackground"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:background="@drawable/splashscreenimg" />
-
-    <TextView
-        android:id="@+id/userName"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pratik"
-        android:textColor="#ffff"
-        android:textSize="20sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"  />
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp">
 
-    <TextView
-        android:id="@+id/tv_mob"
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_component_3___1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8291534304"
-        android:textColor="#ffff"
-        android:textSize="16sp"
-        app:fontFamily="sans-serif-condensed" />
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pratik Pawar"
+            android:textColor="#ffff"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"  />
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/tv_mob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8291534304"
+            android:textColor="#ffff"
+            android:textSize="16sp"
+            app:fontFamily="sans-serif-condensed" />
+
+    </LinearLayout>
+
+
+
+
+
+
 </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -27,6 +27,9 @@
         <activity android:name=".FoodDetail" />
         <activity android:name=".FoodList" />
         <activity android:name=".Home" />
+        <activity android:name=".Onboarding1" />
+        <activity android:name=".Onboarding2" />
+        <activity android:name=".Onboarding3" />
         <activity
             android:name=".SignUp.GenerateOTP"
             android:theme="@style/Theme.TYMiniProject.NoActionBar" />

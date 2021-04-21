@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/Login_or_Sign_up_as_mess_owner"
+                    android:text="Login as a mess owner to mess market"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 

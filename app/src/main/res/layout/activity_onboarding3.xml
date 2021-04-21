@@ -55,75 +55,82 @@
             android:text="@string/so_that_you_can_have_your_food_your_way"
             android:layout_marginBottom="33dp"/>
 
-
         <LinearLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
 
-            <ImageView
+            <LinearLayout
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_onboardingic1"/>
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_onboardingic1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="25dp"
+                    android:text="@string/Search_for_favorite_mess"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginLeft="25dp"
-                android:text="@string/Search_for_favorite_mess"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_onboardingic2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="25dp"
+                    android:text="@string/Select_food_from_daily_menu"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_onboardingic3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="25dp"
+                    android:text="@string/Confirm_your_meal_online"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_onboardingic2"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginLeft="25dp"
-                android:text="@string/Search_for_favorite_mess"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_onboardingic3"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginLeft="25dp"
-                android:text="@string/Search_for_favorite_mess"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
 
 
 
@@ -146,6 +153,7 @@
             />
 
         <Button
+            android:id="@+id/onboardingNext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/green_button"

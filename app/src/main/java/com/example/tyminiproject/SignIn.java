@@ -91,7 +91,7 @@ public class SignIn extends AppCompatActivity {
         linear_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SignIn.this, GenerateOTP.class);
+                Intent i = new Intent(SignIn.this, Onboarding1.class);
                 i.putExtra("customer", "customer");
                 startActivity(i);
                 finish();
@@ -102,13 +102,11 @@ public class SignIn extends AppCompatActivity {
     public void gotoMessModule(View view) {
         Intent i = new Intent(SignIn.this, MessOwnerSignIn.class);
         startActivity(i);
-        finish();
     }
 
     public void onForgotPassword(View view) {
         Intent i = new Intent(SignIn.this, ForgotPasswordGenerateOTP.class);
         i.putExtra("customer", "customer");
         startActivity(i);
-        finish();
     }
 }

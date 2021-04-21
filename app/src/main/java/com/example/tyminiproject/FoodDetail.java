@@ -3,6 +3,7 @@ package com.example.tyminiproject;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ public class FoodDetail extends AppCompatActivity {
     ImageView foodImg;
 
     CollapsingToolbarLayout collapsingToolbarLayout;
-    FloatingActionButton btnCart;
+    Button btnCart;
     ElegantNumberButton numberButton;
 
     String foodId = "", custName = "", phone = "", MessPhone = "";

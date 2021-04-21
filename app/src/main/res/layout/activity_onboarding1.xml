@@ -65,6 +65,7 @@
             />
         
         <Button
+            android:id="@+id/onboardingNext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/green_button"
