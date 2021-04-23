@@ -38,7 +38,7 @@
                         android:layout_marginTop="5dp"
                         android:alpha="0.5"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_baseline_restaurant_24" />
+                        android:src="@drawable/indianfood" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -175,145 +175,8 @@
 
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
-
-    <!--<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/black"
-                        android:alpha="0.9"/>
-                    <ImageView
-                        android:id="@+id/menu_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.5"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_baseline_restaurant_24" />
-
-                </RelativeLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/l1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:orientation="horizontal">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/profile_image"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_baseline_account_circle_24"
-                            app:civ_border_color="@color/white"
-                            app:civ_border_width="1dp" />
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/menuName"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kalpendra mess , Alandi"
-                                    android:textColor="@color/white"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/messOwnerName"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Nishant Jadhav"
-                                    android:textColor="@color/white"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:elevation="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingRight="10dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="20dp"
-                            android:src="@drawable/ic_clock" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="3"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="09:00 AM - 10:00 PM"
-                                android:textColor="@color/black"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="Sunday Closed"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-
-                        <Button
-                            android:id="@+id/btn_ViewMess"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shadow"
-                            android:text="View"
-                            android:textAllCaps="false"
-                            android:textSize="12sp"
-                            android:layout_marginRight="20dp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>-->
 
 
 

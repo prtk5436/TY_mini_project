@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +21,11 @@ import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.Food;
 import com.example.tyminiproject.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -35,7 +40,6 @@ public class FoodList extends AppCompatActivity {
     DatabaseReference foodList;
     StorageReference storageReference;
     String messId = "", str_Foodname;
-
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
     EditText etMenuName, etDesc, etPrice;
     Button btn_select, btn_upload;
@@ -43,33 +47,62 @@ public class FoodList extends AppCompatActivity {
     Food newFood;
     Uri saveUri;
     private final int PICK_IMG_REQ = 71;
+    ProgressBar progressBar;
+    TextView tvNODATAFOUND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
+        tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
+        progressBar = findViewById(R.id.progressbar);
+
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-
         recyclerView = findViewById(R.id.recycler_food);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         if (getIntent() != null) {
-            messId = getIntent().getStringExtra("MessId");
-            loadFoodList(messId);
-            Log.e(TAG, "inside onCreate : messId---" + messId);
-            if (messId == null) {
+            //used in customer module
+            messId = getIntent().getStringExtra("MessId");//mess mob no
 
+            Log.e(TAG, "inside onCreate : messId---" + messId);
+            /*if (messId == null) {
+
+                //used in owner module
                 String strMessMob = getIntent().getStringExtra("strMessMob");
                 Log.e(TAG, "inside onCreate : strMessMob---" + strMessMob);
                 loadFoodList(strMessMob);
-            }
+            }*/
         }
+
+        foodList.orderByChild("menuId").equalTo(messId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.GONE);
+                    tvNODATAFOUND.setVisibility(View.GONE);
+                    loadFoodList(messId);
+                   // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tvNODATAFOUND.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                   // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -98,7 +131,10 @@ public class FoodList extends AppCompatActivity {
                         Log.e(TAG, "inside loadFoodList : fdesc : " + foodDesc);
                         Intent i = new Intent(FoodList.this, FoodDetail.class);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
+
+                        Log.e(TAG, "onClick: FoodId : " + adapter.getRef(position).getKey());
                         i.putExtra("MessPhone", MessPhone);
+                        i.putExtra("customer", "customer");
                         startActivity(i);
                     }
                 });

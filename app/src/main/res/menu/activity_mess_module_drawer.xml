@@ -4,19 +4,20 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_baseline_home_24"
+            android:icon="@drawable/ic_baseline_restaurant_24"
             android:iconTint="@color/white"
-            android:title="Home" />
+            android:title="Mess Menu" />
+        <!--
         <item
             android:id="@+id/nav_ViewMenu"
             android:icon="@drawable/ic_baseline_restaurant_24"
             android:iconTint="@color/white"
-            android:title="View menu" />
+            android:title="Menu" />
         <item
             android:id="@+id/nav_deleteFood"
             android:icon="@drawable/ic_baseline_delete_24"
             android:iconTint="@color/white"
-            android:title="Delete menu" />
+            android:title="Delete menu" />-->
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_baseline_orders_24"

@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +17,11 @@ import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.Request;
 import com.example.tyminiproject.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -35,6 +40,10 @@ public class OrderStatus extends AppCompatActivity {
     String custMobNo, messName, checkUserType;
 
     int flag = 0;
+
+
+    ProgressBar progressBar;
+    TextView tvNODATAFOUND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +66,70 @@ public class OrderStatus extends AppCompatActivity {
 
         if (getIntent() != null) {
             messName = getIntent().getStringExtra("messName");
-            loadMessOrders(messName);  //load orders at mess owner side
+            //loadMessOrders(messName);  //load orders at mess owner side
             flag = 1;
             Log.d(TAG, "onCreate: messName--- " + messName);
             if (messName == null) {
                 custMobNo = Common.currentUser.getPhone();
                 Log.d(TAG, "onCreate: custMobNo--- " + custMobNo);
-                loadOrders(custMobNo);
+               // loadOrders(custMobNo);//load orders at customer side
                 flag = 0;
             }
         }
+
+
+        tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
+        progressBar = findViewById(R.id.progressbar);
+
+        request_table.orderByChild("messName").equalTo(messName).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.GONE);
+                    tvNODATAFOUND.setVisibility(View.GONE);
+                    loadMessOrders(messName);  //load orders at mess owner side
+                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tvNODATAFOUND.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        request_table.orderByChild("phone").equalTo(custMobNo).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.GONE);
+                    tvNODATAFOUND.setVisibility(View.GONE);
+                    loadOrders(custMobNo);//load orders at customer side
+                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tvNODATAFOUND.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         imgBackMyOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +156,8 @@ public class OrderStatus extends AppCompatActivity {
 
     }
 
+
+    //only use for mess side
     private void loadMessOrders(String messName) {
         Log.d(TAG, "inside loadMessOrders : messName---" + messName);
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Request.class, R.layout.order_item,
@@ -108,7 +173,7 @@ public class OrderStatus extends AppCompatActivity {
                 String strOrderMessName = local.getMessName();
                 String strCustName = local.getCustName();
                 String strFoodImg = local.getImage();
-                String strMessPhone = local.getPhone();
+                String strQty = local.getQuantity();
 
                 Log.d(TAG, "inside loadOrders : strOrderId : " + strOrderId);
                 Log.d(TAG, "inside loadOrders: strOrderItemPrice : " + strOrderItemPrice);
@@ -118,6 +183,7 @@ public class OrderStatus extends AppCompatActivity {
                 Log.d(TAG, "inside loadOrders : strCustName : " + strCustName);
                 Log.d(TAG, "inside loadOrders : strFoodImg : " + strFoodImg);
 
+                Log.d(TAG, "inside loadOrders : strQty : " + strQty);
 
                 orderViewHolder.tv_userType.setText("Customer : ");
 
@@ -126,6 +192,7 @@ public class OrderStatus extends AppCompatActivity {
                 orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
                 orderViewHolder.OrderMobNo.setText(strOrderMobNo);
                 orderViewHolder.OrderMessName.setText(strCustName);
+                orderViewHolder.tv_Qty.setText(strQty);
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(orderViewHolder.orderItemImg);
             }
@@ -136,6 +203,8 @@ public class OrderStatus extends AppCompatActivity {
 
     }
 
+
+    //used in customer module
     private void loadOrders(String custMobNo) {
         Log.d(TAG, "inside loadOrders : MobNo---" + custMobNo);
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Request.class, R.layout.order_item,
@@ -146,21 +215,24 @@ public class OrderStatus extends AppCompatActivity {
                 final Request local = model;
                 String strOrderId = adapter.getRef(i).getKey();
                 String strOrderItemPrice = local.getTotalPrice();
-                String strOrderMobNo = local.getPhone();
+                String strOrderMessMobNo = local.getMessPhone();
                 String strOrderItemName = local.getMenu();
                 String strOrderMessName = local.getMessName();
                 String strCustName = local.getCustName();
+                String strQty = local.getQuantity();
                 Log.d(TAG, "inside loadOrders : strOrderId : " + strOrderId);
                 Log.d(TAG, "inside loadOrders: strOrderItemPrice : " + strOrderItemPrice);
-                Log.d(TAG, "inside loadOrders : strOrderMobNo : " + strOrderMobNo);
+                Log.d(TAG, "inside loadOrders : strOrderMessMobNo : " + strOrderMessMobNo);
                 Log.d(TAG, "inside loadOrders : strOrderItemName : " + strOrderItemName);
                 Log.d(TAG, "inside loadOrders : strOrderMessName : " + strOrderMessName);
                 Log.d(TAG, "inside loadOrders : strCustName : " + strCustName);
+                Log.d(TAG, "inside loadOrders : strQty : " + strQty);
                 orderViewHolder.OrderId.setText(strOrderId);
                 orderViewHolder.OrderItemName.setText(strOrderItemName);
                 orderViewHolder.OrderItemPrice.setText(strOrderItemPrice);
-                orderViewHolder.OrderMobNo.setText(strOrderMobNo);
+                orderViewHolder.OrderMobNo.setText(strOrderMessMobNo);
                 orderViewHolder.OrderMessName.setText(strOrderMessName);
+                orderViewHolder.tv_Qty.setText(strQty);
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(orderViewHolder.orderItemImg);
 

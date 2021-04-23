@@ -11,7 +11,7 @@ import com.example.tyminiproject.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView OrderItemName, OrderMessName, OrderItemPrice, OrderMobNo, OrderId, tv_userType;
+    public TextView OrderItemName, OrderMessName, OrderItemPrice, OrderMobNo, OrderId, tv_userType, tv_Qty;
     public ImageView orderItemImg;
     public ItemClickListner itemClickListner;
 
@@ -25,9 +25,10 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         OrderItemPrice = itemView.findViewById(R.id.OrderItemPrice);
         OrderMobNo = itemView.findViewById(R.id.orderMobNo);
         OrderId = itemView.findViewById(R.id.orderId);
+        tv_Qty = itemView.findViewById(R.id.tv_Qty);
         orderItemImg = itemView.findViewById(R.id.orderFood_img);
 
-        itemView.setOnClickListener(this);
+        //  itemView.setOnClickListener(this);
 
     }
 
@@ -38,7 +39,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-        itemClickListner.onClick(view, getAdapterPosition(), true);
+//        itemClickListner.onClick(view, getAdapterPosition(), true);
     }
 
 }

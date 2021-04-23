@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,8 +26,8 @@ public class MessOwnerSignUp extends AppCompatActivity {
     private static final String TAG = "MessOwnerSignUp";
 
     Button btn_signUp;
-    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address, et_owner, etAM, etPM,edtsecureCode;
-    String str_phone, pwd, Cpwd, name, messReg, messAddr, str_ownerName, img, strTime, AM, PM,secureCode;
+    EditText et_mob, et_pwd, et_Cpwd, et_name, et_reg, et_address, et_owner, etAM, etPM, etoffDay;
+    String str_phone, pwd, Cpwd, name, messReg, messAddr, str_ownerName, img, strTime, AM, PM, str_offDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
         et_owner = findViewById(R.id.et_owner);
         etAM = findViewById(R.id.et_AM);
         etPM = findViewById(R.id.et_PM);
-//        edtsecureCode = findViewById(R.id.edtsecureCode);
+        etoffDay = findViewById(R.id.et_offDay);
 
         str_phone = getIntent().getStringExtra("mobileNo");
         et_mob.setText(str_phone);
@@ -66,8 +65,9 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 messAddr = et_address.getText().toString();
                 AM = etAM.getText().toString();
                 PM = etPM.getText().toString();
+                str_offDay = etoffDay.getText().toString() + " Closed";
 //                secureCode=edtsecureCode.getText().toString();
-                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty()) {
+                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty() || str_offDay.isEmpty()) {
                     Toast.makeText(MessOwnerSignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
                 } else if (!pwd.equals(Cpwd)) {
@@ -111,9 +111,10 @@ public class MessOwnerSignUp extends AppCompatActivity {
                     Log.e(TAG, "inside onDataChange : messAddr : " + messAddr);
                     Log.e(TAG, "inside onDataChange : str_ownerName : " + str_ownerName);
                     Log.e(TAG, "inside onDataChange : strTime : " + strTime);
+                    Log.e(TAG, "inside onDataChange : str_offDay : " + str_offDay);
                     img = "https://data.tibettravel.org/assets/images/Tibet-bhutan-tour/indian-food-in-Lhasa.webp";
 
-                    MessUser newuser = new MessUser(img, str_ownerName, strTime, messAddr, name, pwd, messReg);
+                    MessUser newuser = new MessUser(img, str_ownerName, strTime, messAddr, name, pwd, messReg, str_offDay, str_phone);
 
                     table_user.child(str_phone).setValue(newuser);
 

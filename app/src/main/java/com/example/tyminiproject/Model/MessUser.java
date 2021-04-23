@@ -8,6 +8,27 @@ public class MessUser {
     private String Name;
     private String Password;
     private String RegNo;
+    private String offDay;
+
+    public String getOffDay() {
+        return offDay;
+    }
+
+    public MessUser(String image, String owner, String time, String address, String name, String password, String regNo, String offDay, String phone) {
+        Image = image;
+        Owner = owner;
+        Time = time;
+        Address = address;
+        Name = name;
+        Password = password;
+        RegNo = regNo;
+        this.offDay = offDay;
+        Phone = phone;
+    }
+
+    public void setOffDay(String offDay) {
+        this.offDay = offDay;
+    }
 
     public MessUser(String image, String owner, String time, String address, String name, String password, String regNo, String phone) {
         Image = image;

@@ -36,7 +36,7 @@ public class FoodDetail extends AppCompatActivity {
     String foodId = "", custName = "", phone = "", MessPhone = "";
     FirebaseDatabase database;
     DatabaseReference food;
-
+    String checkUserType=null;
     Food currentFood;
 
     @Override
@@ -64,17 +64,16 @@ public class FoodDetail extends AppCompatActivity {
         if (getIntent() != null) {
             foodId = getIntent().getStringExtra("FoodId");
             MessPhone = getIntent().getStringExtra("MessPhone");
+            checkUserType= getIntent().getStringExtra("customer");
+            if (checkUserType ==null){
+                btnCart.setVisibility(View.GONE);
+            }
         }
         Log.e(TAG, "inside onCreate : foodId---" + foodId);
         Log.e(TAG, "inside onCreate : MessPhone---" + MessPhone);
         if (!foodId.isEmpty() && foodId != null) {
             getFoodDetails(foodId);
         }
-
-        custName = Common.currentUser.getName();
-        phone = Common.currentUser.getPhone();
-        Log.e(TAG, "inside onCreate : custName---" + custName);
-        Log.e(TAG, "inside onCreate : phone---" + phone);
     }
 
     private void getFoodDetails(String foodId) {
@@ -104,6 +103,12 @@ public class FoodDetail extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+
+                        custName = Common.currentUser.getName();
+                        phone = Common.currentUser.getPhone();
+
+                        Log.e(TAG, "inside onCreate : custName---" + custName);
+                        Log.e(TAG, "inside onCreate : phone---" + phone);
 
                         String foodMessName = currentFood.getMessName();
                         String foodName = currentFood.getName();

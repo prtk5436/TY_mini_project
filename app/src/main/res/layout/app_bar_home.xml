@@ -18,12 +18,30 @@
         <include layout="@layout/toolbar_home" />
         <!--appbarend-->
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            app:queryHint="Search" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,6 +57,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tvSearch"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_margin="0dp"
@@ -55,28 +74,17 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/green_button">
 
-                    <RelativeLayout
-                        android:layout_width="55dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
+                    <ImageView
+                        android:id="@+id/imgSearch"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/green_button">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/green_button"
-                            android:src="@drawable/ic_baseline_search_24" />
-
-                    </RelativeLayout>
-
+                        android:background="@drawable/green_button"
+                        android:src="@drawable/ic_baseline_search_24" />
 
                 </RelativeLayout>
-
 
             </LinearLayout>
 

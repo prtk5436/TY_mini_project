@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +48,9 @@ public class ViewCart extends AppCompatActivity {
 
     String foodId = "", custName = "", MessPhone = "", phone = "";
 
+    ProgressBar progressBar;
+    TextView tvNODATAFOUND;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,9 +75,35 @@ public class ViewCart extends AppCompatActivity {
         if (getIntent() != null)
             custMob = getIntent().getStringExtra("customerMob");
         Log.e(TAG, "inside onCreate : custMob---" + custMob);
-        if (!custMob.isEmpty() && custMob != null) {
+       /* if (!custMob.isEmpty() && custMob != null) {
             loadCartList(custMob);
-        }
+        }*/
+
+        tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
+        progressBar = findViewById(R.id.progressbar);
+        cart.orderByChild("phone").equalTo(custMob).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.GONE);
+                    tvNODATAFOUND.setVisibility(View.GONE);
+                    loadCartList(custMob);
+                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tvNODATAFOUND.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         imgBackCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,12 +180,14 @@ public class ViewCart extends AppCompatActivity {
                 MessName = local.getMessName();
                 foodQuantity = local.getQuantity();
                 foodImg = local.getImage();
+                MessPhone=local.getMessPhone();
 
                 Log.d(TAG, "populateViewHolder: foodName: " + foodName);
                 Log.d(TAG, "populateViewHolder: foodPrice: " + foodTotalPrice);
                 Log.d(TAG, "populateViewHolder: MessName: " + MessName);
                 Log.d(TAG, "populateViewHolder: foodQuantity: " + foodQuantity);
                 Log.d(TAG, "populateViewHolder: foodImg: " + foodImg);
+                Log.d(TAG, "populateViewHolder: MessPhone: " + MessPhone);
 
                 cartViewHolder.cartItemName.setText(foodName);
                 cartViewHolder.cartItemPrice.setText(foodTotalPrice);
@@ -197,7 +230,7 @@ public class ViewCart extends AppCompatActivity {
         DatabaseReference cart_table = firebaseDatabase.getReference("Cart");
         cart_table.child(cartId).removeValue();
 
-        Toast.makeText(ViewCart.this, "deleted from cart!!", Toast.LENGTH_LONG).show();
+        Toast.makeText(ViewCart.this, "Order Place Sucessfully!!", Toast.LENGTH_LONG).show();
         loadCartList(custMob);
     }
 }

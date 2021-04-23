@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeleteFood"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".DeleteFood">
 
-    <include layout="@layout/delete_menu_item_toolbar"/>
+    <include layout="@layout/delete_menu_item_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_food"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_above="@id/c1"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
         android:scrollbars="vertical" />
 
     <androidx.cardview.widget.CardView
@@ -23,15 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-
         app:cardCornerRadius="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/card_border"
             android:orientation="vertical"
-            android:padding="15dp"
-            android:background="@drawable/card_border">
+            android:padding="15dp">
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -46,19 +45,18 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFoodName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnDeleteFood"
-                android:background="@drawable/green_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                android:textAllCaps="false"
+                android:background="@drawable/green_button"
                 android:padding="10dp"
-                android:text="Delete" />
+                android:text="Delete"
+                android:textAllCaps="false" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

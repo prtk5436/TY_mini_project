@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,12 +18,12 @@
             android:padding="18dp">
 
             <ImageView
-                android:id="@+id/imgBackMyOrders"
+                android:id="@+id/img_ViewDrawerMess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_chevron_left_tool" />
+                android:src="@drawable/ic_menu_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,15 +31,17 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Delete menu item"
+                android:letterSpacing="0.1"
+                android:text="LUNCHBOX"
                 android:textColor="@color/black" />
-            <!--
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_plus_circle_outline" />-->
+
+            <ImageView
+                android:id="@+id/addNewMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_plus_circle_outline" />
 
 
         </RelativeLayout>

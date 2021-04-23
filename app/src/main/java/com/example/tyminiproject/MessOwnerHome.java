@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +30,7 @@ import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.Food;
 import com.example.tyminiproject.Model.MessUser;
+import com.example.tyminiproject.ViewHolder.FoodViewHolder;
 import com.example.tyminiproject.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,7 +66,8 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
-    String strMob,strMessMob;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter1;
+    String strMob, strMessMob;
     Button btn_ViewMess;
 
     String messName = "", str_Foodname;
@@ -89,19 +91,34 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_owner_home);
+
         strMessMob = Common.currentMessUser.getPhone();
+
         drawerLayout1 = findViewById(R.id.drawer_layout1);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.nav_view);/*
+        toolbar = findViewById(R.id.toolbar);*/
         navigationView.bringToFront();
+
+        ImageView img_ViewDrawerMess = findViewById(R.id.img_ViewDrawerMess);
+        img_ViewDrawerMess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout1.isDrawerVisible(GravityCompat.START)) {
+                    drawerLayout1.closeDrawer(GravityCompat.START);
+                } else {
+                    drawerLayout1.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+        /*
         ActionBarDrawerToggle toggle = new
                 ActionBarDrawerToggle(this, drawerLayout1, toolbar, R.string.open, R.string.close);
         drawerLayout1.addDrawerListener(toggle);
         toggle.syncState();
 
         toolbar.setTitle("Mess Market");
-
-        fabAddNewFood = findViewById(R.id.fabAddNewFood);
+*/
+        //fabAddNewFood = findViewById(R.id.fabAddNewFood);
 
         navigationView.setCheckedItem(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
@@ -117,7 +134,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         Log.e(TAG, "inside onCreate : messId---" + strMob);
 
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("MessUser");
+        category = database.getReference("Food");
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -132,16 +149,86 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
-        loadMenu();
-        fabAddNewFood.setOnClickListener(new View.OnClickListener() {
+
+        messName = Common.currentMessUser.getName();
+        strMessMob = Common.currentMessUser.getPhone();
+        Log.d(TAG, "onCreate: messName--- " + messName);
+        //  loadMenu();
+        loadFoodList(strMessMob);
+
+        ImageView addNewMenu = findViewById(R.id.addNewMenu);
+        addNewMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAddFoodDialog();
             }
         });
 
-        messName = Common.currentMessUser.getName();
-        Log.d(TAG, "onCreate: messName--- " + messName);
+
+        EditText etFname = findViewById(R.id.etFoodName);
+        Button delete = findViewById(R.id.btnDeleteFood);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fName = etFname.getText().toString();
+                if (fName.isEmpty()) {
+                    Toast.makeText(MessOwnerHome.this, "please enter food name", Toast.LENGTH_LONG).show();
+                } else {
+                    foodList.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.child(etFname.getText().toString()).exists()) {
+                                foodList.child(fName).removeValue();
+                                Toast.makeText(MessOwnerHome.this, "Food Deleted!!", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MessOwnerHome.this, "Food Not Found", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
+    private void loadFoodList(String categoryId) {
+        adapter1 = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
+                FoodViewHolder.class, foodList.orderByChild("menuId").equalTo(categoryId)     // (select * from foods where menuId=categoryId)
+        ) {
+            @Override
+            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food model, int i) {
+                foodViewHolder.FoodName.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(foodViewHolder.FoodImage);
+
+                final Food local = model;
+                foodViewHolder.setItemClickListner(new ItemClickListner() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(MessOwnerHome.this, "" + local.getName(), Toast.LENGTH_LONG).show();
+                        String foodName = local.getName();
+                        String foodPrice = local.getPrice();
+                        String foodDesc = local.getDescription();
+                        String foodDiscont = local.getDiscount();
+                        String MessPhone = local.getMenuId();
+                        Log.e(TAG, "inside loadFoodList : fname : " + foodName);
+                        Log.e(TAG, "inside loadFoodList: fprice : " + foodPrice);
+                        Log.e(TAG, "inside loadFoodList : fdiscount : " + foodDiscont);
+                        Log.e(TAG, "inside loadFoodList : fdesc : " + foodDesc);
+                        Intent i = new Intent(MessOwnerHome.this, FoodDetail.class);
+                        i.putExtra("FoodId", adapter1.getRef(position).getKey());
+                        i.putExtra("MessPhone", MessPhone);
+                        startActivity(i);
+                    }
+                });
+            }
+        };
+        adapter1.notifyDataSetChanged();
+        recycler_menu.setAdapter(adapter1);
     }
 
     private void loadMenu() {
@@ -204,6 +291,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 Intent i = new Intent(MessOwnerHome.this, MessOwnerHome.class);
                 startActivity(i);
                 break;
+/*
             case R.id.nav_ViewMenu:
                 Toast.makeText(MessOwnerHome.this, "View Menu", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MessOwnerHome.this, FoodList.class);
@@ -219,6 +307,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 i3.putExtra("strMessMob", strMessMob);
                 startActivity(i3);
                 break;
+*/
 
             case R.id.nav_orders:
                 Toast.makeText(MessOwnerHome.this, "Order Click", Toast.LENGTH_LONG).show();
