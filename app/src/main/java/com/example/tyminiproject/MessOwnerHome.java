@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,12 +63,13 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     FirebaseStorage storage;
     StorageReference storageReference;
 
+    int f = 0;
     //view
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<MessUser, MenuViewHolder> adapter;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter1;
-    String strMob, strMessMob;
+    String strMob, strMessMob, foodChildName;
     Button btn_ViewMess;
 
     String messName = "", str_Foodname;
@@ -83,15 +85,18 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     FirebaseStorage storage1;
     StorageReference storageReference1;
 
-    public static MessUser currentMessUser;
-
     FloatingActionButton fabAddNewFood;
+
+    ProgressBar progressBar;
+    TextView tvNODATAFOUND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_owner_home);
 
+        tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
+        progressBar = findViewById(R.id.progressbar);
         strMessMob = Common.currentMessUser.getPhone();
 
         drawerLayout1 = findViewById(R.id.drawer_layout1);
@@ -154,7 +159,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         strMessMob = Common.currentMessUser.getPhone();
         Log.d(TAG, "onCreate: messName--- " + messName);
         //  loadMenu();
-        loadFoodList(strMessMob);
+        //loadFoodList(strMessMob);
 
         ImageView addNewMenu = findViewById(R.id.addNewMenu);
         addNewMenu.setOnClickListener(new View.OnClickListener() {
@@ -172,16 +177,18 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
             public void onClick(View v) {
                 String fName = etFname.getText().toString();
                 if (fName.isEmpty()) {
-                    Toast.makeText(MessOwnerHome.this, "please enter food name", Toast.LENGTH_LONG).show();
+                    etFname.setError("please enter food name");
                 } else {
-                    foodList.addValueEventListener(new ValueEventListener() {
+                    foodList.child(strMessMob).child(fName).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.child(etFname.getText().toString()).exists()) {
-                                foodList.child(fName).removeValue();
-                                Toast.makeText(MessOwnerHome.this, "Food Deleted!!", Toast.LENGTH_LONG).show();
-                            } else {
+                            if (!snapshot.exists()) {
+
                                 Toast.makeText(MessOwnerHome.this, "Food Not Found", Toast.LENGTH_LONG).show();
+
+                            } else {
+                                foodList.child(strMessMob).child(fName).removeValue();
+                                Toast.makeText(MessOwnerHome.this, "Food Deleted!!", Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -193,12 +200,37 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 }
             }
         });
+
+        category.child(strMessMob).orderByChild("menuId").equalTo(strMessMob).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.GONE);
+                    tvNODATAFOUND.setVisibility(View.GONE);
+                    loadFoodList(strMessMob);
+                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tvNODATAFOUND.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
 
     private void loadFoodList(String categoryId) {
         adapter1 = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
-                FoodViewHolder.class, foodList.orderByChild("menuId").equalTo(categoryId)     // (select * from foods where menuId=categoryId)
+                FoodViewHolder.class, foodList.child(strMessMob).orderByChild("menuId").equalTo(categoryId)     // (select * from foods where menuId=categoryId)
         ) {
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food model, int i) {
@@ -231,39 +263,10 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         recycler_menu.setAdapter(adapter1);
     }
 
-    private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<MessUser, MenuViewHolder>(MessUser.class, R.layout.mess_item, MenuViewHolder.class, category) {
-            @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, MessUser model, int i) {
-                menuViewHolder.MessName.setText(model.getName());
-                menuViewHolder.tvOwmner.setText(model.getOwner());
-                menuViewHolder.tvTime.setText(model.getTime());
-                Picasso.with(getBaseContext()).load(model.getImage())
-                        .into(menuViewHolder.MenuImage);
-
-                MessUser clickItem = model;
-                menuViewHolder.setItemClickListner(new ItemClickListner() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(MessOwnerHome.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
-                        //Get categoryId & sent it to new activity
-                        strMob = adapter.getRef(position).getKey();
-                        Intent i = new Intent(MessOwnerHome.this, FoodList.class);
-                        i.putExtra("MessId", strMob);
-                        startActivity(i);
-                    }
-                });
-            }
-        };
-
-        adapter.notifyDataSetChanged();
-        recycler_menu.setAdapter(adapter);
-    }
-
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout1);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -342,14 +345,15 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         btn_select = add_food_layout.findViewById(R.id.btn_select);
         btn_upload = add_food_layout.findViewById(R.id.btn_upload);
 
-        btn_upload.setOnClickListener(new View.OnClickListener() {
+        btn_upload.setEnabled(false);
+        btn_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getImgFromGallery();
             }
         });
 
-        btn_select.setOnClickListener(new View.OnClickListener() {
+        btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -382,29 +386,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 
     }
 
-    private void addNewFood() {
-        //foodList-----------table name
-        foodList.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(str_Foodname).exists()) {
-                    //get user info
-                    Toast.makeText(MessOwnerHome.this, "Food is already exists!!", Toast.LENGTH_LONG).show();
-                } else {
-                    foodList.child(str_Foodname).setValue(newFood);
-                    Toast.makeText(MessOwnerHome.this, "New Food Added : " + newFood.getName(), Toast.LENGTH_LONG).show();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
     private void getImgFromGallery() {
 
         Intent i = new Intent();
@@ -417,7 +398,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 
         if (saveUri != null) {
             ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("uploading");
+            progressDialog.setMessage("Uploading");
             progressDialog.show();
 
             String imgName = UUID.randomUUID().toString();
@@ -431,6 +412,10 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
+
+                    btn_upload.setText("Uploaded");
+                    btn_upload.setEnabled(false);
+                    btn_select.setEnabled(false);
                     Toast.makeText(MessOwnerHome.this, "UPLOADED!!!", Toast.LENGTH_LONG).show();
                     imgFolder1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -448,7 +433,13 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                             Log.d(TAG, "onSuccess: str_uri : " + str_uri);
                             Log.d(TAG, "onSuccess: strMob/messid : " + strMessMob);//menu id
                             Log.d(TAG, "onSuccess: strMob/messid : " + strMessName);//mess name
-                            newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMessMob, strMessName);
+
+
+                            if (str_Foodname.isEmpty() || strPrice.isEmpty() || str_uri.isEmpty() || strMessName.isEmpty()) {
+                                Toast.makeText(MessOwnerHome.this, "please enter all details/select image", Toast.LENGTH_LONG).show();
+                            } else {
+                                newFood = new Food(str_Foodname, str_uri, strPrice, strDesc, discount, strMessMob, strMessName);
+                            }
                         }
                     });
                 }
@@ -463,12 +454,41 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double prgrss = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded" + prgrss + "%");
+                    progressDialog.setMessage("Uploading " + prgrss + "%");
 
                 }
             });
+        } else {
+            Toast.makeText(MessOwnerHome.this, "please select image and upload", Toast.LENGTH_LONG).show();
+
         }
     }
+
+    private void addNewFood() {
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference userNameRef = rootRef.child("Food").child(strMessMob).child(str_Foodname);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    //create new food
+                    foodList.child(strMessMob).child(str_Foodname).setValue(newFood);
+                    Toast.makeText(MessOwnerHome.this, "New Food Added : " + newFood.getName(), Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(MessOwnerHome.this, "Food is already exists!!", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+            }
+        };
+        userNameRef.addListenerForSingleValueEvent(eventListener);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -477,8 +497,44 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
         if (requestCode == PICK_IMG_REQ && resultCode == RESULT_OK && data != null && data.getData() != null) {
             saveUri = data.getData();
             btn_select.setText("Food Img Selected!!");
+            btn_upload.setEnabled(true);
 
+        } else {
+            Toast.makeText(MessOwnerHome.this, "please select image and upload", Toast.LENGTH_LONG).show();
+            btn_upload.setEnabled(false);
         }
     }
+
+
+    //mess list
+    private void loadMenu() {
+        adapter = new FirebaseRecyclerAdapter<MessUser, MenuViewHolder>(MessUser.class, R.layout.mess_item, MenuViewHolder.class, category) {
+            @Override
+            protected void populateViewHolder(MenuViewHolder menuViewHolder, MessUser model, int i) {
+                menuViewHolder.MessName.setText(model.getName());
+                menuViewHolder.tvOwmner.setText(model.getOwner());
+                menuViewHolder.tvTime.setText(model.getTime());
+                Picasso.with(getBaseContext()).load(model.getImage())
+                        .into(menuViewHolder.MenuImage);
+
+                MessUser clickItem = model;
+                menuViewHolder.setItemClickListner(new ItemClickListner() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(MessOwnerHome.this, "" + clickItem.getName(), Toast.LENGTH_LONG).show();
+                        //Get categoryId & sent it to new activity
+                        strMob = adapter.getRef(position).getKey();
+                        Intent i = new Intent(MessOwnerHome.this, FoodList.class);
+                        i.putExtra("MessId", strMob);
+                        startActivity(i);
+                    }
+                });
+            }
+        };
+
+        adapter.notifyDataSetChanged();
+        recycler_menu.setAdapter(adapter);
+    }
+
 
 }

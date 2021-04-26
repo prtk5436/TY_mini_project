@@ -180,7 +180,7 @@ public class ViewCart extends AppCompatActivity {
                 MessName = local.getMessName();
                 foodQuantity = local.getQuantity();
                 foodImg = local.getImage();
-                MessPhone=local.getMessPhone();
+                MessPhone = local.getMessPhone();
 
                 Log.d(TAG, "populateViewHolder: foodName: " + foodName);
                 Log.d(TAG, "populateViewHolder: foodPrice: " + foodTotalPrice);
@@ -228,6 +228,8 @@ public class ViewCart extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference cart_table = firebaseDatabase.getReference("Cart");
+
+        cart_table.child(cartId);
         cart_table.child(cartId).removeValue();
 
         Toast.makeText(ViewCart.this, "Order Place Sucessfully!!", Toast.LENGTH_LONG).show();

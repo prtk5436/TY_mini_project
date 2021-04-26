@@ -74,6 +74,9 @@ public class DeleteFood extends AppCompatActivity {
                 if (fName.isEmpty()) {
                     Toast.makeText(DeleteFood.this, "please enter food name", Toast.LENGTH_LONG).show();
                 } else {
+
+
+                    /*
                     foodList.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,7 +92,7 @@ public class DeleteFood extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                    });
+                    });*/
                 }
             }
         });

@@ -1,6 +1,5 @@
 package com.example.tyminiproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +46,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    TextView textView, userName, tvMob, tvSearch;
+    TextView textView, userName, tvMob, tvSearch, tvcancel;
     FirebaseDatabase database;
     DatabaseReference category;//mess table
     RecyclerView recycler_menu;
@@ -56,7 +56,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     Button btn_ViewMess;
     int flag = 0;
     ArrayList<MessUser> list;
-
+    ImageView img_ViewDrawer;
     androidx.appcompat.widget.SearchView searchView;
 
     @Override
@@ -64,14 +64,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        searchView = findViewById(R.id.search);
-        // tvSearch = findViewById(R.id.tvSearch);
+        //searchView = findViewById(R.id.search);
+        tvcancel = findViewById(R.id.tvcancel);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        textView = findViewById(R.id.textView);
+        // textView = findViewById(R.id.textView);
         navigationView.bringToFront();
 
-        ImageView img_ViewDrawer = findViewById(R.id.img_ViewDrawer);
+        img_ViewDrawer = findViewById(R.id.img_ViewDrawer);
         img_ViewDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,17 +143,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
 
-        context=this;
-
+        context = this;
+        loadAllMess();
         // loadMenu();
 
     }
 
+    private void loadAllMess() {
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         if (category != null) {
             category.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -166,6 +163,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                         SearchMessAdapter messAdapter = new SearchMessAdapter(context, list);
                         recycler_menu.setAdapter(messAdapter);
+                        tvcancel.setVisibility(View.GONE);
                         //messAdapter.context;
                     }
                 }
@@ -177,22 +175,40 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             });
         }
 
-        if (searchView != null) {
-            searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    Log.e(TAG, "onQueryTextChange: str : " + newText);
-                    search(newText);
-                    return true;
-                }
-            });
+    }
 
 
+    /* @Override
+     protected void onStart() {
+         super.onStart();
+
+         if (searchView != null) {
+             searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                 @Override
+                 public boolean onQueryTextSubmit(String query) {
+                     return false;
+                 }
+
+                 @Override
+                 public boolean onQueryTextChange(String newText) {
+                     Log.e(TAG, "onQueryTextChange: str : " + newText);
+                     search(newText);
+                     return true;
+                 }
+             });
+
+
+         }
+     }
+ */
+    public void onSearch(View view) {
+        EditText etSearch = findViewById(R.id.etSearch);
+        String strsearch = etSearch.getText().toString();
+        if (strsearch.isEmpty()) {
+            etSearch.setError("enter mess name");
+        } else {
+            Log.e(TAG, "onSearch : strsearch : " + strsearch);
+            search(strsearch);
         }
     }
 
@@ -209,6 +225,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         SearchMessAdapter messAdapter = new SearchMessAdapter(context, myList);
         recycler_menu.setAdapter(messAdapter);
+        tvcancel.setVisibility(View.VISIBLE);
+    }
+
+
+    public void onCancel(View view) {
+        loadAllMess();
     }
 
     private void loadMenu() {
@@ -306,5 +328,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 }

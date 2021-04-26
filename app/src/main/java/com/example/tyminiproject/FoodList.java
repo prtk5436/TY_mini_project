@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class FoodList extends AppCompatActivity {
     private final int PICK_IMG_REQ = 71;
     ProgressBar progressBar;
     TextView tvNODATAFOUND;
+    ImageView imgBackMyOrders ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class FoodList extends AppCompatActivity {
 
         tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
         progressBar = findViewById(R.id.progressbar);
+
+        imgBackMyOrders = findViewById(R.id.imgBackMyOrders);
 
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
@@ -81,7 +85,7 @@ public class FoodList extends AppCompatActivity {
             }*/
         }
 
-        foodList.orderByChild("menuId").equalTo(messId).addValueEventListener(new ValueEventListener() {
+        foodList.child(messId).orderByChild("menuId").equalTo(messId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -104,11 +108,21 @@ public class FoodList extends AppCompatActivity {
             }
         });
 
+
+        imgBackMyOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FoodList.this, Home.class);
+               startActivity(i);
+               finish();
+            }
+        });
+
     }
 
     private void loadFoodList(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.food_item,
-                FoodViewHolder.class, foodList.orderByChild("menuId").equalTo(categoryId)     // (select * from foods where menuId=categoryId)
+                FoodViewHolder.class, foodList.child(messId).orderByChild("menuId").equalTo(categoryId)     // (select * from foods where menuId=categoryId)
         ) {
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food model, int i) {

@@ -80,7 +80,7 @@ public class FoodDetail extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference table_user = firebaseDatabase.getReference("Cart");
 
-        food.child(foodId).addValueEventListener(new ValueEventListener() {
+        food.child(MessPhone).child(foodId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Food currentFood = snapshot.getValue(Food.class);

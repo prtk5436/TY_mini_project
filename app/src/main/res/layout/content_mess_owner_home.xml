@@ -11,6 +11,26 @@
     tools:context=".MessOwnerHome"
     tools:showIn="@layout/app_bar_mess_owner_home">
 
+    <TextView
+        android:id="@+id/tvNOTFOUND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:gravity="center"
+        android:text="NO DATA FOUND"
+        android:textSize="50dp"
+        android:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvNOTFOUND"
+        android:layout_centerInParent="true"
+        android:layout_margin="50dp"
+        android:visibility="visible" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_menu"

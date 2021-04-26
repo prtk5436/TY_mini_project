@@ -19,7 +19,7 @@
         android:gravity="center"
         android:text="NO DATA FOUND"
         android:textSize="50dp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressbar"

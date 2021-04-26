@@ -13,10 +13,23 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_menu"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical" />
 
+    <TextView
+        android:id="@+id/tvcancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rv"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:onClick="onCancel"
+        android:text="@string/Cancel"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:visibility="visible" />
 
 </RelativeLayout>
