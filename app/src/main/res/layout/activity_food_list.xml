@@ -8,16 +8,33 @@
 
     <include layout="@layout/toolbar_menu" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tvNOTFOUND"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="50dp"
-        android:gravity="center"
-        android:text="NO DATA FOUND"
-        android:textSize="50dp"
-        android:visibility="gone" />
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_undraw_note_list_re_r4u9"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Menu is currently empty."
+            android:textSize="25dp"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressbar"

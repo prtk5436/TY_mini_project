@@ -240,7 +240,8 @@
             android:background="@drawable/red_button"
             android:fontFamily="@font/roboto"
             android:text="Delete Banner"
-            android:textAllCaps="false">
+            android:textAllCaps="false"
+            android:visibility="invisible">
 
         </Button>
 

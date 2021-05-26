@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class FoodList extends AppCompatActivity {
     Uri saveUri;
     private final int PICK_IMG_REQ = 71;
     ProgressBar progressBar;
-    TextView tvNODATAFOUND;
+    LinearLayout tvNODATAFOUND;
     ImageView imgBackMyOrders ;
 
     @Override

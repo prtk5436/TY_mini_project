@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,7 +89,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
     FloatingActionButton fabAddNewFood;
 
     ProgressBar progressBar;
-    TextView tvNODATAFOUND;
+    LinearLayout tvNODATAFOUND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

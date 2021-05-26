@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class OrderStatus extends AppCompatActivity {
 
 
     ProgressBar progressBar;
-    TextView tvNODATAFOUND;
+    LinearLayout tvNODATAFOUND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,16 +10,33 @@
     <include layout="@layout/toolbar_cart" />
 
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tvNOTFOUND"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="50dp"
-        android:gravity="center"
-        android:text="NO DATA FOUND"
-        android:textSize="50dp"
-        android:visibility="visible" />
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_margin="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:src="@drawable/ic_undraw_empty_cart_co35__2_"
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:gravity="center"
+            android:text="Opps! your cart is empty"
+            android:textSize="30dp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/progressbar"
