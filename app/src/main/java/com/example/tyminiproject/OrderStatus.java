@@ -72,7 +72,7 @@ public class OrderStatus extends AppCompatActivity {
             if (messName == null) {
                 custMobNo = Common.currentUser.getPhone();
                 Log.d(TAG, "onCreate: custMobNo--- " + custMobNo);
-               // loadOrders(custMobNo);//load orders at customer side
+                // loadOrders(custMobNo);//load orders at customer side
                 flag = 0;
             }
         }
@@ -81,54 +81,61 @@ public class OrderStatus extends AppCompatActivity {
         tvNODATAFOUND = findViewById(R.id.tvNOTFOUND);
         progressBar = findViewById(R.id.progressbar);
 
-        request_table.orderByChild("messName").equalTo(messName).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    progressBar.setVisibility(View.GONE);
-                    tvNODATAFOUND.setVisibility(View.GONE);
-                    loadMessOrders(messName);  //load orders at mess owner side
-                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
+        tvNODATAFOUND.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+        if (flag == 1) {
 
-                } else {
+            request_table.orderByChild("messName").equalTo(messName).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        progressBar.setVisibility(View.GONE);
+                        tvNODATAFOUND.setVisibility(View.GONE);
+                        loadMessOrders(messName);  //load orders at mess owner side
+                        // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
 
-                    tvNODATAFOUND.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        tvNODATAFOUND.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-
-
-        request_table.orderByChild("phone").equalTo(custMobNo).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    progressBar.setVisibility(View.GONE);
-                    tvNODATAFOUND.setVisibility(View.GONE);
-                    loadOrders(custMobNo);//load orders at customer side
-                    // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    tvNODATAFOUND.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                    // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+        }
+        if (flag == 0) {
+            request_table.orderByChild("phone").equalTo(custMobNo).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        progressBar.setVisibility(View.GONE);
+                        tvNODATAFOUND.setVisibility(View.GONE);
+                        loadOrders(custMobNo);//load orders at customer side
+                        // Toast.makeText(FoodList.this, "data exists", Toast.LENGTH_SHORT).show();
 
+                    } else {
+
+                        tvNODATAFOUND.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        // Toast.makeText(FoodList.this, "No data exists", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+        }
 
         imgBackMyOrders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +167,9 @@ public class OrderStatus extends AppCompatActivity {
     //only use for mess side
     private void loadMessOrders(String messName) {
         Log.d(TAG, "inside loadMessOrders : messName---" + messName);
+
+        progressBar.setVisibility(View.GONE);
+        tvNODATAFOUND.setVisibility(View.GONE);
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Request.class, R.layout.order_item,
                 OrderViewHolder.class, request_table.orderByChild("messName").equalTo(messName)     // (select * from foods where menuId=categoryId)
         ) {

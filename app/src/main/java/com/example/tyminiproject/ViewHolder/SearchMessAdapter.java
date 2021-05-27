@@ -17,6 +17,7 @@ import com.example.tyminiproject.FoodList;
 import com.example.tyminiproject.Interface.ItemClickListner;
 import com.example.tyminiproject.Model.MessUser;
 import com.example.tyminiproject.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,9 @@ public class SearchMessAdapter extends RecyclerView.Adapter<SearchMessAdapter.My
         holder.tvTime.setText(list.get(position).getTime());
         holder.tvOwmner.setText(list.get(position).getOwner());
         holder.tvOffday.setText(list.get(position).getOffDay());
+
+        Picasso.with(context).load(list.get(position).getImage())
+                .into(holder.MenuImage);
 //        holder.MenuImage.setImageResource(Integer.parseInt(list.get(position).getImage()));
         //       Picasso.with(context).load(list.get(position).getImage()).into(holder.MenuImage);
 

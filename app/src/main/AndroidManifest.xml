@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TYMiniProject.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".MessProfile"></activity>
+        <activity android:name=".MessProfile" />
         <activity android:name=".ForgotPasswordGenerateOTPmessOwner" />
         <activity android:name=".ForgotResetPassword" />
         <activity android:name=".ForgotPasswordVerifyOTP" />

@@ -303,13 +303,6 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 
                 //  showAddFoodDialog();
                 break;
-
-            case R.id.nav_deleteFood:
-                Toast.makeText(MessOwnerHome.this, "delete Click", Toast.LENGTH_LONG).show();
-                Intent i3 = new Intent(MessOwnerHome.this, DeleteFood.class);
-                i3.putExtra("strMessMob", strMessMob);
-                startActivity(i3);
-                break;
 */
 
             case R.id.nav_orders:
@@ -326,6 +319,11 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
                 startActivity(i2);
                 break;
 
+            case R.id.nav_viewMessProfile:
+                Intent i3 = new Intent(MessOwnerHome.this, MessProfile.class);
+               // i3.putExtra("strMessMob", strMessMob);
+                startActivity(i3);
+                break;
         }
 
         drawerLayout1.closeDrawer(GravityCompat.START);

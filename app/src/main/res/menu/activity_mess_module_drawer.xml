@@ -12,17 +12,17 @@
             android:id="@+id/nav_ViewMenu"
             android:icon="@drawable/ic_baseline_restaurant_24"
             android:iconTint="@color/white"
-            android:title="Menu" />
-        <item
-            android:id="@+id/nav_deleteFood"
-            android:icon="@drawable/ic_baseline_delete_24"
-            android:iconTint="@color/white"
-            android:title="Delete menu" />-->
+            android:title="Menu" />-->
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_baseline_orders_24"
             android:iconTint="@color/white"
             android:title="View Orders" />
+        <item
+            android:id="@+id/nav_viewMessProfile"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:iconTint="@color/white"
+            android:title="View Profile" />
         <item
             android:id="@+id/nav_logOut"
             android:icon="@drawable/ic_baseline_exit_to_app_24"
