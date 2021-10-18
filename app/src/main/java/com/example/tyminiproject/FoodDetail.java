@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.Cart;
 import com.example.tyminiproject.Model.Food;
@@ -31,7 +30,7 @@ public class FoodDetail extends AppCompatActivity {
 
     CollapsingToolbarLayout collapsingToolbarLayout;
     Button btnCart;
-    ElegantNumberButton numberButton;
+    Button numberButton;
 
     String foodId = "", custName = "", phone = "", MessPhone = "";
     FirebaseDatabase database;
@@ -112,7 +111,7 @@ public class FoodDetail extends AppCompatActivity {
 
                         String foodMessName = currentFood.getMessName();
                         String foodName = currentFood.getName();
-                        String foodQuantity = numberButton.getNumber();
+                        String foodQuantity = "5";
                         String foodPrice = currentFood.getPrice();
                         String foodImg = currentFood.getImage();
                         int totPrice = Integer.parseInt(foodPrice) * Integer.parseInt(foodQuantity);
@@ -120,7 +119,7 @@ public class FoodDetail extends AppCompatActivity {
 
                         Log.e(TAG, "inside onCreate :foodMessName " + currentFood.getMessName());
                         Log.e(TAG, "inside onCreate :foodName " + currentFood.getName());
-                        Log.e(TAG, "inside onCreate :foodQuantity " + numberButton.getNumber());
+                        Log.e(TAG, "inside onCreate :foodQuantity " + numberButton.getText());
                         Log.e(TAG, "inside onCreate :foodPrice " + currentFood.getPrice());
                         Log.e(TAG, "inside onCreate :foodImg " + foodImg);
                         Log.e(TAG, "inside onCreate :MessPhone " + MessPhone);

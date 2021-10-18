@@ -52,7 +52,7 @@ public class SignUp extends AppCompatActivity {
                 pwd = et_pwd.getText().toString();
                 Cpwd = et_Cpwd.getText().toString();
 //                secureCode=edtsecureCode.getText().toString();
-                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty()) {
+                if (name.isEmpty() || pwd.isEmpty() ||pwd.length()<6 || Cpwd.isEmpty()) {
                     Toast.makeText(SignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
                 } else if (!pwd.equals(Cpwd)) {

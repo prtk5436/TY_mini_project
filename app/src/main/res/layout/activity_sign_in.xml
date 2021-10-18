@@ -151,6 +151,15 @@
         </RelativeLayout>
 
 
+        <Button
+            android:id="@+id/btn_help"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:onClick="goToHelp"
+            android:background="@drawable/green_button"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Help"  />
     </LinearLayout>
 
 

@@ -4,7 +4,6 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.tyminiproject"
@@ -12,8 +11,10 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "APP_ID", '"288dfaeb2e84f1b2fb1041c178fac41a2"'
     }
 
     buildTypes {
@@ -30,6 +31,9 @@ android {
 
 dependencies {
 
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':kommunicateui')
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
@@ -49,13 +53,17 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'/*
     implementation 'com.android.support:design:28.0.0'*/
-
+/*
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
-    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'*/
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.4.0-beta01'
-
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

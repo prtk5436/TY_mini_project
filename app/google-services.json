@@ -33,13 +33,20 @@
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 1
+        },
         "appinvite_service": {
+          "status": 1,
           "other_platform_oauth_client": [
             {
               "client_id": "991938267911-3r32qo5un0otgh8s66b16gm8bq3au9ev.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }

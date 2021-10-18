@@ -1,0 +1,116 @@
+apply plugin: 'com.android.library'
+
+rootProject.allprojects {
+    repositories {
+        maven {
+            url 'https://kommunicate.jfrog.io/artifactory/kommunicate-android-sdk'
+        }
+    }
+}
+android {
+    compileSdkVersion 30
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "2.2.2"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+    api 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'com.google.code.gson:gson:2.8.6'
+}
+
+/*task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    failOnError false // add this line
+    source = android.sourceSets.main.java.srcDirs
+    //source = android.sourceSets.main.allJava
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId = 'io.kommunicate.sdk'
+            artifactId = project.getName()
+            version = android.defaultConfig.versionName
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact(javadocJar)
+            artifact(sourcesJar)
+            //generate POM
+            pom.withXml {
+                def node = asNode()
+                def dependenciesNode = node.appendNode('dependencies')
+                def dependencies = { Dependency dep ->
+                    if (dep.group == null || dep.name == null || dep.name == "unspecified") {
+                        return
+                    }
+                    def dependencyGroup
+                    if (dep.group == "") { //
+                        dependencyGroup = groupId
+                    } else {
+                        dependencyGroup = dep.group
+                    }
+                    def dependencyVersion
+                    //"fix" for compile projects
+                    if (dep.version == "unspecified" || dep.version == null) {
+                        dependencyVersion = version
+                    } else {
+                        dependencyVersion = dep.version
+                    }
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', dependencyGroup)
+                    dependencyNode.appendNode('artifactId', dep.name)
+                    dependencyNode.appendNode('version', dependencyVersion)
+                    if (!dep.transitive) {
+                        // If this dependency is transitive, we should force exclude all its dependencies them from the POM
+                        def exclusionNode = dependencyNode.appendNode('exclusions').appendNode('exclusion')
+                        exclusionNode.appendNode('groupId', '*')
+                        exclusionNode.appendNode('artifactId', '*')
+                    } else if (!dep.properties.excludeRules.empty) {
+                        // Otherwise add specified exclude rules
+                        def exclusionsNode = dependencyNode.appendNode('exclusions')
+                        dep.properties.excludeRules.each { ExcludeRule rule ->
+                            def exclusion = exclusionsNode.appendNode('exclusion')
+                            exclusion.appendNode('groupId', rule.group ?: '*')
+                            exclusion.appendNode('artifactId', rule.module ?: '*')
+                        }
+                    }
+                }
+                // List all dependencies and write to POM
+                configurations.api.getAllDependencies().each dependencies
+                configurations.implementation.getAllDependencies().each dependencies
+            }
+        }
+    }
+}
+artifactoryPublish {
+    publications(publishing.publications.aar)
+}*/
+

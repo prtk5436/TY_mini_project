@@ -67,7 +67,7 @@ public class MessOwnerSignUp extends AppCompatActivity {
                 PM = etPM.getText().toString();
                 str_offDay = etoffDay.getText().toString() + " Closed";
 //                secureCode=edtsecureCode.getText().toString();
-                if (name.isEmpty() || pwd.isEmpty() || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty() || str_offDay.isEmpty()) {
+                if (name.isEmpty() || pwd.isEmpty() || pwd.length()<6 || Cpwd.isEmpty() || messReg.isEmpty() || messAddr.isEmpty() || AM.isEmpty() || PM.isEmpty() || str_offDay.isEmpty()) {
                     Toast.makeText(MessOwnerSignUp.this, "please enter valid details", Toast.LENGTH_LONG).show();
 
                 } else if (!pwd.equals(Cpwd)) {

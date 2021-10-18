@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tyminiproject.Common.Common;
 import com.example.tyminiproject.Model.User;
 import com.example.tyminiproject.SignUp.GenerateOTP;
+import com.example.tyminiproject.sample.SplashScreenActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -107,6 +108,13 @@ public class SignIn extends AppCompatActivity {
     public void onForgotPassword(View view) {
         Intent i = new Intent(SignIn.this, ForgotPasswordGenerateOTP.class);
         i.putExtra("customer", "customer");
+        startActivity(i);
+    }
+
+    public void goToHelp(View view) {
+
+        Intent i = new Intent(SignIn.this, SplashScreenActivity.class);
+        //i.putExtra("customer", "customer");
         startActivity(i);
     }
 }
