@@ -322,7 +322,7 @@ public class MessOwnerHome extends AppCompatActivity implements NavigationView.O
 
             case R.id.nav_viewMessProfile:
                 Intent i3 = new Intent(MessOwnerHome.this, MessProfile.class);
-               // i3.putExtra("strMessMob", strMessMob);
+                i3.putExtra("role", "owner");
                 startActivity(i3);
                 break;
         }

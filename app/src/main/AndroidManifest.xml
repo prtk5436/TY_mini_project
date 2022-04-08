@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="io.kommunicate.app.p ermission.MAPS_RECEIVE" />
+
     <permission
         android:name="io.kommunicate.app.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -50,14 +51,6 @@
             android:theme="@style/Theme.TYMiniProject.NoActionBar" />
         <activity android:name=".MainActivity" />
 
-        <activity
-            android:name=".sample.ChatMainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/ApplozicTheme" />
-        <activity
-            android:name=".sample.SplashScreenActivity"
-            android:exported="true">
-        </activity>
 
         <activity
             android:name=".SplashScreen"
@@ -72,15 +65,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAv1wf5eMyErPaU3l8EnMUmOsoYJ2joC70" />
-
-
-        <service
-            android:name=".sample.pushnotification.FcmListenerService"
-            android:stopWithTask="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
         <meta-data
             android:name="preloaded_fonts"

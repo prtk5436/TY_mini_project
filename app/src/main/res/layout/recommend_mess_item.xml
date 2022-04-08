@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="15dp"
@@ -15,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_border"
+            android:background="@color/cardview_shadow_end_color"
             android:orientation="vertical">
 
             <LinearLayout
@@ -38,15 +37,7 @@
                         android:layout_marginTop="5dp"
                         android:alpha="0.5"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_baseline_restaurant_24" />
-
-                    <ImageView
-                        android:id="@+id/btn_messInfo"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/ic_baseline_info_24" />
+                        android:src="@drawable/ic_launcher_foreground" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -63,13 +54,11 @@
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
 
-                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <ImageView
                             android:id="@+id/profile_image"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/pimg2"
-                            app:civ_border_color="#FF000000"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/ic_launcher_background" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -84,7 +73,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/menuName"
+                                    android:id="@+id/RmessName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Kalpendra mess , Alandi"
@@ -95,7 +84,7 @@
                                     />
 
                                 <TextView
-                                    android:id="@+id/messOwnerName"
+                                    android:id="@+id/RmessCat"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
@@ -114,70 +103,6 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="17dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_clock" />
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="17dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="09:00 AM - 10:00 PM"
-                                android:textColor="@color/black"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-
-                                />
-
-                            <TextView
-                                android:id="@+id/tvoffDay"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="Sunday Closed"
-                                android:textColor="@color/black"
-                                android:textSize="12sp"
-
-                                />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btn_ViewMess"
-                        android:layout_width="90dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/shadow"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="View"
-                        android:textAllCaps="false"
-                        android:textSize="12sp" />
-
-                </RelativeLayout>
 
             </LinearLayout>
 
